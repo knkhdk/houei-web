@@ -1,0 +1,614 @@
+/* レスポンシブデザイン */
+
+/* タブレット */
+@media (max-width: 768px) {
+    .header-container {
+        height: 70px;
+    }
+    
+    .logo h1 {
+        font-size: 1.3rem;
+    }
+    
+    .nav {
+        display: none;
+    }
+    
+    .hamburger {
+        display: flex;
+    }
+    
+    .contact-info {
+        display: none;
+    }
+    
+    .hero {
+        padding: 100px 20px 60px;
+        margin-top: 70px;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .philosophy-main {
+        font-size: 1.2rem;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 20px;
+    }
+    
+    .technology-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .works-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .work-image {
+        height: 160px;
+    }
+    
+    .work-item {
+        border-radius: 12px;
+    }
+    
+    .work-item h3 {
+        font-size: 1.1rem;
+    }
+    
+    .recruit-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .about-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .info-row {
+        flex-direction: column;
+    }
+    
+    .info-item {
+        padding: 15px 20px;
+    }
+    
+    .info-item.full-width {
+        flex: 1;
+    }
+    
+    .info-label {
+        font-size: 0.8rem;
+    }
+    
+    .info-value {
+        font-size: 1rem;
+    }
+    
+    .company-img {
+        max-width: 400px;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .news-timeline::before {
+        left: 60px;
+    }
+    
+    .timeline-item {
+        flex-direction: column;
+        margin-bottom: 30px;
+    }
+    
+    .timeline-date {
+        width: auto;
+        margin-right: 0;
+        margin-bottom: 15px;
+        text-align: left;
+    }
+    
+    .timeline-date::before {
+        left: 59px;
+        top: 10px;
+    }
+    
+    .timeline-content::before {
+        display: none;
+    }
+    
+    .timeline-content {
+        padding: 20px;
+    }
+    
+    .works-slider {
+        margin: 0 10px;
+    }
+    
+    .slider-container {
+        margin: 0 20px;
+    }
+    
+    .work-item {
+        min-width: 250px;
+    }
+    
+    .work-image {
+        height: 160px;
+    }
+    
+    .slider-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+    
+    .slider-dots {
+        margin-top: 20px;
+    }
+    
+    .accordion-header {
+        padding: 20px 15px;
+    }
+    
+    .accordion-header h3 {
+        font-size: 1.1rem;
+    }
+    
+    .accordion-icon {
+        font-size: 1.3rem;
+    }
+    
+    .accordion-content p {
+        padding: 15px 15px 10px;
+        font-size: 0.9rem;
+    }
+    
+    .accordion-content ul {
+        padding: 0 15px 15px;
+    }
+    
+    .accordion-content li {
+        font-size: 0.85rem;
+        padding: 6px 0;
+    }
+    
+    .service-card {
+        height: 300px;
+    }
+    
+    .card-overlay {
+        padding: 30px 20px 20px;
+    }
+    
+    .card-overlay h3 {
+        font-size: 1.2rem;
+    }
+    
+    .card-overlay p {
+        font-size: 0.9rem;
+    }
+    
+    .card-overlay li {
+        font-size: 0.8rem;
+    }
+}
+
+/* スマートフォン */
+@media (max-width: 480px) {
+    .header-container {
+        height: 60px;
+        padding: 0 15px;
+    }
+    
+    .logo h1 {
+        font-size: 1.1rem;
+    }
+    
+    .hero {
+        padding: 80px 15px 50px;
+        margin-top: 60px;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .cta-btn {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 40px;
+    }
+    
+    .philosophy-main {
+        font-size: 1.1rem;
+        line-height: 1.8;
+    }
+    
+    .philosophy-description {
+        font-size: 1rem;
+    }
+    
+    .services {
+        padding: 60px 0;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .service-card {
+        height: 250px;
+    }
+    
+    .service-icon {
+        font-size: 2.5rem;
+    }
+    
+    .technology {
+        padding: 60px 0;
+    }
+    
+    .tech-card {
+        padding: 30px 20px;
+    }
+    
+    .works {
+        padding: 60px 0;
+    }
+    
+    .work-item {
+        padding: 25px 20px;
+    }
+    
+    .about {
+        padding: 60px 0;
+    }
+    
+    .about-content {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .info-cards {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .info-card {
+        padding: 18px;
+    }
+    
+    .info-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    
+    .info-content h4 {
+        font-size: 0.8rem;
+        margin-bottom: 6px;
+    }
+    
+    .info-content p {
+        font-size: 0.95rem;
+    }
+    
+    .company-img {
+        max-width: 300px;
+    }
+    
+    .info-table th,
+    .info-table td {
+        padding: 12px 15px;
+        font-size: 0.9rem;
+    }
+    
+    .info-table th {
+        width: 35%;
+    }
+    
+    .recruit {
+        padding: 60px 0;
+    }
+    
+    .recruit-card {
+        padding: 30px 20px;
+    }
+    
+    .contact {
+        padding: 60px 0;
+    }
+    
+    .contact-form {
+        padding: 30px 20px;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+    
+    .submit-btn {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
+    
+    .footer {
+        padding: 40px 0 20px;
+    }
+    
+    .footer-info h3 {
+        font-size: 1.2rem;
+    }
+    
+    .footer-links h4 {
+        font-size: 1.1rem;
+    }
+    
+    .news-timeline::before {
+        left: 60px;
+    }
+    
+    .timeline-item {
+        flex-direction: column;
+        margin-bottom: 30px;
+    }
+    
+    .timeline-date {
+        width: auto;
+        margin-right: 0;
+        margin-bottom: 15px;
+        text-align: left;
+    }
+    
+    .timeline-date::before {
+        left: 59px;
+        top: 10px;
+    }
+    
+    .timeline-content::before {
+        display: none;
+    }
+    
+    .timeline-content {
+        padding: 20px;
+    }
+    
+    .works-slider {
+        margin: 0 10px;
+    }
+    
+    .slider-container {
+        margin: 0 20px;
+    }
+    
+    .work-item {
+        min-width: 250px;
+    }
+    
+    .work-image {
+        height: 160px;
+    }
+    
+    .slider-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+    
+    .slider-dots {
+        margin-top: 20px;
+    }
+    
+    .accordion-header {
+        padding: 20px 15px;
+    }
+    
+    .accordion-header h3 {
+        font-size: 1.1rem;
+    }
+    
+    .accordion-icon {
+        font-size: 1.3rem;
+    }
+    
+    .accordion-content p {
+        padding: 15px 15px 10px;
+        font-size: 0.9rem;
+    }
+    
+    .accordion-content ul {
+        padding: 0 15px 15px;
+    }
+    
+    .accordion-content li {
+        font-size: 0.85rem;
+        padding: 6px 0;
+    }
+    
+    .card-overlay {
+        padding: 25px 15px 15px;
+    }
+    
+    .card-overlay h3 {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+    }
+    
+    .card-overlay p {
+        font-size: 0.85rem;
+        margin-bottom: 12px;
+    }
+    
+    .card-overlay li {
+        font-size: 0.75rem;
+        padding: 3px 0;
+    }
+}
+
+/* 超小型デバイス */
+@media (max-width: 320px) {
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .section-title {
+        font-size: 1.6rem;
+    }
+    
+    .philosophy-main {
+        font-size: 1rem;
+    }
+    
+    .service-card,
+    .tech-card,
+    .work-item,
+    .recruit-card {
+        padding: 25px 15px;
+    }
+    
+    .contact-form {
+        padding: 25px 15px;
+    }
+}
+
+/* 横画面スマートフォン */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        padding: 60px 20px 40px;
+    }
+    
+    .hero-title {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 25px;
+    }
+    
+    .cta-btn {
+        padding: 10px 25px;
+        font-size: 0.9rem;
+    }
+}
+
+/* 高解像度ディスプレイ */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .service-card,
+    .tech-card,
+    .work-item,
+    .recruit-card {
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+}
+
+/* 印刷用スタイル */
+@media print {
+    .header,
+    .hamburger,
+    .cta-btn,
+    .contact-btn,
+    .recruit-btn,
+    .submit-btn {
+        display: none !important;
+    }
+    
+    .hero {
+        background: none !important;
+        color: #000 !important;
+        margin-top: 0 !important;
+        padding: 20px 0 !important;
+    }
+    
+    .section-title {
+        color: #000 !important;
+    }
+    
+    .section-title::after {
+        background-color: #000 !important;
+    }
+    
+    .service-card,
+    .tech-card,
+    .work-item,
+    .recruit-card {
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+    }
+    
+    .footer {
+        background: none !important;
+        color: #000 !important;
+    }
+}
+
+.about-content {
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info-item {
+    padding: 12px 15px;
+}
+
+.info-label {
+    font-size: 0.75rem;
+}
+
+.info-value {
+    font-size: 0.9rem;
+}
+
+.company-img {
+    max-width: 300px;
+}
+
+.info-table th,
+.info-table td {
+    padding: 12px 15px;
+    font-size: 0.9rem;
+}
+
+.info-table th {
+    width: 35%;
+} 
