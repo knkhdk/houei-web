@@ -1,0 +1,41 @@
+name: CodeRabbit Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  coderabbit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: CodeRabbit Review
+        uses: coderabbitai/ai-pr-review@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CODERABBIT_TOKEN: ${{ secrets.CODERABBIT_TOKEN }}
+        with:
+          # レビューの設定
+          review_type: "full"
+          
+          # 日本語でのレビュー
+          language: "ja"
+          
+          # 建設業界のコンテキスト
+          industry: "construction"
+          
+          # ファイルタイプの設定
+          file_types: "html,css,js,md"
+          
+          # セキュリティチェック
+          security_checks: true
+          
+          # パフォーマンスチェック
+          performance_checks: true
+          
+          # アクセシビリティチェック
+          accessibility_checks: true 
