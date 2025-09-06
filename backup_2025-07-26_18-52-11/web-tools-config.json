@@ -1,0 +1,68 @@
+{
+  "webTools": {
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp"],
+      "env": {
+        "NODE_ENV": "development",
+        "PLAYWRIGHT_BROWSERS_PATH": "./browsers"
+      }
+    },
+    "browserMCP": {
+      "command": "npx",
+      "args": ["-y", "@browsermcp/mcp"],
+      "env": {
+        "BROWSER_MCP_PORT": "3001"
+      }
+    },
+    "mcpFramework": {
+      "command": "npx",
+      "args": ["-y", "mcp-framework"],
+      "env": {
+        "MCP_FRAMEWORK_DEBUG": "true"
+      }
+    },
+    "mcpProxy": {
+      "command": "npx",
+      "args": ["-y", "mcp-proxy"],
+      "env": {
+        "MCP_PROXY_PORT": "3002"
+      }
+    }
+  },
+  "imageProcessing": {
+    "sharp": {
+      "outputDir": "./images/optimized",
+      "formats": ["webp", "avif"],
+      "quality": 80,
+      "resize": {
+        "thumbnail": { "width": 300, "height": 200 },
+        "medium": { "width": 800, "height": 600 },
+        "large": { "width": 1200, "height": 800 }
+      }
+    }
+  },
+  "optimization": {
+    "html": {
+      "minify": true,
+      "removeComments": true,
+      "collapseWhitespace": true
+    },
+    "css": {
+      "minify": true,
+      "autoprefixer": true,
+      "removeUnused": true
+    },
+    "js": {
+      "minify": true,
+      "sourceMap": false
+    }
+  },
+  "testing": {
+    "playwright": {
+      "browsers": ["chromium", "firefox", "webkit"],
+      "screenshotDir": "./screenshots",
+      "videoDir": "./videos"
+    }
+  }
+} 

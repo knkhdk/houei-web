@@ -1,0 +1,65 @@
+# CodeRabbit設定ファイル
+# コードレビューの設定を定義
+
+# レビューの設定
+review:
+  # レビュー対象のファイル拡張子
+  include_files:
+    - "*.html"
+    - "*.css"
+    - "*.js"
+    - "*.md"
+  
+  # レビュー対象外のファイル
+  exclude_files:
+    - "node_modules/**"
+    - "*.min.js"
+    - "*.min.css"
+    - "images/**"
+  
+  # レビューの詳細レベル
+  detail_level: "detailed"
+  
+  # セキュリティチェックを有効化
+  security_checks: true
+  
+  # パフォーマンスチェックを有効化
+  performance_checks: true
+
+# コメントの設定
+comments:
+  # 日本語でのコメントを有効化
+  language: "ja"
+  
+  # 建設業界特有の用語を考慮
+  industry_context: "construction"
+
+# 品質チェックの設定
+quality:
+  # HTMLのセマンティックチェック
+  html_semantics: true
+  
+  # CSSのベストプラクティスチェック
+  css_best_practices: true
+  
+  # JavaScriptの品質チェック
+  javascript_quality: true
+  
+  # アクセシビリティチェック
+  accessibility: true
+
+# 自動修正の設定
+auto_fix:
+  # 軽微な修正を自動適用
+  minor_fixes: true
+  
+  # 重大な修正は手動確認
+  major_fixes: false
+
+# 通知設定
+notifications:
+  # プルリクエスト作成時に通知
+  on_pr_created: true
+  
+  # レビュー完了時に通知
+  on_review_completed: true 

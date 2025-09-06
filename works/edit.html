@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>施工実績編集 - 邦栄建設株式会社</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/top/logo.png" alt="邦栄建設株式会社" class="logo-img">
+                </a>
+            </div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="../index.html#about">企業情報</a></li>
+                    <li><a href="../index.html#news">お知らせ</a></li>
+                    <li><a href="../news/index.html">お知らせ一覧</a></li>
+                    <li><a href="../index.html#services">事業内容</a></li>
+                    <li><a href="index.html">施工実績</a></li>
+                    <li><a href="../index.html#technology">工法・技術</a></li>
+                    <li><a href="../index.html#recruit">採用情報</a></li>
+                </ul>
+            </nav>
+            <div class="contact-info">
+                <a href="../index.html#contact" class="contact-btn">お問合せ</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ページヘッダー -->
+    <section class="page-header">
+        <div class="container">
+            <h1>施工実績編集</h1>
+            <p>施工実績の情報を編集してください</p>
+            <div class="page-actions">
+                <a href="index.html" class="btn btn-secondary">施工実績一覧に戻る</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 編集フォーム -->
+    <section class="works-edit-page">
+        <div class="container">
+            <div class="edit-form-container">
+                <div id="loadingMessage" class="loading-message">
+                    <p>データを読み込み中...</p>
+                </div>
+                
+                <form class="works-edit-form" id="worksEditForm" style="display: none;">
+                    <input type="hidden" id="workId" name="id">
+                    
+                    <div class="form-group">
+                        <label for="title">工事名 *</label>
+                        <input type="text" id="title" name="title" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">カテゴリ *</label>
+                        <select id="category" name="category" required>
+                            <option value="">カテゴリを選択</option>
+                            <option value="下水道工事">下水道工事</option>
+                            <option value="上下水道">上下水道</option>
+                            <option value="上水道工事">上水道工事</option>
+                            <option value="宅地造成工事">宅地造成工事</option>
+                            <option value="河川工事">河川工事</option>
+                            <option value="墓地造成工事">墓地造成工事</option>
+                            <option value="道路工事">道路工事</option>
+                            <option value="公園工事">公園工事</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">施工場所 *</label>
+                        <input type="text" id="location" name="location" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">工事概要 *</label>
+                        <textarea id="description" name="description" rows="4" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="year">施工年 *</label>
+                        <input type="number" id="year" name="year" min="2000" max="2030" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="image">画像</label>
+                        <input type="file" id="image" name="image" accept="image/*">
+                        <div class="file-upload-info">
+                            <p>※ 画像は任意です。アップロードしない場合は現在の画像が維持されます。</p>
+                        </div>
+                        <div id="currentImage" class="current-image">
+                            <!-- 現在の画像がここに表示されます -->
+                        </div>
+                    </div>
+
+                    <div class="details-inputs">
+                        <h3>詳細情報</h3>
+                        <div class="detail-row">
+                            <input type="text" id="detail1_key" name="detail1_key" placeholder="項目名（例：工期）">
+                            <input type="text" id="detail1_value" name="detail1_value" placeholder="値（例：3ヶ月）">
+                        </div>
+                        <div class="detail-row">
+                            <input type="text" id="detail2_key" name="detail2_key" placeholder="項目名（例：延長）">
+                            <input type="text" id="detail2_value" name="detail2_value" placeholder="値（例：500m）">
+                        </div>
+                        <div class="detail-row">
+                            <input type="text" id="detail3_key" name="detail3_key" placeholder="項目名（例：管径）">
+                            <input type="text" id="detail3_value" name="detail3_value" placeholder="値（例：φ300mm）">
+                        </div>
+                        <div class="detail-row">
+                            <input type="text" id="detail4_key" name="detail4_key" placeholder="項目名（例：面積）">
+                            <input type="text" id="detail4_value" name="detail4_value" placeholder="値（例：1,000㎡）">
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="previewWorkEdit()">プレビュー</button>
+                        <button type="submit" class="btn btn-primary">更新する</button>
+                        <button type="button" class="btn btn-danger" onclick="deleteWork()">削除する</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- プレビュー -->
+            <div class="preview-container" id="previewContainer" style="display: none;">
+                <h3>プレビュー</h3>
+                <div class="preview-content" id="previewContent">
+                    <!-- プレビュー内容がここに表示されます -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>邦栄建設株式会社</h3>
+                    <p>〒333-0807 埼玉県川口市安行吉岡1570-6</p>
+                    <p>TEL: 048-288-8800</p>
+                </div>
+                <div class="footer-links">
+                    <h4>サイトマップ</h4>
+                    <ul>
+                        <li><a href="../index.html#about">企業情報</a></li>
+                        <li><a href="../index.html#news">お知らせ</a></li>
+                        <li><a href="../news/index.html">お知らせ一覧</a></li>
+                        <li><a href="../index.html#services">事業内容</a></li>
+                        <li><a href="index.html">施工実績</a></li>
+                        <li><a href="../index.html#technology">工法・技術</a></li>
+                        <li><a href="../index.html#recruit">採用情報</a></li>
+                        <li><a href="../index.html#contact">お問合せ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 邦栄建設株式会社 All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/works-edit.js"></script>
+</body>
+</html> 

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>邦栄建設株式会社 - 地域共生100年企業</title>
+    <link rel="stylesheet" href="css/style-optimized.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="#">
+                    <img src="images/top/logo.png" alt="邦栄建設株式会社" class="logo-img">
+                </a>
+            </div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="#about">企業情報</a></li>
+                    <li><a href="#news">お知らせ</a></li>
+                    <li><a href="news/index.html">お知らせ一覧</a></li>
+                    <li><a href="#services">事業内容</a></li>
+                    <li><a href="#works">施工実績</a></li>
+                    <li><a href="works/index.html">施工実績一覧</a></li>
+                    <li><a href="#technology">工法・技術</a></li>
+                    <li><a href="#recruit">採用情報</a></li>
+                    <li><a href="contact/index.html">お問い合わせ</a></li>
+                </ul>
+            </nav>
+            <div class="contact-info">
+                <a href="contact/index.html" class="contact-btn">お問合せ</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- メインビジュアル -->
+    <section class="hero slideshow">
+        <div class="hero-content">
+            <h2 class="hero-title">次世代を創る現場力<br>新４Kで未来を拓く</h2>
+        </div>
+    </section>
+
+    <!-- 経営理念 -->
+    <section id="philosophy" class="philosophy">
+        <div class="container">
+            <h2 class="section-title">経営理念</h2>
+            <div class="philosophy-content">
+                <div class="philosophy-text">
+                    <p class="philosophy-main">
+                        『挑戦と努力』の積み重ねが"確かな技術"となる<br>
+                        『革新と創造』の積み重ねが"たゆまぬ進化"となる<br>
+                        『共生と調和』の積み重ねが"ゆるぎない信頼"となる
+                    </p>
+                    <p class="philosophy-description">
+                        私たちは持続可能な社会の実現に向けて使命感を持ち、<br>
+                        日々の技術研鑽とたゆまぬ進化に努め、皆様に信頼され<br>
+                        必要とされる『地域共生１００年企業』を目指します
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- お知らせ -->
+    <section id="news" class="news">
+        <div class="container">
+            <h2 class="section-title">お知らせ</h2>
+            <div class="news-3d" id="newsContainer">
+                <!-- お知らせがここに動的に表示されます -->
+            </div>
+            <div class="news-more">
+                <a href="news/index.html" class="news-more-btn">お知らせ一覧を見る</a>
+                <button class="news-refresh-btn" onclick="loadTopNews()" title="お知らせを更新">
+                    <svg class="refresh-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 4V10H7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M23 20V14H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10M23 14L18.36 18.36A9 9 0 0 1 3.51 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="refresh-text">更新</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 事業内容 -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">事業内容</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="images/sonota/gesui.jpg" alt="上下水道工事" onerror="this.src='images/top/placeholder.jpg'">
+                    </div>
+                    <div class="service-content">
+                        <h3>上下水道工事</h3>
+                        <p>開削工事、推進工事</p>
+                        <div class="service-features">
+                            <span>下水道開削工事</span>
+                            <span>下水道推進工事</span>
+                            <span>上水道工事</span>
+                            <span>雨水排水工事</span>
+                        </div>
+                        <a href="services/waterworks.html" class="service-detail-link">詳細を見る</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="images/jigyounaiyou/kouzoubutsu.jpg" alt="構造物工事" onerror="this.src='images/top/placeholder.jpg'">
+                    </div>
+                    <div class="service-content">
+                        <h3>構造物工事</h3>
+                        <p>水貯留施設工事、擁壁・水路工事</p>
+                        <div class="service-features">
+                            <span>水貯留施設工事</span>
+                            <span>擁壁工事</span>
+                            <span>水路工事</span>
+                            <span>調整池築造工事</span>
+                        </div>
+                        <a href="services/structures.html" class="service-detail-link">詳細を見る</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="images/jigyounaiyou/DJI_0272.JPG" alt="河川工事" onerror="this.src='images/top/placeholder.jpg'">
+                    </div>
+                    <div class="service-content">
+                        <h3>河川工事</h3>
+                        <p>河川堤防工事、河道掘削工事</p>
+                        <div class="service-features">
+                            <span>河川堤防工事</span>
+                            <span>河道掘削工事</span>
+                            <span>護岸工事</span>
+                            <span>河川改修工事</span>
+                        </div>
+                        <a href="services/river.html" class="service-detail-link">詳細を見る</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="images/jigyounaiyou/douro.jpg" alt="道路工事" onerror="this.src='images/top/placeholder.jpg'">
+                    </div>
+                    <div class="service-content">
+                        <h3>道路工事</h3>
+                        <p>道路舗装工事、道路整備工事</p>
+                        <div class="service-features">
+                            <span>道路舗装工事</span>
+                            <span>道路整備工事</span>
+                            <span>歩道工事</span>
+                            <span>道路補修工事</span>
+                        </div>
+                        <a href="services/road.html" class="service-detail-link">詳細を見る</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 施工実績 -->
+    <section id="works" class="works">
+        <div class="container">
+            <h2 class="section-title">施工実績</h2>
+            <div class="works-grid" id="worksContainer">
+                <!-- 施工実績がここに動的に表示されます -->
+            </div>
+            <div class="works-more">
+                <a href="works/index.html" class="works-more-btn">施工実績一覧を見る</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 技術・工法 -->
+    <section id="technology" class="technology">
+        <div class="container">
+            <h2 class="section-title">技術・工法</h2>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-image">
+                        <img src="images/tech/dx.jpg" alt="建設DX" onerror="this.src='images/top/placeholder.jpg'">
+                    </div>
+                    <div class="tech-content">
+                        <h3>建設DX（i-Construction）</h3>
+                        <p>最新のデジタル技術を活用した効率的な施工管理</p>
+                        <a href="technology/dx.html" class="tech-detail-link">詳細を見る</a>
+                    </div>
+                </div>
+                
+                <div class="tech-card">
+                    <div class="tech-image">
+                        <img src="images/tech/l-mole.jpg" alt="L-Mole工法" onerror="this.src='images/top/placeholder.jpg'">
+                    </div>
+                    <div class="tech-content">
+                        <h3>L-Mole工法</h3>
+                        <p>環境に配慮した非開削工法による効率的な施工</p>
+                        <a href="technology/l-mole.html" class="tech-detail-link">詳細を見る</a>
+                    </div>
+                </div>
+                
+                <div class="tech-card">
+                    <div class="tech-image">
+                        <img src="images/tech/spr.jpg" alt="SPR工法" onerror="this.src='images/top/placeholder.jpg'">
+                    </div>
+                    <div class="tech-content">
+                        <h3>SPR工法</h3>
+                        <p>地盤改良による安全で確実な基礎工事</p>
+                        <a href="technology/spr.html" class="tech-detail-link">詳細を見る</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 採用情報 -->
+    <section id="recruit" class="recruit">
+        <div class="container">
+            <h2 class="section-title">採用情報</h2>
+            <div class="recruit-grid">
+                <div class="recruit-card">
+                    <h3>現場監督</h3>
+                    <p>現場の安全管理と品質管理を担当</p>
+                    <a href="recruit/supervisor.html" class="recruit-detail-link">詳細を見る</a>
+                </div>
+                
+                <div class="recruit-card">
+                    <h3>営業職</h3>
+                    <p>お客様との関係構築と案件獲得を担当</p>
+                    <a href="recruit/sales.html" class="recruit-detail-link">詳細を見る</a>
+                </div>
+                
+                <div class="recruit-card">
+                    <h3>土木作業員</h3>
+                    <p>現場での実際の施工作業を担当</p>
+                    <a href="recruit/worker.html" class="recruit-detail-link">詳細を見る</a>
+                </div>
+                
+                <div class="recruit-card">
+                    <h3>ハーベストクラブ</h3>
+                    <p>地域貢献活動を通じた人材育成</p>
+                    <a href="recruit/harvest-club.html" class="recruit-detail-link">詳細を見る</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>邦栄建設株式会社</h3>
+                    <p>〒332-0016<br>埼玉県川口市幸町3-1-1<br>TEL: 048-222-1234<br>FAX: 048-222-1235</p>
+                </div>
+                <div class="footer-section">
+                    <h3>事業内容</h3>
+                    <ul>
+                        <li><a href="services/waterworks.html">上下水道工事</a></li>
+                        <li><a href="services/structures.html">構造物工事</a></li>
+                        <li><a href="services/river.html">河川工事</a></li>
+                        <li><a href="services/road.html">道路工事</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>企業情報</h3>
+                    <ul>
+                        <li><a href="about.html">会社概要</a></li>
+                        <li><a href="news/index.html">お知らせ</a></li>
+                        <li><a href="works/index.html">施工実績</a></li>
+                        <li><a href="contact/index.html">お問い合わせ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 邦栄建設株式会社. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // お知らせデータ（静的バージョン用）
+        const newsData = [
+            {
+                "id": "1703123456789",
+                "title": "新しい工法の導入について",
+                "summary": "建設DX（i-Construction）の導入により、施工効率が大幅に向上しました。",
+                "content": "当社では、建設業界のデジタル化を推進するため、建設DX（i-Construction）を導入いたしました。この工法により、従来の施工方法と比較して、施工効率が約30%向上し、工期の短縮とコスト削減を実現しています。今後も最新技術の導入により、お客様により良いサービスを提供してまいります。",
+                "category": "技術・工法",
+                "date": "2023-12-21T10:00:00.000Z",
+                "status": "published",
+                "details": {
+                    "施工場所": "埼玉県川口市内",
+                    "工期": "3ヶ月",
+                    "施工面積": "1,000㎡"
+                }
+            },
+            {
+                "id": "1703123456790",
+                "title": "採用情報の更新",
+                "summary": "2024年度の新卒採用情報を更新いたしました。",
+                "content": "2024年度の新卒採用情報を更新いたしました。現場監督、営業職、土木作業員の各職種で募集を行っております。当社では、若手の育成に力を入れており、経験豊富な先輩社員による丁寧な指導体制を整えています。ご興味のある方は、ぜひご応募ください。",
+                "category": "採用情報",
+                "date": "2023-12-20T14:30:00.000Z",
+                "status": "published",
+                "details": {
+                    "募集職種": "現場監督、営業職、土木作業員",
+                    "応募期間": "2024年1月〜3月",
+                    "採用予定人数": "5名"
+                }
+            },
+            {
+                "id": "1703123456791",
+                "title": "安全大会の開催",
+                "summary": "年次安全大会を開催し、安全意識の向上を図りました。",
+                "content": "12月15日に年次安全大会を開催いたしました。当日は、安全に関する講演や事例発表を行い、従業員全員の安全意識の向上を図りました。当社では、安全第一の理念のもと、日々の作業においても安全確認を徹底しており、今後も事故ゼロを目指して取り組んでまいります。",
+                "category": "会社情報",
+                "date": "2023-12-15T09:00:00.000Z",
+                "status": "published",
+                "details": {
+                    "開催日": "2023年12月15日",
+                    "参加人数": "50名",
+                    "会場": "本社会議室"
+                }
+            }
+        ];
+
+        // 施工実績データ（静的バージョン用）
+        const worksData = [
+            {
+                "id": "work001",
+                "title": "川口市下水道整備工事",
+                "category": "上下水道工事",
+                "location": "埼玉県川口市",
+                "period": "2023年4月〜2023年12月",
+                "image": "images/works/work1.jpg",
+                "description": "川口市内の下水道整備工事を施工しました。"
+            },
+            {
+                "id": "work002",
+                "title": "荒川河川改修工事",
+                "category": "河川工事",
+                "location": "埼玉県川口市",
+                "period": "2023年6月〜2024年3月",
+                "image": "images/works/work2.jpg",
+                "description": "荒川の河川改修工事を施工しました。"
+            },
+            {
+                "id": "work003",
+                "title": "調整池築造工事",
+                "category": "構造物工事",
+                "location": "埼玉県川口市",
+                "period": "2023年8月〜2024年2月",
+                "image": "images/works/work3.jpg",
+                "description": "雨水調整池の築造工事を施工しました。"
+            }
+        ];
+
+        // お知らせ表示関数
+        function loadTopNews() {
+            const container = document.getElementById('newsContainer');
+            if (!container) return;
+
+            const recentNews = newsData
+                .filter(news => news.status === 'published')
+                .sort((a, b) => new Date(b.date) - new Date(a.date))
+                .slice(0, 3);
+
+            container.innerHTML = recentNews.map(news => `
+                <div class="news-card" onclick="showNewsDetail('${news.id}')">
+                    <div class="news-date">${new Date(news.date).toLocaleDateString('ja-JP')}</div>
+                    <div class="news-category">${news.category}</div>
+                    <h3 class="news-title">${news.title}</h3>
+                    <p class="news-summary">${news.summary}</p>
+                </div>
+            `).join('');
+        }
+
+        // 施工実績表示関数
+        function loadTopWorks() {
+            const container = document.getElementById('worksContainer');
+            if (!container) return;
+
+            container.innerHTML = worksData.slice(0, 3).map(work => `
+                <div class="work-card">
+                    <div class="work-image">
+                        <img src="${work.image}" alt="${work.title}" onerror="this.src='images/top/placeholder.jpg'">
+                    </div>
+                    <div class="work-content">
+                        <h3>${work.title}</h3>
+                        <p class="work-category">${work.category}</p>
+                        <p class="work-location">${work.location}</p>
+                        <p class="work-period">${work.period}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // お知らせ詳細表示（簡易版）
+        function showNewsDetail(newsId) {
+            const news = newsData.find(n => n.id === newsId);
+            if (news) {
+                alert(`${news.title}\n\n${news.content}`);
+            }
+        }
+
+        // ページ読み込み時の初期化
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTopNews();
+            loadTopWorks();
+            
+            // ハンバーガーメニューの動作
+            const hamburger = document.querySelector('.hamburger');
+            const nav = document.querySelector('.nav');
+            
+            if (hamburger && nav) {
+                hamburger.addEventListener('click', function() {
+                    nav.classList.toggle('active');
+                    hamburger.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html> 

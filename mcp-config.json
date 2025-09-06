@@ -1,0 +1,32 @@
+{
+  "mcpServers": {
+    "file-system": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem"],
+      "env": {
+        "MCP_FILESYSTEM_ROOT": "."
+      }
+    },
+    "code-runner": {
+      "command": "npx",
+      "args": ["-y", "mcp-server-code-runner"],
+      "env": {
+        "NODE_ENV": "development"
+      }
+    },
+    "youtube-data": {
+      "command": "npx",
+      "args": ["-y", "youtube-data-mcp-server"],
+      "env": {
+        "YOUTUBE_API_KEY": ""
+      }
+    },
+    "notion": {
+      "command": "npx",
+      "args": ["-y", "@notionhq/notion-mcp-server"],
+      "env": {
+        "NOTION_TOKEN": ""
+      }
+    }
+  }
+} 

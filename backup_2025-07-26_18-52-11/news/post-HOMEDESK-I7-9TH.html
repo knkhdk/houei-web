@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お知らせ投稿 - 邦栄建設株式会社</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/top/logo.png" alt="邦栄建設株式会社" class="logo-img">
+                </a>
+            </div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="../index.html#about">企業情報</a></li>
+                    <li><a href="../index.html#news">お知らせ</a></li>
+                    <li><a href="../index.html#services">事業内容</a></li>
+                    <li><a href="../index.html#works">施工実績</a></li>
+                    <li><a href="../index.html#technology">工法・技術</a></li>
+                    <li><a href="../index.html#recruit">採用情報</a></li>
+                </ul>
+            </nav>
+            <div class="contact-info">
+                <a href="../index.html#contact" class="contact-btn">お問合せ</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ページヘッダー -->
+    <section class="page-header">
+        <div class="container">
+            <h1>お知らせ投稿</h1>
+            <p>新しいお知らせを投稿します</p>
+            <div class="page-actions">
+                <a href="index.html" class="btn btn-secondary">お知らせ一覧に戻る</a>
+                <button class="btn btn-secondary" id="toggleAdminMode">管理モード</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 管理モード通知 -->
+    <div class="admin-notice" id="adminNotice" style="display: none;">
+        <div class="admin-notice-content">
+            <span class="admin-icon">⚙️</span>
+            <span>管理モードが有効です。お知らせの編集・削除が可能です。</span>
+            <button class="btn btn-small" id="exitAdminMode">管理モードを終了</button>
+        </div>
+    </div>
+
+    <!-- 管理機能セクション -->
+    <section class="admin-section" id="adminSection" style="display: none;">
+        <div class="container">
+            <div class="admin-header">
+                <h2>お知らせ管理</h2>
+                <p>投稿済みのお知らせを編集・削除できます</p>
+            </div>
+            
+            <div class="admin-news-list" id="adminNewsList">
+                <!-- 管理対象のお知らせがここに表示されます -->
+            </div>
+        </div>
+    </section>
+
+    <!-- お知らせ投稿フォーム -->
+    <section class="news-post-page">
+        <div class="container">
+            <div class="post-form-container">
+                <form class="news-post-form" id="newsPostForm">
+                    <div class="form-group">
+                        <label for="newsTitle">タイトル *</label>
+                        <input type="text" id="newsTitle" name="title" required placeholder="お知らせのタイトルを入力してください">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="newsCategory">カテゴリ *</label>
+                            <select id="newsCategory" name="category" required>
+                                <option value="">カテゴリを選択してください</option>
+                                <option value="採用情報">採用情報</option>
+                                <option value="工事実績">工事実績</option>
+                                <option value="技術情報">技術情報</option>
+                                <option value="会社情報">会社情報</option>
+                                <option value="お知らせ">お知らせ</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="newsDate">投稿日 *</label>
+                            <input type="date" id="newsDate" name="date" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="newsSummary">概要 *</label>
+                        <textarea id="newsSummary" name="summary" rows="3" required placeholder="お知らせの概要を入力してください"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="newsContent">詳細内容 *</label>
+                        <textarea id="newsContent" name="content" rows="8" required placeholder="お知らせの詳細内容を入力してください"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="newsImage">画像</label>
+                        <input type="file" id="newsImage" name="image" accept="image/*">
+                        <div class="file-upload-info">
+                            <p>推奨サイズ: 800px × 600px</p>
+                            <p>対応形式: JPG, PNG, GIF</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="newsDetails">詳細情報（オプション）</label>
+                        <div class="details-inputs">
+                            <div class="detail-row">
+                                <input type="text" name="detail1_label" placeholder="項目名（例：工事期間）">
+                                <input type="text" name="detail1_value" placeholder="内容（例：2024年8月〜2024年12月）">
+                            </div>
+                            <div class="detail-row">
+                                <input type="text" name="detail2_label" placeholder="項目名（例：工事内容）">
+                                <input type="text" name="detail2_value" placeholder="内容（例：下水道開削工事）">
+                            </div>
+                            <div class="detail-row">
+                                <input type="text" name="detail3_label" placeholder="項目名（例：工事場所）">
+                                <input type="text" name="detail3_value" placeholder="内容（例：川口市大字峯地内）">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="newsStatus">公開状態</label>
+                        <select id="newsStatus" name="status">
+                            <option value="published">公開</option>
+                            <option value="draft">下書き保存</option>
+                        </select>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="previewBtn">プレビュー</button>
+                        <button type="button" class="btn btn-secondary" id="saveDraftBtn">下書き保存</button>
+                        <button type="submit" class="btn btn-primary">投稿する</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- プレビューエリア -->
+            <div class="preview-container" id="previewContainer" style="display: none;">
+                <h3>プレビュー</h3>
+                <div class="preview-content" id="previewContent">
+                    <!-- プレビュー内容がここに表示されます -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>邦栄建設株式会社</h3>
+                    <p>〒333-0807 埼玉県川口市安行吉岡1570-6</p>
+                    <p>TEL: 048-288-8800</p>
+                </div>
+                <div class="footer-links">
+                    <h4>サイトマップ</h4>
+                    <ul>
+                        <li><a href="../index.html#about">企業情報</a></li>
+                        <li><a href="../index.html#news">お知らせ</a></li>
+                        <li><a href="../index.html#services">事業内容</a></li>
+                        <li><a href="../index.html#works">施工実績</a></li>
+                        <li><a href="../index.html#technology">工法・技術</a></li>
+                        <li><a href="../index.html#recruit">採用情報</a></li>
+                        <li><a href="../index.html#contact">お問合せ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 邦栄建設株式会社 All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/news-post.js"></script>
+</body>
+</html> 

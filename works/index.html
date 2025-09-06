@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>施工実績一覧 - 邦栄建設株式会社</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/technology-detail.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/top/logo.png" alt="邦栄建設株式会社" class="logo-img">
+                </a>
+            </div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="../index.html#about">企業情報</a></li>
+                    <li><a href="../index.html#news">お知らせ</a></li>
+                    <li><a href="../news/index.html">お知らせ一覧</a></li>
+                    <li><a href="../index.html#services">事業内容</a></li>
+                    <li><a href="index.html">施工実績</a></li>
+                    <li><a href="../index.html#technology">工法・技術</a></li>
+                    <li><a href="../index.html#recruit">採用情報</a></li>
+                </ul>
+            </nav>
+            <div class="contact-info">
+                <a href="../index.html#contact" class="contact-btn">お問合せ</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ページヘッダー -->
+    <section class="page-header works-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="header-icon">
+                    <div class="tech-icon works-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                            <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 1V3M12 21V23M4.22 4.22L5.64 5.64M18.36 18.36L19.78 19.78M1 12H3M21 12H23M4.22 19.78L5.64 18.36M18.36 5.64L19.78 4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="header-text">
+                    <h1>施工実績一覧</h1>
+                    <p class="header-subtitle">当社の豊富な施工実績をご紹介いたします。地域のインフラ整備から環境保全まで、多様なプロジェクトを手がけています。</p>
+                    <div class="header-tags">
+                        <span class="tag">インフラ整備</span>
+                        <span class="tag">環境保全</span>
+                        <span class="tag">地域貢献</span>
+                        <span class="tag">高品質施工</span>
+                    </div>
+                    <div class="header-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">100+</span>
+                            <span class="stat-label">施工実績</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">年の実績</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">6</span>
+                            <span class="stat-label">工事カテゴリ</span>
+                        </div>
+                    </div>
+                    <div class="page-actions">
+                        <a href="../index.html" class="back-btn">← トップページに戻る</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 施工実績一覧 -->
+    <section class="works-list-page">
+        <div class="container">
+            <!-- フィルター -->
+            <div class="works-filter">
+                <div class="filter-header">
+                    <div class="filter-icon">
+                        <i class="fas fa-filter"></i>
+                    </div>
+                    <div class="filter-title">
+                        <h3>カテゴリで絞り込み</h3>
+                        <p>工事の種類を選択して、関連する施工実績を表示できます</p>
+                    </div>
+                </div>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-category="all">
+                        <i class="fas fa-th-large"></i>
+                        <span>すべて</span>
+                        <span class="filter-count" id="count-all">6</span>
+                    </button>
+                    <button class="filter-btn" data-category="下水道工事">
+                        <i class="fas fa-tint"></i>
+                        <span>下水道工事</span>
+                        <span class="filter-count" id="count-下水道工事">1</span>
+                    </button>
+                    <button class="filter-btn" data-category="上下水道">
+                        <i class="fas fa-water"></i>
+                        <span>上下水道</span>
+                        <span class="filter-count" id="count-上下水道">1</span>
+                    </button>
+                    <button class="filter-btn" data-category="上水道工事">
+                        <i class="fas fa-faucet"></i>
+                        <span>上水道工事</span>
+                        <span class="filter-count" id="count-上水道工事">1</span>
+                    </button>
+                    <button class="filter-btn" data-category="宅地造成工事">
+                        <i class="fas fa-home"></i>
+                        <span>宅地造成工事</span>
+                        <span class="filter-count" id="count-宅地造成工事">1</span>
+                    </button>
+                    <button class="filter-btn" data-category="河川工事">
+                        <i class="fas fa-water"></i>
+                        <span>河川工事</span>
+                        <span class="filter-count" id="count-河川工事">1</span>
+                    </button>
+                    <button class="filter-btn" data-category="墓地造成工事">
+                        <i class="fas fa-monument"></i>
+                        <span>墓地造成工事</span>
+                        <span class="filter-count" id="count-墓地造成工事">1</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 統計情報 -->
+            <div class="works-stats">
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-number" id="total-works">6</span>
+                            <span class="stat-label">総施工実績数</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-number" id="current-year">2023</span>
+                            <span class="stat-label">最新施工年</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-number" id="locations">3</span>
+                            <span class="stat-label">施工地域数</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 施工実績グリッド -->
+            <div class="works-grid" id="worksGrid">
+                <!-- 施工実績カードがここに動的に表示されます -->
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>邦栄建設株式会社</h3>
+                    <p>〒333-0807 埼玉県川口市安行吉岡1570-6</p>
+                    <p>TEL: 048-288-8800</p>
+                </div>
+                <div class="footer-links">
+                    <h4>サイトマップ</h4>
+                    <ul>
+                        <li><a href="../index.html#about">企業情報</a></li>
+                        <li><a href="../index.html#news">お知らせ</a></li>
+                        <li><a href="../news/index.html">お知らせ一覧</a></li>
+                        <li><a href="../index.html#services">事業内容</a></li>
+                        <li><a href="index.html">施工実績</a></li>
+                        <li><a href="../index.html#technology">工法・技術</a></li>
+                        <li><a href="../index.html#recruit">採用情報</a></li>
+                        <li><a href="../index.html#contact">お問合せ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 邦栄建設株式会社 All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/works.js"></script>
+</body>
+</html> 

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>投稿テスト - 邦栄建設株式会社</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; }
+        input, textarea, select { width: 100%; padding: 8px; border: 1px solid #ddd; }
+        button { padding: 10px 20px; background: #007bff; color: white; border: none; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .message { padding: 10px; margin: 10px 0; border-radius: 4px; }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+    </style>
+</head>
+<body>
+    <h1>投稿テスト</h1>
+    
+    <form id="testForm">
+        <div class="form-group">
+            <label for="title">タイトル *</label>
+            <input type="text" id="title" name="title" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="category">カテゴリ *</label>
+            <select id="category" name="category" required>
+                <option value="">選択してください</option>
+                <option value="採用情報">採用情報</option>
+                <option value="工事実績">工事実績</option>
+                <option value="技術情報">技術情報</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="summary">概要 *</label>
+            <textarea id="summary" name="summary" rows="3" required></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="content">内容 *</label>
+            <textarea id="content" name="content" rows="5" required></textarea>
+        </div>
+        
+        <button type="submit">投稿する</button>
+    </form>
+    
+    <div id="message"></div>
+    
+    <script>
+        console.log('Test page loaded');
+        
+        const form = document.getElementById('testForm');
+        const messageDiv = document.getElementById('message');
+        
+        function showMessage(text, type) {
+            messageDiv.innerHTML = `<div class="message ${type}">${text}</div>`;
+        }
+        
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            console.log('Form submitted');
+            
+            const formData = new FormData(form);
+            const data = {
+                title: formData.get('title'),
+                category: formData.get('category'),
+                summary: formData.get('summary'),
+                content: formData.get('content'),
+                timestamp: new Date().toISOString()
+            };
+            
+            console.log('Form data:', data);
+            
+            // ローカルストレージに保存
+            try {
+                let existingData = JSON.parse(localStorage.getItem('testNewsData') || '[]');
+                existingData.unshift(data);
+                localStorage.setItem('testNewsData', JSON.stringify(existingData));
+                
+                showMessage('投稿が成功しました！', 'success');
+                form.reset();
+                
+                console.log('Saved to localStorage:', existingData);
+            } catch (error) {
+                console.error('Error saving:', error);
+                showMessage('投稿に失敗しました: ' + error.message, 'error');
+            }
+        });
+    </script>
+</body>
+</html> 

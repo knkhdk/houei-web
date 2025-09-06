@@ -1,0 +1,33 @@
+{
+  "mcpServers": {
+    "figma": {
+      "command": "npx",
+      "args": ["-y", "@sethdouglasford/mcp-figma"],
+      "env": {
+        "FIGMA_ACCESS_TOKEN": "",
+        "FIGMA_FILE_KEY": "",
+        "FIGMA_PROJECT_ID": ""
+      }
+    }
+  },
+  "figmaSettings": {
+    "designSystem": {
+      "colors": true,
+      "typography": true,
+      "components": true,
+      "spacing": true
+    },
+    "codeGeneration": {
+      "html": true,
+      "css": true,
+      "javascript": true,
+      "react": false,
+      "vue": false
+    },
+    "optimization": {
+      "responsive": true,
+      "accessibility": true,
+      "performance": true
+    }
+  }
+} 

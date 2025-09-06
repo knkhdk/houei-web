@@ -1,0 +1,32 @@
+{
+  "project": {
+    "name": "宝栄建設Webサイト",
+    "version": "1.0.0",
+    "description": "宝栄建設株式会社の公式Webサイト"
+  },
+  "data": {
+    "news": {
+      "publicFile": "data/news-public.json",
+      "adminFile": "data/news-admin.json",
+      "backupDir": "backups/news/",
+      "autoBackup": true,
+      "maxBackups": 10
+    },
+    "uploads": {
+      "imagesDir": "images/news/",
+      "maxFileSize": "5MB",
+      "allowedTypes": ["jpg", "jpeg", "png", "gif"]
+    }
+  },
+  "security": {
+    "adminPassword": "",
+    "sessionTimeout": 3600,
+    "allowedIPs": []
+  },
+  "sharing": {
+    "includeAdminData": false,
+    "includeBackups": false,
+    "includeUploads": true,
+    "maxSharedSize": "100MB"
+  }
+} 

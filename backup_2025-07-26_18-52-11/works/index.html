@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>施工実績一覧 - 邦栄建設株式会社</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/top/logo.png" alt="邦栄建設株式会社" class="logo-img">
+                </a>
+            </div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="../index.html#about">企業情報</a></li>
+                    <li><a href="../index.html#news">お知らせ</a></li>
+                    <li><a href="../news/index.html">お知らせ一覧</a></li>
+                    <li><a href="../index.html#services">事業内容</a></li>
+                    <li><a href="index.html">施工実績</a></li>
+                    <li><a href="../index.html#technology">工法・技術</a></li>
+                    <li><a href="../index.html#recruit">採用情報</a></li>
+                </ul>
+            </nav>
+            <div class="contact-info">
+                <a href="../index.html#contact" class="contact-btn">お問合せ</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ページヘッダー -->
+    <section class="page-header">
+        <div class="container">
+            <h1>施工実績一覧</h1>
+            <p>当社の豊富な施工実績をご紹介いたします</p>
+            <div class="page-actions">
+                <a href="../index.html" class="btn btn-secondary">トップページに戻る</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 施工実績一覧 -->
+    <section class="works-list-page">
+        <div class="container">
+            <!-- フィルター -->
+            <div class="works-filter">
+                <h3>カテゴリで絞り込み</h3>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-category="all">すべて</button>
+                    <button class="filter-btn" data-category="下水道工事">下水道工事</button>
+                    <button class="filter-btn" data-category="上下水道">上下水道</button>
+                    <button class="filter-btn" data-category="上水道工事">上水道工事</button>
+                    <button class="filter-btn" data-category="宅地造成工事">宅地造成工事</button>
+                    <button class="filter-btn" data-category="河川工事">河川工事</button>
+                    <button class="filter-btn" data-category="墓地造成工事">墓地造成工事</button>
+                </div>
+            </div>
+
+            <!-- 施工実績グリッド -->
+            <div class="works-grid" id="worksGrid">
+                <!-- 施工実績カードがここに動的に表示されます -->
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>邦栄建設株式会社</h3>
+                    <p>〒333-0807 埼玉県川口市安行吉岡1570-6</p>
+                    <p>TEL: 048-288-8800</p>
+                </div>
+                <div class="footer-links">
+                    <h4>サイトマップ</h4>
+                    <ul>
+                        <li><a href="../index.html#about">企業情報</a></li>
+                        <li><a href="../index.html#news">お知らせ</a></li>
+                        <li><a href="../news/index.html">お知らせ一覧</a></li>
+                        <li><a href="../index.html#services">事業内容</a></li>
+                        <li><a href="index.html">施工実績</a></li>
+                        <li><a href="../index.html#technology">工法・技術</a></li>
+                        <li><a href="../index.html#recruit">採用情報</a></li>
+                        <li><a href="../index.html#contact">お問合せ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 邦栄建設株式会社 All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/works.js"></script>
+</body>
+</html> 

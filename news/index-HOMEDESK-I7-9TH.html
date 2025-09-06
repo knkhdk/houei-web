@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お知らせ一覧 - 邦栄建設株式会社</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/top/logo.png" alt="邦栄建設株式会社" class="logo-img">
+                </a>
+            </div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="../index.html#about">企業情報</a></li>
+                    <li><a href="../index.html#news">お知らせ</a></li>
+                    <li><a href="../index.html#services">事業内容</a></li>
+                    <li><a href="../index.html#works">施工実績</a></li>
+                    <li><a href="../index.html#technology">工法・技術</a></li>
+                    <li><a href="../index.html#recruit">採用情報</a></li>
+                </ul>
+            </nav>
+            <div class="contact-info">
+                <a href="../index.html#contact" class="contact-btn">お問合せ</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ページヘッダー -->
+    <section class="page-header">
+        <div class="container">
+            <h1>お知らせ一覧</h1>
+            <p>邦栄建設株式会社からの最新情報をお届けします</p>
+        </div>
+    </section>
+
+    <!-- お知らせ一覧 -->
+    <section class="news-list-page">
+        <div class="container">
+            <div class="news-header">
+                <div class="news-filter">
+                    <h3>カテゴリで絞り込み</h3>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-category="all">すべて</button>
+                        <button class="filter-btn" data-category="採用情報">採用情報</button>
+                        <button class="filter-btn" data-category="工事実績">工事実績</button>
+                        <button class="filter-btn" data-category="技術情報">技術情報</button>
+                        <button class="filter-btn" data-category="会社情報">会社情報</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="news-timeline">
+                <div class="timeline-item" data-category="採用情報">
+                    <div class="timeline-date">
+                        <span class="timeline-day">20</span>
+                        <span class="timeline-month">2024.12</span>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-category">採用情報</span>
+                        <h3>2025年度新卒採用情報を更新しました</h3>
+                        <p>2025年度新卒採用の詳細情報を公開いたしました。現場監督、営業職、土木作業員の各職種で募集を行っております。詳細は採用情報ページをご覧ください。</p>
+                        <div class="timeline-image">
+                            <img src="../images/recruit/recruit-info.jpg" alt="採用情報" onerror="this.style.display='none'">
+                        </div>
+                        <div class="timeline-details">
+                            <p><strong>募集職種:</strong> 現場監督、営業職、土木作業員</p>
+                            <p><strong>応募期間:</strong> 2024年12月20日〜2025年3月31日</p>
+                            <p><strong>お問合せ:</strong> 048-288-8800</p>
+                        </div>
+                        <div class="timeline-link">
+                            <a href="detail.html?id=1" class="btn btn-primary">詳細を見る</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-category="工事実績">
+                    <div class="timeline-date">
+                        <span class="timeline-day">15</span>
+                        <span class="timeline-month">2024.12</span>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-category">工事実績</span>
+                        <h3>川口市下水道工事が完了しました</h3>
+                        <p>川口市大字峯地内の下水道開削工事が無事完了いたしました。地域の皆様のご理解とご協力に深く感謝申し上げます。</p>
+                        <div class="timeline-image">
+                            <img src="../images/jigyounaiyou/service01.png" alt="下水道工事" onerror="this.style.display='none'">
+                        </div>
+                        <div class="timeline-details">
+                            <p><strong>工事期間:</strong> 2024年8月〜2024年12月</p>
+                            <p><strong>工事内容:</strong> 下水道開削工事</p>
+                            <p><strong>工事場所:</strong> 川口市大字峯地内</p>
+                        </div>
+                        <div class="timeline-link">
+                            <a href="detail.html?id=2" class="btn btn-primary">詳細を見る</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-category="技術情報">
+                    <div class="timeline-date">
+                        <span class="timeline-day">10</span>
+                        <span class="timeline-month">2024.12</span>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-category">技術情報</span>
+                        <h3>L-Mole工法の技術研修を実施</h3>
+                        <p>社内技術研修としてL-Mole工法の実践的な研修を実施いたしました。技術力向上により、より安全で効率的な工事を提供いたします。</p>
+                        <div class="timeline-image">
+                            <img src="../images/technology/l-mole-training.jpg" alt="L-Mole工法研修" onerror="this.style.display='none'">
+                        </div>
+                        <div class="timeline-details">
+                            <p><strong>研修日:</strong> 2024年12月10日</p>
+                            <p><strong>研修内容:</strong> L-Mole工法の実践研修</p>
+                            <p><strong>参加者:</strong> 現場監督・技術者 15名</p>
+                        </div>
+                        <div class="timeline-link">
+                            <a href="detail.html?id=3" class="btn btn-primary">詳細を見る</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-category="会社情報">
+                    <div class="timeline-date">
+                        <span class="timeline-day">05</span>
+                        <span class="timeline-month">2024.12</span>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-category">会社情報</span>
+                        <h3>年末年始の営業について</h3>
+                        <p>2024年12月28日（土）から2025年1月5日（日）まで年末年始休業とさせていただきます。ご不便をおかけいたしますが、ご了承ください。</p>
+                        <div class="timeline-details">
+                            <p><strong>休業期間:</strong> 2024年12月28日（土）〜2025年1月5日（日）</p>
+                            <p><strong>再開日:</strong> 2025年1月6日（月）</p>
+                            <p><strong>緊急時連絡先:</strong> 048-288-8800（留守番電話対応）</p>
+                        </div>
+                        <div class="timeline-link">
+                            <a href="detail.html?id=4" class="btn btn-primary">詳細を見る</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-category="工事実績">
+                    <div class="timeline-date">
+                        <span class="timeline-day">30</span>
+                        <span class="timeline-month">2024.11</span>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-category">工事実績</span>
+                        <h3>さいたま市河川工事が着工しました</h3>
+                        <p>さいたま市大宮区桜木町の河川工事が着工いたしました。地域の防災機能向上のため、安全で確実な工事を進めてまいります。</p>
+                        <div class="timeline-image">
+                            <img src="../images/jigyounaiyou/service03.jpg" alt="河川工事" onerror="this.style.display='none'">
+                        </div>
+                        <div class="timeline-details">
+                            <p><strong>工事期間:</strong> 2024年11月〜2025年3月予定</p>
+                            <p><strong>工事内容:</strong> 河川堤防工事</p>
+                            <p><strong>工事場所:</strong> さいたま市大宮区桜木町</p>
+                        </div>
+                        <div class="timeline-link">
+                            <a href="detail.html?id=5" class="btn btn-primary">詳細を見る</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-category="技術情報">
+                    <div class="timeline-date">
+                        <span class="timeline-day">25</span>
+                        <span class="timeline-month">2024.11</span>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-category">技術情報</span>
+                        <h3>建設DX研修を実施しました</h3>
+                        <p>建設DX（i-Construction）に関する社内研修を実施いたしました。ICT技術を活用した効率的な工事管理手法について学びました。</p>
+                        <div class="timeline-image">
+                            <img src="../images/technology/dx-training.jpg" alt="建設DX研修" onerror="this.style.display='none'">
+                        </div>
+                        <div class="timeline-details">
+                            <p><strong>研修日:</strong> 2024年11月25日</p>
+                            <p><strong>研修内容:</strong> 建設DX（i-Construction）研修</p>
+                            <p><strong>参加者:</strong> 管理職・技術者 20名</p>
+                        </div>
+                        <div class="timeline-link">
+                            <a href="detail.html?id=6" class="btn btn-primary">詳細を見る</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-category="採用情報">
+                    <div class="timeline-date">
+                        <span class="timeline-day">20</span>
+                        <span class="timeline-month">2024.11</span>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-category">採用情報</span>
+                        <h3>中途採用情報を更新しました</h3>
+                        <p>経験者の中途採用情報を更新いたしました。豊富な経験を活かして、当社の技術力向上にご協力いただける方を募集しております。</p>
+                        <div class="timeline-image">
+                            <img src="../images/recruit/mid-career.jpg" alt="中途採用" onerror="this.style.display='none'">
+                        </div>
+                        <div class="timeline-details">
+                            <p><strong>募集職種:</strong> 現場監督、営業職</p>
+                            <p><strong>応募条件:</strong> 建設業界での実務経験3年以上</p>
+                            <p><strong>お問合せ:</strong> 048-288-8800</p>
+                        </div>
+                        <div class="timeline-link">
+                            <a href="detail.html?id=7" class="btn btn-primary">詳細を見る</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-category="会社情報">
+                    <div class="timeline-date">
+                        <span class="timeline-day">15</span>
+                        <span class="timeline-month">2024.11</span>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-category">会社情報</span>
+                        <h3>安全大会を開催しました</h3>
+                        <p>年1回の安全大会を開催いたしました。安全第一の理念のもと、事故ゼロを目指して全社員で安全意識を高めました。</p>
+                        <div class="timeline-image">
+                            <img src="../images/company/safety-meeting.jpg" alt="安全大会" onerror="this.style.display='none'">
+                        </div>
+                        <div class="timeline-details">
+                            <p><strong>開催日:</strong> 2024年11月15日</p>
+                            <p><strong>参加者:</strong> 全社員</p>
+                            <p><strong>内容:</strong> 安全講習、事例発表、表彰式</p>
+                        </div>
+                        <div class="timeline-link">
+                            <a href="detail.html?id=8" class="btn btn-primary">詳細を見る</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pagination">
+                <a href="#" class="page-btn active">1</a>
+                <a href="#" class="page-btn">2</a>
+                <a href="#" class="page-btn">3</a>
+                <a href="#" class="page-btn next">次へ ></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>邦栄建設株式会社</h3>
+                    <p>〒333-0807 埼玉県川口市安行吉岡1570-6</p>
+                    <p>TEL: 048-288-8800</p>
+                </div>
+                <div class="footer-links">
+                    <h4>サイトマップ</h4>
+                    <ul>
+                        <li><a href="../index.html#about">企業情報</a></li>
+                        <li><a href="../index.html#news">お知らせ</a></li>
+                        <li><a href="../index.html#services">事業内容</a></li>
+                        <li><a href="../index.html#works">施工実績</a></li>
+                        <li><a href="../index.html#technology">工法・技術</a></li>
+                        <li><a href="../index.html#recruit">採用情報</a></li>
+                        <li><a href="../index.html#contact">お問合せ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 邦栄建設株式会社 All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/news.js"></script>
+</body>
+</html> 

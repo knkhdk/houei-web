@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公園工事 - 邦栄建設株式会社</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .service-detail {
+            padding: 80px 0;
+        }
+        .service-detail .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .service-header {
+            text-align: left;
+            margin-bottom: 60px;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            padding: 20px 0;
+        }
+        .service-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+            white-space: nowrap;
+        }
+        .service-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 40px;
+        }
+        .service-header-text {
+            flex: 1;
+        }
+        .service-image {
+            width: 700px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+        .service-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+        .service-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+        .service-features {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+        }
+        .service-features h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        .feature-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 1rem;
+            color: #555;
+        }
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+        .service-types {
+            margin-top: 60px;
+        }
+        .service-types h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: #333;
+            text-align: center;
+        }
+        .types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .type-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .type-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .type-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .type-card p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 12px 25px;
+            background: #2c5aa0;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        .back-link:hover {
+            background: #1e4a8a;
+        }
+        @media (max-width: 768px) {
+            .service-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .service-image {
+                width: 100%;
+                height: 250px;
+            }
+            .service-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .service-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/top/logo.png" alt="邦栄建設株式会社" class="logo-img">
+                </a>
+            </div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="../index.html#about">企業情報</a></li>
+                    <li><a href="../index.html#news">お知らせ</a></li>
+                    <li><a href="../news/index.html">お知らせ一覧</a></li>
+                    <li><a href="../index.html#services">事業内容</a></li>
+                    <li><a href="../index.html#works">施工実績</a></li>
+                    <li><a href="../works/index.html">施工実績一覧</a></li>
+                    <li><a href="../index.html#technology">工法・技術</a></li>
+                    <li><a href="../index.html#recruit">採用情報</a></li>
+                </ul>
+            </nav>
+            <div class="contact-info">
+                <a href="../index.html#contact" class="contact-btn">お問合せ</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <section class="service-detail">
+        <div class="container">
+            <div class="service-header">
+                <div class="service-header-text">
+                    <h1 class="service-title">公園工事</h1>
+                    <p class="service-subtitle">都市公園施設、公園整備工事</p>
+                </div>
+                <img src="../images/sonota/P3010043.JPG" alt="公園工事" class="service-image" onerror="this.src='../images/top/placeholder.jpg'">
+            </div>
+            
+            <div class="service-content">
+                <div class="service-description">
+                    <p>地域住民の憩いの場となる公園を建設します。自然との調和を大切にした設計・施工を行い、安全で快適な空間を提供します。</p>
+                    <br>
+                    <p>私たちは、地域の特性を活かした公園づくりを心がけ、子どもたちが安心して遊べる遊具の設置から、高齢者がゆっくりと過ごせるベンチや散歩道の整備まで、幅広いニーズに対応しています。</p>
+                    <br>
+                    <p>また、環境に配慮した緑化工事も行い、地域の自然環境の保全と向上に貢献しています。</p>
+                </div>
+                
+                <div class="service-features">
+                    <h3>主な特徴</h3>
+                    <ul class="feature-list">
+                        <li>✓ 地域の特性を活かした設計</li>
+                        <li>✓ 安全で耐久性の高い遊具設置</li>
+                        <li>✓ バリアフリー対応の歩道整備</li>
+                        <li>✓ 環境に配慮した緑化工事</li>
+                        <li>✓ 地域住民との協働による公園づくり</li>
+                        <li>✓ 維持管理しやすい設計</li>
+                        <li>✓ 四季折々の美しさを楽しめる植栽</li>
+                        <li>✓ 防災機能を備えた公園整備</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="service-types">
+                <h3>工事の種類</h3>
+                <div class="types-grid">
+                    <div class="type-card">
+                        <h4>都市公園施設工事</h4>
+                        <p>都市公園法に基づく公園施設の建設工事です。遊具、ベンチ、トイレ、駐車場などの施設を設置し、地域住民が快適に利用できる公園を整備します。</p>
+                    </div>
+                    <div class="type-card">
+                        <h4>公園整備工事</h4>
+                        <p>既存の公園の改修や拡張工事です。老朽化した施設の更新や、新しい機能の追加により、公園の利便性と安全性を向上させます。</p>
+                    </div>
+                    <div class="type-card">
+                        <h4>遊具設置工事</h4>
+                        <p>安全基準を満たした遊具の設置工事です。年齢に応じた遊具の配置や、安全な地面材の施工により、子どもたちが安心して遊べる環境を整備します。</p>
+                    </div>
+                    <div class="type-card">
+                        <h4>緑化工事</h4>
+                        <p>公園内の植栽や芝生の施工工事です。地域の気候や土壌に適した植物を選定し、四季折々の美しさを楽しめる公園づくりを行います。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="back-link">
+                <a href="../index.html#services">← 事業内容一覧に戻る</a>
+            </div>
+        </div>
+    </section>
+
+    <script src="../js/main.js"></script>
+</body>
+</html> 
