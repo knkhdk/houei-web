@@ -8,54 +8,38 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // お知らせ一覧を読み込んで表示
-function loadNewsList() {
+async function loadNewsList() {
     try {
         console.log('お知らせ一覧を読み込み中...');
         
-        // ローカルストレージからお知らせデータを取得
-        const localData = localStorage.getItem('newsData');
-        const newsData = localData ? JSON.parse(localData) : [];
+        // サーバーからお知らせデータを取得
+        const response = await fetch('/api/news');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const newsData = await response.json();
         
         console.log('取得したお知らせデータ:', newsData);
         
-        const newsTimeline = document.getElementById('newsTimeline');
-        if (!newsTimeline) {
-            console.error('newsTimeline要素が見つかりません');
-            return;
-        }
-        
-        if (newsData.length === 0) {
-            newsTimeline.innerHTML = `
-                <div class="no-news-message">
-                    <h3>お知らせがありません</h3>
-                    <p>現在、お知らせはありません。新しいお知らせが投稿されると、ここに表示されます。</p>
-                </div>
-            `;
-            return;
-        }
-        
-        // 日付順でソート（新しい順）
-        const sortedNewsData = newsData
-            .filter(news => news.status === 'published')
-            .sort((a, b) => {
-                const dateA = new Date(a.date);
-                const dateB = new Date(b.date);
-                return dateB - dateA;
-            });
-        
-        console.log('ソート済みお知らせデータ:', sortedNewsData);
-        
-        // お知らせアイテムのHTMLを生成
-        const newsItemsHtml = sortedNewsData
-            .map(news => generateNewsItemHtml(news))
-            .join('');
-        
-        newsTimeline.innerHTML = newsItemsHtml;
-        
-        console.log('お知らせ一覧の表示が完了しました');
+        displayNewsData(newsData);
         
     } catch (error) {
         console.error('お知らせ一覧の読み込みに失敗しました:', error);
+        
+        // フォールバック: ローカルストレージから取得を試行
+        try {
+            const localData = localStorage.getItem('newsData');
+            const newsData = localData ? JSON.parse(localData) : [];
+            
+            if (newsData.length > 0) {
+                console.log('ローカルストレージからお知らせデータを取得しました');
+                displayNewsData(newsData);
+                return;
+            }
+        } catch (localError) {
+            console.error('ローカルストレージからの読み込みも失敗しました:', localError);
+        }
+        
         const newsTimeline = document.getElementById('newsTimeline');
         if (newsTimeline) {
             newsTimeline.innerHTML = `
@@ -66,6 +50,45 @@ function loadNewsList() {
             `;
         }
     }
+}
+
+// お知らせデータを表示する共通関数
+function displayNewsData(newsData) {
+    const newsTimeline = document.getElementById('newsTimeline');
+    if (!newsTimeline) {
+        console.error('newsTimeline要素が見つかりません');
+        return;
+    }
+    
+    if (newsData.length === 0) {
+        newsTimeline.innerHTML = `
+            <div class="no-news-message">
+                <h3>お知らせがありません</h3>
+                <p>現在、お知らせはありません。新しいお知らせが投稿されると、ここに表示されます。</p>
+            </div>
+        `;
+        return;
+    }
+    
+    // 日付順でソート（新しい順）
+    const sortedNewsData = newsData
+        .filter(news => news.status === 'published')
+        .sort((a, b) => {
+            const dateA = new Date(a.date);
+            const dateB = new Date(b.date);
+            return dateB - dateA;
+        });
+    
+    console.log('ソート済みお知らせデータ:', sortedNewsData);
+    
+    // お知らせアイテムのHTMLを生成
+    const newsItemsHtml = sortedNewsData
+        .map(news => generateNewsItemHtml(news))
+        .join('');
+    
+    newsTimeline.innerHTML = newsItemsHtml;
+    
+    console.log('お知らせ一覧の表示が完了しました');
 }
 
 // お知らせアイテムのHTMLを生成
