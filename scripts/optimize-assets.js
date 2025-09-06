@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { minify } = require('html-minifier');
+const { minify } = require('html-minifier-terser');
 const cssnano = require('cssnano');
 const autoprefixer = require('autoprefixer');
 const postcss = require('postcss');
@@ -42,7 +42,7 @@ async function optimizeHTML() {
       try {
         const content = fs.readFileSync(inputPath, 'utf8');
         
-        const minified = minify(content, {
+        const minified = await minify(content, {
           collapseWhitespace: true,
           removeComments: true,
           minifyCSS: true,

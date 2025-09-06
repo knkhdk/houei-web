@@ -20,7 +20,8 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "html-minifier-terser": "^7.2.0"
   },
   "devDependencies": {
     "@notionhq/notion-mcp-server": "^1.8.1",
@@ -28,7 +29,6 @@
     "@sethdouglasford/mcp-figma": "^1.0.9",
     "autoprefixer": "^10.4.0",
     "cssnano": "^6.0.0",
-    "html-minifier": "^4.0.0",
     "mcp-server-code-runner": "^0.1.7",
     "n8n-mcp": "^2.7.21",
     "postcss": "^8.4.0",
