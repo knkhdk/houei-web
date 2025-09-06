@@ -3,6 +3,25 @@
 document.addEventListener('DOMContentLoaded', function() {
     console.log('news-post.js loaded');
     
+    // URLパラメータからトークンをチェック
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
+    const adminToken = urlParams.get('admin');
+    
+    // 管理トークンが正しい場合、管理モードを自動有効化
+    if (adminToken === 'houei2024admin') {
+        const adminSection = document.getElementById('adminSection');
+        if (adminSection) {
+            adminSection.style.display = 'block';
+            // loadAdminNewsList関数は後で定義されるので、setTimeoutで遅延実行
+            setTimeout(() => {
+                if (typeof loadAdminNewsList === 'function') {
+                    loadAdminNewsList();
+                }
+            }, 100);
+        }
+    }
+    
     const form = document.getElementById('newsPostForm');
     const previewBtn = document.getElementById('previewBtn');
     const saveDraftBtn = document.getElementById('saveDraftBtn');
@@ -677,14 +696,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 管理者モード切り替え
     function toggleAdminMode() {
-        const adminSection = document.getElementById('adminSection');
-        if (adminSection) {
-            const isVisible = adminSection.style.display !== 'none';
-            adminSection.style.display = isVisible ? 'none' : 'block';
-            
-            if (!isVisible) {
-                loadAdminNewsList();
+        // パスワード認証を要求
+        const password = prompt('管理モードにアクセスするにはパスワードが必要です:');
+        if (password === 'houei2024') { // 簡単なパスワード（本番ではより複雑に）
+            const adminSection = document.getElementById('adminSection');
+            if (adminSection) {
+                const isVisible = adminSection.style.display !== 'none';
+                adminSection.style.display = isVisible ? 'none' : 'block';
+                
+                if (!isVisible) {
+                    loadAdminNewsList();
+                }
             }
+        } else if (password !== null) {
+            alert('パスワードが正しくありません');
         }
     }
 
