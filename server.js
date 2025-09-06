@@ -163,15 +163,35 @@ app.use((err, req, res, next) => {
 });
 
 // サーバー起動
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
+    const os = require('os');
+    const networkInterfaces = os.networkInterfaces();
+    let localIP = 'localhost';
+    
+    // LAN内のIPアドレスを取得
+    for (const interfaceName in networkInterfaces) {
+        const interfaces = networkInterfaces[interfaceName];
+        for (const iface of interfaces) {
+            if (iface.family === 'IPv4' && !iface.internal) {
+                localIP = iface.address;
+                break;
+            }
+        }
+        if (localIP !== 'localhost') break;
+    }
+    
     console.log(`========================================`);
     console.log(`邦栄建設Webサイト - ローカルサーバー`);
     console.log(`========================================`);
-    console.log(`サーバーが起動しました: http://localhost:${PORT}`);
-    console.log(`お知らせ投稿: http://localhost:${PORT}/news/post.html`);
-    console.log(`お知らせ一覧: http://localhost:${PORT}/news/index.html`);
-    console.log(`施工実績一覧: http://localhost:${PORT}/works/index.html`);
-    console.log(`ヘルスチェック: http://localhost:${PORT}/api/health`);
+    console.log(`サーバーが起動しました:`);
+    console.log(`  ローカル: http://localhost:${PORT}`);
+    console.log(`  LAN内:   http://${localIP}:${PORT}`);
+    console.log(`========================================`);
+    console.log(`アクセス可能なURL:`);
+    console.log(`  お知らせ投稿: http://${localIP}:${PORT}/news/post.html`);
+    console.log(`  お知らせ一覧: http://${localIP}:${PORT}/news/index.html`);
+    console.log(`  施工実績一覧: http://${localIP}:${PORT}/works/index.html`);
+    console.log(`  ヘルスチェック: http://${localIP}:${PORT}/api/health`);
     console.log(`========================================`);
     console.log(`終了するには Ctrl+C を押してください`);
     console.log(`========================================`);
