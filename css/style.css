@@ -958,6 +958,7 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     padding: 30px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
 }
 
 .recruit-card:hover {
@@ -1464,6 +1465,12 @@ html {
     font-size: 1rem;
     line-height: 1.5;
     margin-bottom: 15px;
+}
+
+.gallery-card-back .description-text {
+    font-size: 0.8rem;
+    margin-top: 15px;
+    color: rgba(255,255,255,0.8);
 }
 
 .health-badge, .forest-badge, .senior-badge, .arai-badge {
@@ -2032,8 +2039,8 @@ html {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
 }
 
 .modal-content {
@@ -3132,8 +3139,8 @@ html {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
 }
 
 .modal-content {
