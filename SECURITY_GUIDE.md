@@ -18,12 +18,15 @@
 ### 3. アクセス方法
 
 #### 開発環境（localhost）
+
 ```
 http://localhost:3000/news/post.html
 ```
+
 認証なしでアクセス可能
 
 #### 本番環境
+
 ```
 http://yourdomain.com/news/post.html?token=houei2024admin
 http://yourdomain.com/news/post.html?admin=houei2024post
@@ -38,6 +41,7 @@ http://yourdomain.com/news/post.html?admin=houei2024post
 ## 設定ファイル
 
 ### security-config.json
+
 ```json
 {
   "security": {
@@ -71,6 +75,7 @@ http://yourdomain.com/news/post.html?admin=houei2024post
 ## 本番環境での設定
 
 ### 1. 環境変数の設定
+
 ```bash
 export NODE_ENV=production
 ```
