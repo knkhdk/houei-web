@@ -21,6 +21,8 @@
     font-weight: 700;
     margin-bottom: 20px;
     text-align: left;
+    writing-mode: horizontal-tb;
+    text-orientation: mixed;
 }
 
 .optimized-about .page-description {

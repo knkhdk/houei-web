@@ -2365,6 +2365,8 @@ html {
     text-align: center;
     position: relative;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    writing-mode: horizontal-tb;
+    text-orientation: mixed;
 }
 
 .page-title::before,
