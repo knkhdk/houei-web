@@ -12,19 +12,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     window.pageInitialized = true;
     
-    // fileManagerの初期化（重複防止）
-    if (typeof FileManager !== 'undefined' && !window.fileManager) {
-        try {
-            window.fileManager = new FileManager();
-            console.log('fileManager初期化完了');
-        } catch (error) {
-            console.error('fileManager初期化エラー:', error);
-        }
-    } else if (window.fileManager) {
-        console.log('fileManagerは既に初期化済みです');
-    } else {
-        console.warn('FileManagerクラスが見つかりません');
-    }
+    // fileManagerの初期化は不要（APIベースに移行済み）
+    console.log('fileManagerは不要（APIベースに移行済み）');
     
     // スライダー機能の初期化
     console.log('スライダー初期化を開始します');
@@ -67,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     } else {
-        console.warn('hero要素が見つかりません');
+        console.log('hero要素が見つかりません（お知らせ一覧ページなど）');
     }
     
     // お知らせの読み込み（重複防止）
@@ -329,7 +318,7 @@ function handleImageError(img, category) {
 function displayNews(newsData) {
     const newsContainer = document.getElementById('newsContainer');
     if (!newsContainer) {
-        console.error('newsContainerが見つかりません');
+        console.log('newsContainerが見つかりません（お知らせ一覧ページなど）');
         return;
     }
     
@@ -639,7 +628,7 @@ function initSliders() {
         console.log('スライド内容:', Array.from(slides).map(slide => slide.querySelector('h3')?.textContent));
         initSimpleSlider(servicesSlider, 'services');
     } else {
-        console.error('事業内容スライダーが見つかりません');
+        console.log('事業内容スライダーが見つかりません（お知らせページなど）');
     }
     
     if (worksSlider) {
@@ -647,7 +636,7 @@ function initSliders() {
         console.log(`施工実績スライダー: ${workItems.length}個のアイテムを検出`);
         initSimpleSlider(worksSlider, 'works');
     } else {
-        console.error('施工実績スライダーが見つかりません');
+        console.log('施工実績スライダーが見つかりません（お知らせページなど）');
     }
     
     slidersInitialized = true;
@@ -843,7 +832,7 @@ window.moveSlide = function(direction) {
         
         console.log(`スライダー移動: ${currentSlide + 1} → ${newSlide + 1}（表示枚数: ${visibleSlides}枚）`);
     } else {
-        console.error('スライダーが見つかりません');
+        console.log('スライダーが見つかりません（お知らせページなど）');
     }
 };
 
