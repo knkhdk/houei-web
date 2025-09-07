@@ -91,4 +91,5 @@ cp -r index.html css/ js/ images/ data/news-public.json services/ about.html con
 2. ファイルパスが正しいか確認
 
 ## 連絡先
-ご質問や問題がございましたら、開発者までお問い合わせください。 
+
+ご質問や問題がございましたら、開発者までお問い合わせください。

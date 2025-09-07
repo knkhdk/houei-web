@@ -1,6 +1,7 @@
 # セキュリティガイド
 
 ## 概要
+
 お知らせ投稿ページのセキュリティを強化し、不正アクセスを防止します。
 
 ## セキュリティ機能
@@ -19,7 +20,7 @@
 
 #### 開発環境（localhost）
 
-```
+```text
 http://localhost:3000/news/post.html
 ```
 
@@ -27,7 +28,7 @@ http://localhost:3000/news/post.html
 
 #### 本番環境
 
-```
+```text
 http://yourdomain.com/news/post.html?token=houei2024admin
 http://yourdomain.com/news/post.html?admin=houei2024post
 ```
@@ -81,6 +82,7 @@ export NODE_ENV=production
 ```
 
 ### 2. トークンの変更
+
 本番環境では必ずトークンを変更してください：
 
 1. `security-config.json`を編集
