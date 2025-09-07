@@ -6,10 +6,12 @@
 ## セキュリティ機能
 
 ### 1. 認証システム
+
 - **開発環境**: localhostでは認証をスキップ
 - **本番環境**: 認証トークンが必要
 
 ### 2. 有効な認証トークン
+
 - `houei2024admin`: 管理者用（全機能アクセス可能）
 - `houei2024post`: 投稿者用（投稿・編集のみ）
 
@@ -28,6 +30,7 @@ http://yourdomain.com/news/post.html?admin=houei2024post
 ```
 
 ### 4. セッション管理
+
 - 認証後24時間有効
 - セッションはブラウザのsessionStorageに保存
 - 期限切れ時は自動的に再認証が必要
@@ -55,9 +58,11 @@ http://yourdomain.com/news/post.html?admin=houei2024post
 ## セキュリティログ
 
 ### ログファイル
+
 - `security.log`: 不正アクセス試行を記録
 
 ### ログ内容
+
 - アクセス時刻
 - IPアドレス
 - User-Agent
@@ -78,6 +83,7 @@ export NODE_ENV=production
 3. `server.js`の`validTokens`配列を更新
 
 ### 3. 推奨設定
+
 - 強力なパスワードを使用
 - 定期的なトークン更新
 - アクセスログの監視
@@ -86,11 +92,13 @@ export NODE_ENV=production
 ## トラブルシューティング
 
 ### 認証エラーが発生する場合
+
 1. トークンが正しいか確認
 2. セッションが期限切れでないか確認
 3. ブラウザのsessionStorageをクリア
 
 ### 開発環境で認証が要求される場合
+
 1. `security-config.json`の`developmentMode.skipAuthentication`が`true`か確認
 2. localhostでアクセスしているか確認
 

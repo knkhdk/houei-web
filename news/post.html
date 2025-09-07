@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>お知らせ投稿 - 邦栄建設株式会社</title>
     <link rel="stylesheet" href="../css/news.css">
+    <link rel="stylesheet" href="../css/utilities.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -60,7 +61,7 @@
     </section>
 
     <!-- 管理モード通知 -->
-    <div class="admin-notice" id="adminNotice" style="display: none;">
+    <div class="admin-notice hidden" id="adminNotice">
         <div class="admin-notice-content">
             <span class="admin-icon">⚙️</span>
             <span>管理モードが有効です。お知らせの編集・削除が可能です。</span>
@@ -69,7 +70,7 @@
     </div>
 
     <!-- 管理機能セクション -->
-    <section class="admin-section" id="adminSection" style="display: none;">
+    <section class="admin-section hidden" id="adminSection">
         <div class="container">
             <div class="admin-header">
                 <h2>お知らせ管理</h2>
@@ -175,7 +176,7 @@
             </div>
 
             <!-- プレビューエリア -->
-            <div class="preview-container" id="previewContainer" style="display: none;">
+            <div class="preview-container hidden" id="previewContainer">
                 <h3>プレビュー</h3>
                 <div class="preview-content" id="previewContent">
                     <!-- プレビュー内容がここに表示されます -->
