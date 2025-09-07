@@ -402,6 +402,30 @@ body {
     box-shadow: 0 10px 25px rgba(44, 90, 160, 0.3);
 }
 
+/* 企業情報詳細ボタン */
+.about-detail-btn {
+    background: linear-gradient(135deg, #2c5aa0, #1e4a8a);
+    color: #fff;
+    padding: 15px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: inline-block;
+}
+
+.about-detail-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(44, 90, 160, 0.3);
+}
+
+/* 企業情報ボタンコンテナ */
+.greeting-button {
+    text-align: center;
+    margin-top: 30px;
+}
+
 .news-refresh-btn {
     background: rgba(44, 90, 160, 0.8);
     color: #fff;
@@ -1419,6 +1443,11 @@ html {
     }
     
     .news-more-btn {
+        font-size: 1rem;
+        padding: 12px 30px;
+    }
+    
+    .about-detail-btn {
         font-size: 1rem;
         padding: 12px 30px;
     }

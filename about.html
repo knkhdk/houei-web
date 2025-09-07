@@ -7,6 +7,220 @@
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* 宿舎内画像スライダーのスタイル */
+        .facility-gallery {
+            margin-top: 40px;
+        }
+        .facility-gallery h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: #333;
+            text-align: center;
+        }
+        .gallery-slider {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .gallery-container {
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .gallery-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .gallery-slide {
+            min-width: 100%;
+            flex-shrink: 0;
+        }
+        .gallery-slide img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+        }
+        .gallery-controls {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            pointer-events: none;
+        }
+        .gallery-btn {
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            pointer-events: auto;
+        }
+        .gallery-btn:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        .gallery-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .gallery-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ccc;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .gallery-dot.active {
+            background: #2c5aa0;
+        }
+        .gallery-dot:hover {
+            background: #2c5aa0;
+        }
+        
+        /* 施設詳細ボタン */
+        .facility-detail-btn {
+            background: linear-gradient(135deg, #2c5aa0, #1e4a8a);
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        
+        /* ボタンコンテナを中央揃え */
+        .facility-content {
+            text-align: center;
+        }
+        
+        /* 多様な働き方の推進セクションのカードを2列レイアウト */
+        .diversity-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .diversity-content .content-card {
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 30px;
+        }
+        
+        /* カード内のアイコンとコンテンツを中央配置に統一 */
+        .diversity-content .content-card .card-icon {
+            text-align: center !important;
+            margin: 0 auto 8px auto !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            width: 100% !important;
+        }
+        
+        .diversity-content .content-card .card-icon i {
+            margin: 0 auto !important;
+            display: block !important;
+        }
+        
+        /* より具体的なセレクターで確実に中央配置 */
+        .about-page .diversity-content .content-card .card-icon {
+            text-align: center !important;
+            margin: 0 auto 8px auto !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            width: 100% !important;
+        }
+        
+        .diversity-content .content-card .card-content {
+            text-align: center;
+        }
+        
+        .diversity-content .content-card .card-content h3 {
+            text-align: center;
+        }
+        
+        .diversity-content .content-card .card-content p {
+            text-align: center;
+        }
+        
+        
+        .facility-detail-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(44, 90, 160, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .gallery-slide img {
+                height: 400px;
+            }
+            .gallery-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            
+            /* タブレットでは1列表示 */
+            .diversity-content {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .gallery-slide img {
+                height: 300px;
+            }
+            .gallery-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+            .gallery-dots {
+                gap: 8px;
+            }
+            .gallery-dot {
+                width: 10px;
+                height: 10px;
+            }
+            .facility-detail-btn {
+                font-size: 0.9rem;
+                padding: 10px 25px;
+            }
+            
+            .diversity-content .content-card {
+                max-width: 100%;
+                padding: 20px;
+            }
+            
+            /* スマートフォンでは1列表示 */
+            .diversity-content {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+    </style>
 </head>
 <body class="about-page">
     <header class="header">
@@ -113,12 +327,12 @@
                             <p>効率的なコミュニケーションと情報共有を実現するシステムを活用しています。</p>
                         </div>
                     </div>
-                    <div class="achievement-badge">
-                        <div class="badge-icon">
+                    <div class="content-card">
+                        <div class="card-icon">
                             <i class="fas fa-award"></i>
                         </div>
-                        <div class="badge-content">
-                            <h4>埼玉県認定企業</h4>
+                        <div class="card-content">
+                            <h3>埼玉県認定企業</h3>
                             <p>『多様な働き方実践企業のプラチナ認定企業』<br>『アライチャレンジ企業』に登録</p>
                         </div>
                     </div>
@@ -515,10 +729,6 @@
                 </div>
                 <div class="facility-card">
                     <div class="facility-image">
-                        <img src="images/top/company.jpg" alt="美園宿舎" onerror='this.src="images/top/placeholder.jpg"'>
-                        <div class="facility-overlay">
-                            <i class="fas fa-home"></i>
-                        </div>
                     </div>
                     <div class="facility-content">
                         <div class="facility-header">
@@ -533,10 +743,65 @@
                             <span class="feature-tag"><i class="fas fa-parking"></i> 駐車場完備</span>
                             <span class="feature-tag"><i class="fas fa-utensils"></i> 食堂利用可能</span>
                         </div>
-                        <a href="facilities/misono.html" class="facility-link">
-                            <i class="fas fa-arrow-right"></i>
+                        <a href="facilities/misono.html" class="facility-detail-btn">
                             詳細を見る
                         </a>
+                    </div>
+                </div>
+                
+                <!-- 宿舎内画像スライダー -->
+                <div class="facility-gallery">
+                    <div class="gallery-slider">
+                        <div class="gallery-container">
+                            <div class="gallery-track">
+                                <div class="gallery-slide">
+                                    <img src="images/shukusha/DSC_0038.JPG" alt="宿舎内の様子1" onerror="this.src='images/top/placeholder.jpg'">
+                                </div>
+                                <div class="gallery-slide">
+                                    <img src="images/shukusha/DSC_0041.JPG" alt="宿舎内の様子2" onerror="this.src='images/top/placeholder.jpg'">
+                                </div>
+                                <div class="gallery-slide">
+                                    <img src="images/shukusha/DSC_0045.JPG" alt="宿舎内の様子3" onerror="this.src='images/top/placeholder.jpg'">
+                                </div>
+                                <div class="gallery-slide">
+                                    <img src="images/shukusha/DSC_0048.JPG" alt="宿舎内の様子4" onerror="this.src='images/top/placeholder.jpg'">
+                                </div>
+                                <div class="gallery-slide">
+                                    <img src="images/shukusha/DSC_0049.JPG" alt="宿舎内の様子5" onerror="this.src='images/top/placeholder.jpg'">
+                                </div>
+                                <div class="gallery-slide">
+                                    <img src="images/shukusha/DSC_0068.JPG" alt="宿舎内の様子6" onerror="this.src='images/top/placeholder.jpg'">
+                                </div>
+                                <div class="gallery-slide">
+                                    <img src="images/shukusha/DSC_0070.JPG" alt="宿舎内の様子7" onerror="this.src='images/top/placeholder.jpg'">
+                                </div>
+                                <div class="gallery-slide">
+                                    <img src="images/shukusha/DSC_0072.JPG" alt="宿舎内の様子8" onerror="this.src='images/top/placeholder.jpg'">
+                                </div>
+                                <div class="gallery-slide">
+                                    <img src="images/shukusha/toilet.JPG" alt="トイレ" onerror="this.src='images/top/placeholder.jpg'">
+                                </div>
+                                <div class="gallery-slide">
+                                    <img src="images/shukusha/kyoshitsu.jpg" alt="居室" onerror="this.src='images/top/placeholder.jpg'">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="gallery-controls">
+                            <button class="gallery-btn prev-btn" onclick="moveGallerySlide(-1)">‹</button>
+                            <button class="gallery-btn next-btn" onclick="moveGallerySlide(1)">›</button>
+                        </div>
+                        <div class="gallery-dots">
+                            <span class="gallery-dot active" data-slide="0"></span>
+                            <span class="gallery-dot" data-slide="1"></span>
+                            <span class="gallery-dot" data-slide="2"></span>
+                            <span class="gallery-dot" data-slide="3"></span>
+                            <span class="gallery-dot" data-slide="4"></span>
+                            <span class="gallery-dot" data-slide="5"></span>
+                            <span class="gallery-dot" data-slide="6"></span>
+                            <span class="gallery-dot" data-slide="7"></span>
+                            <span class="gallery-dot" data-slide="8"></span>
+                            <span class="gallery-dot" data-slide="9"></span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -572,5 +837,51 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script>
+        // 宿舎内画像スライダーの機能
+        let currentGallerySlide = 0;
+        const gallerySlides = document.querySelectorAll('.gallery-slide');
+        const galleryDots = document.querySelectorAll('.gallery-dot');
+        const galleryTrack = document.querySelector('.gallery-track');
+
+        function moveGallerySlide(direction) {
+            currentGallerySlide += direction;
+            
+            if (currentGallerySlide >= gallerySlides.length) {
+                currentGallerySlide = 0;
+            } else if (currentGallerySlide < 0) {
+                currentGallerySlide = gallerySlides.length - 1;
+            }
+            
+            updateGallerySlider();
+        }
+
+        function goToGallerySlide(slideIndex) {
+            currentGallerySlide = slideIndex;
+            updateGallerySlider();
+        }
+
+        function updateGallerySlider() {
+            const offset = -currentGallerySlide * 100;
+            galleryTrack.style.transform = `translateX(${offset}%)`;
+            
+            // ドットのアクティブ状態を更新
+            galleryDots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentGallerySlide);
+            });
+        }
+
+        // ドットクリックイベント
+        galleryDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                goToGallerySlide(index);
+            });
+        });
+
+        // 自動スライド（オプション）
+        setInterval(() => {
+            moveGallerySlide(1);
+        }, 5000);
+    </script>
 </body>
 </html>
