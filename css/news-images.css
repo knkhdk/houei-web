@@ -2,10 +2,9 @@
 
 /* お知らせ詳細ページの画像 */
 .news-detail-image img {
-    max-width: 100%;
-    max-height: 400px;
-    width: auto;
+    width: 100%;
     height: auto;
+    max-height: 400px;
     object-fit: contain;
     display: block;
     margin: 0 auto;
@@ -15,10 +14,9 @@
 
 /* お知らせ一覧ページの画像 */
 .timeline-image img {
-    max-width: 100%;
-    max-height: 200px;
-    width: auto;
+    width: 100%;
     height: auto;
+    max-height: 200px;
     object-fit: cover;
     display: block;
     border-radius: 6px;
@@ -38,10 +36,14 @@
 @media (max-width: 768px) {
     .news-detail-image img {
         max-height: 300px;
+        width: 100%;
+        height: auto;
     }
     
     .timeline-image img {
         max-height: 150px;
+        width: 100%;
+        height: auto;
     }
     
     .news-card-image img {
@@ -53,10 +55,14 @@
 @media (max-width: 480px) {
     .news-detail-image img {
         max-height: 250px;
+        width: 100%;
+        height: auto;
     }
     
     .timeline-image img {
         max-height: 120px;
+        width: 100%;
+        height: auto;
     }
     
     .news-card-image img {
