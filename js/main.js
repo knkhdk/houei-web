@@ -374,14 +374,21 @@ function displayNews(newsData) {
         const month = date.getMonth() + 1;
         const monthName = month + '月';
         
-        // 画像パスの決定（カテゴリに応じて適切な画像を選択）
+        // 画像パスの決定（旧サイトの画像を優先、なければカテゴリに応じて選択）
         let imagePath = 'images/top/placeholder.jpg';
-        if (news.category === '技術・工法') {
-            imagePath = 'images/top/top1.jpg';
-        } else if (news.category === '採用情報') {
-            imagePath = 'images/top/top2.jpg';
-        } else if (news.category === '会社情報') {
-            imagePath = 'images/top/top3.JPG';
+        
+        if (news.image && news.image !== null) {
+            // 旧サイトの画像がある場合は使用（パスを調整）
+            imagePath = news.image.replace('../', '');
+        } else {
+            // カテゴリに応じてデフォルト画像を選択
+            if (news.category === '技術・工法') {
+                imagePath = 'images/top/top1.jpg';
+            } else if (news.category === '採用情報') {
+                imagePath = 'images/top/top2.jpg';
+            } else if (news.category === '会社情報') {
+                imagePath = 'images/top/top3.JPG';
+            }
         }
         
         return `

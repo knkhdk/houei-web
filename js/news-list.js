@@ -108,14 +108,20 @@ function generateNewsItemHtml(news) {
     }
     
     let imageHTML = '';
-    // カテゴリに応じて画像パスを決定（お知らせ一覧ページはnews/ディレクトリにあるため、../を追加）
     let imagePath = '../images/top/placeholder.jpg';
-    if (news.category === '技術・工法') {
-        imagePath = '../images/top/top1.jpg';
-    } else if (news.category === '採用情報') {
-        imagePath = '../images/top/top2.jpg';
-    } else if (news.category === '会社情報') {
-        imagePath = '../images/top/top3.JPG';
+    
+    // 旧サイトの画像がある場合は優先的に使用
+    if (news.image && news.image !== null) {
+        imagePath = news.image;
+    } else {
+        // カテゴリに応じてデフォルト画像を決定
+        if (news.category === '技術・工法') {
+            imagePath = '../images/top/top1.jpg';
+        } else if (news.category === '採用情報') {
+            imagePath = '../images/top/top2.jpg';
+        } else if (news.category === '会社情報') {
+            imagePath = '../images/top/top3.JPG';
+        }
     }
     
     imageHTML = `
