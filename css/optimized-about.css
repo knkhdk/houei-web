@@ -3,151 +3,191 @@
    ======================================== */
 
 .optimized-about {
-    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    background: #ffffff;
     min-height: 100vh;
 }
 
 .optimized-about .page-header {
-    background: linear-gradient(135deg, #2c5aa0 0%, #1e4a8a 100%);
-    color: white;
-    padding: 120px 0 80px;
+    background: #ffffff;
+    color: #333;
+    padding: 120px 0 60px;
     margin-top: 80px;
-    position: relative;
-    overflow: hidden;
-}
-
-.optimized-about .page-header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="10" cy="60" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="90" cy="40" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-    opacity: 0.3;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 .optimized-about .page-title {
-    color: #ffffff;
-    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
-    position: relative;
-    z-index: 2;
+    color: #333;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: left;
 }
 
 .optimized-about .page-description {
-    color: #e2e8f0;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-    position: relative;
-    z-index: 2;
+    color: #666;
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    text-align: left;
+    line-height: 1.6;
 }
 
 .optimized-about .page-tags {
-    position: relative;
-    z-index: 2;
+    margin-bottom: 40px;
 }
 
 .optimized-about .tag {
-    background: rgba(255, 255, 255, 0.2);
-    color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(10px);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    background: #f8f9fa;
+    color: #333;
+    border: 1px solid #e0e0e0;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
 }
 
 .optimized-about .header-stats {
-    position: relative;
-    z-index: 2;
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.optimized-about .stat-item {
+    text-align: center;
 }
 
 .optimized-about .stat-number {
-    color: #ffffff;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    color: #333;
+    font-size: 2rem;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 5px;
 }
 
 .optimized-about .stat-label {
-    color: #e2e8f0;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    color: #666;
+    font-size: 0.9rem;
+    font-weight: 500;
 }
 
 .optimized-about .about-detail {
     background: #ffffff;
-    padding: 80px 0;
+    padding: 60px 0;
 }
 
 .optimized-about .detail-section {
-    margin-bottom: 80px;
-    padding: 40px;
-    background: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    border: 1px solid #e2e8f0;
+    margin-bottom: 60px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
 }
 
 .optimized-about .section-header h2 {
-    color: #2c5aa0;
-    font-size: 2rem;
+    color: #333;
+    font-size: 1.8rem;
     font-weight: 700;
-    margin-bottom: 20px;
-    position: relative;
+    margin-bottom: 30px;
+    text-align: center;
 }
 
 .optimized-about .section-header h2::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 60px;
-    height: 4px;
-    background: linear-gradient(90deg, #2c5aa0, #1e4a8a);
-    border-radius: 2px;
+    display: none;
 }
 
 .optimized-about .content-card {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
+    background: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
     padding: 30px;
     margin-bottom: 20px;
     transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 .optimized-about .content-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(44, 90, 160, 0.15);
-    border-color: #2c5aa0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
 }
 
 .optimized-about .content-card h3 {
-    color: #2c5aa0;
+    color: #333;
     font-size: 1.3rem;
     font-weight: 600;
     margin-bottom: 15px;
 }
 
 .optimized-about .content-card p {
-    color: #4a5568;
-    line-height: 1.7;
+    color: #555;
+    line-height: 1.6;
 }
 
 .optimized-about .achievement-badge {
-    background: linear-gradient(135deg, #fef3c7, #fde68a);
-    border: 2px solid #f59e0b;
-    border-radius: 16px;
+    background: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
     padding: 30px;
     text-align: center;
     margin-top: 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 .optimized-about .achievement-badge h4 {
-    color: #92400e;
+    color: #333;
     font-size: 1.4rem;
     font-weight: 700;
     margin-bottom: 15px;
 }
 
 .optimized-about .achievement-badge p {
-    color: #78350f;
+    color: #555;
     font-weight: 500;
+}
+
+/* Company Details Grid */
+.optimized-about .company-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.optimized-about .detail-card {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.optimized-about .detail-icon {
+    color: #666;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.optimized-about .detail-content {
+    flex: 1;
+}
+
+.optimized-about .detail-label {
+    display: block;
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.optimized-about .detail-value {
+    display: block;
+    font-size: 1rem;
+    color: #333;
+    font-weight: 600;
 }
 
 /* License Items Spacing Fix */
@@ -159,30 +199,183 @@
 }
 
 .optimized-about .license-item {
-    background: linear-gradient(135deg, #2c5aa0, #1e4a8a);
-    color: #fff;
+    background: #f8f9fa;
+    color: #333;
+    border: 1px solid #e0e0e0;
     padding: 10px 18px;
-    border-radius: 25px;
+    border-radius: 20px;
     font-size: 0.9rem;
     font-weight: 500;
     white-space: nowrap;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(44, 90, 160, 0.2);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .optimized-about .license-item:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(44, 90, 160, 0.3);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    background: #e9ecef;
+}
+
+/* Business Info Grid */
+.optimized-about .business-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.optimized-about .business-card {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.optimized-about .business-card h3 {
+    color: #333;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.optimized-about .business-icon {
+    color: #666;
+    font-size: 1.2rem;
+}
+
+.optimized-about .business-list {
+    list-style: none;
+    padding: 0;
+}
+
+.optimized-about .business-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+    color: #555;
+    font-size: 1rem;
+}
+
+.optimized-about .business-list li:last-child {
+    border-bottom: none;
+}
+
+/* Bank Section */
+.optimized-about .bank-section h3 {
+    color: #333;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.optimized-about .bank-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.optimized-about .bank-item {
+    background: #f8f9fa;
+    color: #333;
+    border: 1px solid #e0e0e0;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Access Section */
+.optimized-about .access-section h3 {
+    color: #333;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.optimized-about .access-card {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.optimized-about .access-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.optimized-about .access-header h4 {
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.optimized-about .access-icon {
+    color: #666;
+    font-size: 1.2rem;
+}
+
+.optimized-about .access-details {
+    margin-bottom: 20px;
+}
+
+.optimized-about .access-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    color: #555;
+    font-size: 1rem;
+}
+
+.optimized-about .access-item i {
+    color: #666;
+    width: 16px;
+}
+
+.optimized-about .map-container {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 /* Responsive Design for Optimized About Page */
 @media (max-width: 768px) {
     .optimized-about .page-header {
-        padding: 100px 0 60px;
+        padding: 100px 0 40px;
+    }
+    
+    .optimized-about .page-title {
+        font-size: 1.8rem;
+    }
+    
+    .optimized-about .page-description {
+        font-size: 1rem;
+    }
+    
+    .optimized-about .header-stats {
+        gap: 20px;
+    }
+    
+    .optimized-about .stat-number {
+        font-size: 1.5rem;
     }
     
     .optimized-about .detail-section {
-        padding: 20px;
         margin-bottom: 40px;
     }
     
@@ -192,6 +385,16 @@
     
     .optimized-about .section-header h2 {
         font-size: 1.5rem;
+    }
+    
+    .optimized-about .company-details-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .optimized-about .business-info-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
     }
     
     .optimized-about .license-grid {
