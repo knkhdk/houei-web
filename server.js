@@ -236,7 +236,22 @@ app.get('/api/health', (req, res) => {
 
 // メインページ
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    try {
+        // お知らせデータを読み込み
+        const newsData = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/news.json'), 'utf8'));
+        
+        // index.htmlを読み込み
+        let html = fs.readFileSync(path.join(__dirname, 'index.html'), 'utf8');
+        
+        // お知らせデータをscriptタグに埋め込み
+        const newsDataScript = `<script id="newsData" type="application/json">${JSON.stringify(newsData)}</script>`;
+        html = html.replace('<script id="newsData" type="application/json">\n    </script>', newsDataScript);
+        
+        res.send(html);
+    } catch (error) {
+        console.error('index.htmlの読み込みエラー:', error);
+        res.sendFile(path.join(__dirname, 'index.html'));
+    }
 });
 
 // 404エラーハンドラー
