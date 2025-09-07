@@ -1,7 +1,195 @@
 // お知らせ投稿フォーム用のJavaScript
 
+// セキュリティ設定
+const SECURITY_CONFIG = {
+    // 認証が必要なページかどうか
+    requireAuth: true,
+    // 有効な認証トークン（本番環境では環境変数から取得）
+    validTokens: ['houei2024admin', 'houei2024post'],
+    // セッション有効期限（24時間）
+    sessionTimeout: 24 * 60 * 60 * 1000
+};
+
+// 認証チェック関数
+function checkAuthentication() {
+    // 開発環境では認証をスキップ（localhostの場合）
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        console.log('開発環境: 認証をスキップします');
+        return true;
+    }
+    
+    // URLパラメータからトークンをチェック
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
+    const adminToken = urlParams.get('admin');
+    
+    // 有効なトークンがあるかチェック
+    const validToken = token && SECURITY_CONFIG.validTokens.includes(token);
+    const validAdminToken = adminToken && SECURITY_CONFIG.validTokens.includes(adminToken);
+    
+    if (validToken || validAdminToken) {
+        // セッションに認証情報を保存
+        sessionStorage.setItem('newsAuth', JSON.stringify({
+            authenticated: true,
+            timestamp: Date.now(),
+            token: token || adminToken
+        }));
+        return true;
+    }
+    
+    // セッションから認証情報をチェック
+    const sessionAuth = sessionStorage.getItem('newsAuth');
+    if (sessionAuth) {
+        try {
+            const authData = JSON.parse(sessionAuth);
+            const now = Date.now();
+            
+            // セッションが有効期限内かチェック
+            if (authData.authenticated && (now - authData.timestamp) < SECURITY_CONFIG.sessionTimeout) {
+                return true;
+            } else {
+                // セッション期限切れ
+                sessionStorage.removeItem('newsAuth');
+            }
+        } catch (error) {
+            console.error('セッション認証エラー:', error);
+            sessionStorage.removeItem('newsAuth');
+        }
+    }
+    
+    return false;
+}
+
+// 認証要求画面を表示
+function showAuthenticationRequired() {
+    const body = document.body;
+    body.innerHTML = `
+        <div class="auth-required-container">
+            <div class="auth-required-content">
+                <div class="auth-icon">🔒</div>
+                <h1>認証が必要です</h1>
+                <p>お知らせ投稿ページにアクセスするには、認証が必要です。</p>
+                <div class="auth-form">
+                    <input type="password" id="authPassword" placeholder="認証パスワードを入力してください" class="auth-input">
+                    <button id="authSubmit" class="btn btn-primary">認証</button>
+                </div>
+                <div class="auth-info">
+                    <p>※ 認証パスワードは管理者にお問い合わせください。</p>
+                    <p>※ 開発環境では認証は不要です。</p>
+                </div>
+                <div class="auth-error" id="authError" style="display: none;">
+                    <p>認証に失敗しました。正しいパスワードを入力してください。</p>
+                </div>
+            </div>
+        </div>
+        <style>
+            .auth-required-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                font-family: 'Noto Sans JP', sans-serif;
+            }
+            .auth-required-content {
+                background: white;
+                padding: 40px;
+                border-radius: 15px;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+                text-align: center;
+                max-width: 400px;
+                width: 90%;
+            }
+            .auth-icon {
+                font-size: 48px;
+                margin-bottom: 20px;
+            }
+            .auth-form {
+                margin: 30px 0;
+            }
+            .auth-input {
+                width: 100%;
+                padding: 12px;
+                border: 2px solid #ddd;
+                border-radius: 8px;
+                font-size: 16px;
+                margin-bottom: 15px;
+                box-sizing: border-box;
+            }
+            .auth-input:focus {
+                outline: none;
+                border-color: #2c5aa0;
+            }
+            .btn {
+                background: #2c5aa0;
+                color: white;
+                border: none;
+                padding: 12px 24px;
+                border-radius: 8px;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background 0.3s ease;
+            }
+            .btn:hover {
+                background: #1e4a8c;
+            }
+            .auth-info {
+                margin-top: 20px;
+                color: #666;
+                font-size: 14px;
+            }
+            .auth-error {
+                color: #e74c3c;
+                background: #fdf2f2;
+                padding: 10px;
+                border-radius: 5px;
+                margin-top: 15px;
+            }
+        </style>
+    `;
+    
+    // 認証フォームのイベントリスナー
+    const authPassword = document.getElementById('authPassword');
+    const authSubmit = document.getElementById('authSubmit');
+    const authError = document.getElementById('authError');
+    
+    authSubmit.addEventListener('click', function() {
+        const password = authPassword.value;
+        
+        // 簡単な認証（本番環境ではより複雑な認証システムを使用）
+        if (password === 'houei2024admin' || password === 'houei2024post') {
+            // 認証成功
+            sessionStorage.setItem('newsAuth', JSON.stringify({
+                authenticated: true,
+                timestamp: Date.now(),
+                token: password
+            }));
+            
+            // ページを再読み込み
+            window.location.reload();
+        } else {
+            // 認証失敗
+            authError.style.display = 'block';
+            authPassword.value = '';
+        }
+    });
+    
+    // Enterキーで認証
+    authPassword.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            authSubmit.click();
+        }
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     console.log('news-post.js loaded');
+    
+    // セキュリティチェック: 認証なしでのアクセスを制限
+    if (!checkAuthentication()) {
+        showAuthenticationRequired();
+        return;
+    }
     
     // URLパラメータからトークンをチェック
     const urlParams = new URLSearchParams(window.location.search);
@@ -308,26 +496,46 @@ document.addEventListener('DOMContentLoaded', function() {
 
         console.log('投稿データ:', newsData);
 
-        // ローカルストレージのみに保存（Node.js不要）
+        // ローカルストレージとサーバーAPIの両方に保存
         let savedNews = null;
         let saveSuccess = false;
         
         try {
+            console.log('データを保存中...');
+            
+            // 1. ローカルストレージに保存
             console.log('ローカルストレージに保存');
-            // 既存データを取得
             const existingData = JSON.parse(localStorage.getItem('newsData') || '[]');
-            
-            // 新しいお知らせを先頭に追加
             existingData.unshift(newsData);
-            
-            // ローカルストレージに保存
             localStorage.setItem('newsData', JSON.stringify(existingData));
+            console.log('ローカルストレージに保存完了');
+            
+            // 2. サーバーAPIに送信（全データを送信）
+            try {
+                console.log('サーバーAPIに送信中...');
+                const response = await fetch('/api/news', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(existingData) // 全データを送信
+                });
+                
+                if (response.ok) {
+                    console.log('サーバーAPIに送信完了');
+                } else {
+                    console.warn('サーバーAPI送信に失敗しました:', response.status);
+                }
+            } catch (apiError) {
+                console.warn('サーバーAPI送信エラー:', apiError);
+                // API送信失敗でもローカル保存は成功しているので続行
+            }
             
             savedNews = newsData;
             saveSuccess = true;
-            console.log('ローカルストレージに保存完了');
+            
         } catch (error) {
-            console.error('ローカルストレージ保存エラー:', error);
+            console.error('データ保存エラー:', error);
             showMessage('投稿に失敗しました: ' + error.message, 'error');
             return;
         }
@@ -569,7 +777,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // データ同期機能（Node.js不要）
-    function syncAllData() {
+    async function syncAllData() {
         if (!window.DataSync) {
             showMessage('データ同期機能が利用できません', 'error');
             return;
@@ -580,11 +788,11 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const dataSync = new window.DataSync();
             
-            // 同期状況を表示
-            const status = dataSync.showSyncStatus();
+            // 同期状況を表示（非同期）
+            const status = await dataSync.showSyncStatus();
             
             // データを同期
-            const result = dataSync.syncData();
+            const result = await dataSync.syncData();
             
             if (result.success) {
                 showMessage(`データ同期が完了しました。合計${result.totalItems}件のデータを同期しました。`, 'success');
@@ -713,22 +921,46 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // 管理者用お知らせ一覧読み込み（Node.js不要）
-    function loadAdminNewsList() {
+    // 管理者用お知らせ一覧読み込み（APIから取得）
+    async function loadAdminNewsList() {
         try {
-            const localData = localStorage.getItem('newsData');
-            const newsData = localData ? JSON.parse(localData) : [];
+            console.log('管理モード: お知らせ一覧を読み込み中...');
+            
             const adminList = document.getElementById('adminNewsList');
+            const loadingMessage = document.getElementById('adminLoadingMessage');
+            
+            // ローディング表示を表示
+            if (loadingMessage) {
+                loadingMessage.style.display = 'block';
+            }
+            
+            // サーバーからお知らせデータを取得
+            const response = await fetch('/api/news');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const newsData = await response.json();
+            
+            console.log('管理モード: 取得したお知らせデータ:', newsData);
+            
+            // ローディング表示を非表示
+            if (loadingMessage) {
+                loadingMessage.style.display = 'none';
+            }
             
             if (adminList && newsData.length > 0) {
                 let listHTML = '';
                 newsData.forEach(news => {
                     const date = new Date(news.date).toLocaleDateString('ja-JP');
+                    const statusClass = news.status === 'published' ? 'published' : 'draft';
+                    const statusText = news.status === 'published' ? '公開中' : '下書き';
+                    
                     listHTML += `
-                        <div class="admin-news-item">
+                        <div class="admin-news-item ${statusClass}">
                             <div class="admin-news-info">
                                 <span class="admin-news-date">${date}</span>
                                 <span class="admin-news-category">${news.category}</span>
+                                <span class="admin-news-status">${statusText}</span>
                                 <span class="admin-news-title">${news.title}</span>
                             </div>
                             <div class="admin-news-actions">
@@ -739,9 +971,56 @@ document.addEventListener('DOMContentLoaded', function() {
                     `;
                 });
                 adminList.innerHTML = listHTML;
+                console.log('管理モード: お知らせ一覧を表示しました');
+            } else if (adminList) {
+                adminList.innerHTML = '<p class="no-news-message">お知らせがありません</p>';
+                console.log('管理モード: お知らせがありません');
             }
         } catch (error) {
-            console.error('Error loading admin news list:', error);
+            console.error('管理モード: お知らせ一覧の読み込みエラー:', error);
+            
+            // ローディング表示を非表示
+            const loadingMessage = document.getElementById('adminLoadingMessage');
+            if (loadingMessage) {
+                loadingMessage.style.display = 'none';
+            }
+            
+            // フォールバック: ローカルストレージから取得
+            try {
+                const localData = localStorage.getItem('newsData');
+                const newsData = localData ? JSON.parse(localData) : [];
+                const adminList = document.getElementById('adminNewsList');
+                
+                if (adminList && newsData.length > 0) {
+                    let listHTML = '';
+                    newsData.forEach(news => {
+                        const date = new Date(news.date).toLocaleDateString('ja-JP');
+                        listHTML += `
+                            <div class="admin-news-item">
+                                <div class="admin-news-info">
+                                    <span class="admin-news-date">${date}</span>
+                                    <span class="admin-news-category">${news.category}</span>
+                                    <span class="admin-news-title">${news.title}</span>
+                                </div>
+                                <div class="admin-news-actions">
+                                    <button onclick="showEditForm('${news.id}')" class="btn btn-secondary">編集</button>
+                                    <button onclick="showDeleteConfirmation('${news.id}')" class="btn btn-danger">削除</button>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    adminList.innerHTML = listHTML;
+                    console.log('管理モード: ローカルストレージからお知らせ一覧を表示しました');
+                } else if (adminList) {
+                    adminList.innerHTML = '<p class="no-news-message">お知らせがありません</p>';
+                }
+            } catch (localError) {
+                console.error('管理モード: ローカルストレージからの読み込みも失敗:', localError);
+                const adminList = document.getElementById('adminNewsList');
+                if (adminList) {
+                    adminList.innerHTML = '<p class="error-message">お知らせの読み込みに失敗しました</p>';
+                }
+            }
         }
     }
 

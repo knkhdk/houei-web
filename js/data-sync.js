@@ -88,22 +88,22 @@ class DataSync {
     }
 
     // データを同期（Node.js不要）
-    syncData() {
+    async syncData() {
         console.log('データ同期を開始...');
         
         // 各ソースからデータを取得
         const localData = this.getLocalStorageData();
-        const fileData = this.getFileData();
+        const fileData = await this.getFileData();
         const importedData = this.getImportedData();
         
         console.log('取得したデータ:', {
             local: localData.length,
-            file: fileData.length,
+            file: fileData ? fileData.length : 0,
             imported: importedData.length
         });
 
         // データをマージ
-        let mergedData = this.mergeData(localData, fileData);
+        let mergedData = this.mergeData(localData, fileData || []);
         mergedData = this.mergeData(mergedData, importedData);
 
         console.log('マージ後のデータ:', mergedData.length, '件');
@@ -119,21 +119,22 @@ class DataSync {
     }
 
     // 同期状況を表示（Node.js不要）
-    showSyncStatus() {
+    async showSyncStatus() {
         const localData = this.getLocalStorageData();
-        const fileData = this.getFileData();
+        const fileData = await this.getFileData();
         const importedData = this.getImportedData();
 
         console.log('=== データ同期状況 ===');
         console.log('ローカルストレージ:', localData.length, '件');
-        console.log('JSONファイル:', fileData.length, '件');
+        console.log('JSONファイル:', fileData ? fileData.length : 0, '件');
         console.log('インポートデータ:', importedData.length, '件');
 
         // 重複チェック
         const allIds = new Set();
         const duplicates = [];
 
-        [...localData, ...fileData, ...importedData].forEach(item => {
+        const allData = [...localData, ...(fileData || []), ...importedData];
+        allData.forEach(item => {
             if (allIds.has(item.id)) {
                 duplicates.push(item.id);
             } else {
@@ -149,7 +150,7 @@ class DataSync {
 
         return {
             local: localData.length,
-            file: fileData.length,
+            file: fileData ? fileData.length : 0,
             imported: importedData.length,
             duplicates: duplicates.length
         };

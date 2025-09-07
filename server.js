@@ -6,9 +6,97 @@ const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// セキュリティ設定の読み込み
+let securityConfig = {};
+try {
+    const configPath = path.join(__dirname, 'security-config.json');
+    if (fs.existsSync(configPath)) {
+        securityConfig = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+        console.log('セキュリティ設定を読み込みました');
+    } else {
+        console.log('セキュリティ設定ファイルが見つかりません。デフォルト設定を使用します。');
+    }
+} catch (error) {
+    console.error('セキュリティ設定の読み込みエラー:', error);
+}
+
 // ミドルウェアの設定
 app.use(cors());
 app.use(express.json({ limit: '10mb' }));
+
+// セキュリティミドルウェア: 投稿ページへのアクセス制限
+app.use('/news/post.html', (req, res, next) => {
+    // セキュリティが無効化されている場合はスキップ
+    if (!securityConfig.security || !securityConfig.security.enabled) {
+        next();
+        return;
+    }
+    
+    // 開発環境では制限をスキップ
+    const isDevelopment = process.env.NODE_ENV === 'development' || 
+                         req.hostname === 'localhost' || 
+                         req.hostname === '127.0.0.1';
+    
+    if (isDevelopment && securityConfig.security.developmentMode?.skipAuthentication) {
+        console.log('開発環境: 投稿ページアクセス制限をスキップ');
+        next();
+        return;
+    }
+    
+    // 本番環境では認証トークンをチェック
+    const token = req.query.token || req.query.admin;
+    const validTokens = securityConfig.security.productionMode?.validTokens || 
+                       securityConfig.tokens ? Object.keys(securityConfig.tokens) : 
+                       ['houei2024admin', 'houei2024post'];
+    
+    if (!token || !validTokens.includes(token)) {
+        const clientInfo = {
+            ip: req.ip,
+            userAgent: req.headers['user-agent'],
+            timestamp: new Date().toISOString()
+        };
+        
+        console.log('投稿ページへの不正アクセスを検出:', clientInfo);
+        
+        // ログファイルに記録（オプション）
+        if (securityConfig.security.logging?.logFailedAttempts) {
+            const logEntry = `[${clientInfo.timestamp}] FAILED_ACCESS: ${clientInfo.ip} - ${clientInfo.userAgent}\n`;
+            fs.appendFileSync(path.join(__dirname, 'security.log'), logEntry);
+        }
+        
+        res.status(403).send(`
+            <!DOCTYPE html>
+            <html lang="ja">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>アクセス拒否 - 邦栄建設株式会社</title>
+                <style>
+                    body { font-family: 'Noto Sans JP', sans-serif; text-align: center; padding: 50px; background: #f5f5f5; }
+                    .error-container { background: white; padding: 40px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 500px; margin: 0 auto; }
+                    .error-icon { font-size: 48px; margin-bottom: 20px; }
+                    h1 { color: #e74c3c; margin-bottom: 20px; }
+                    p { color: #666; margin-bottom: 30px; }
+                    .btn { background: #2c5aa0; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block; }
+                </style>
+            </head>
+            <body>
+                <div class="error-container">
+                    <div class="error-icon">🚫</div>
+                    <h1>アクセスが拒否されました</h1>
+                    <p>このページにアクセスするには適切な認証が必要です。</p>
+                    <a href="/" class="btn">トップページに戻る</a>
+                </div>
+            </body>
+            </html>
+        `);
+        return;
+    }
+    
+    console.log('投稿ページへの認証済みアクセス:', req.ip);
+    next();
+});
+
 app.use(express.static('.'));
 
 // ログミドルウェア
