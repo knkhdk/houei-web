@@ -239,13 +239,14 @@ app.get('/', (req, res) => {
     try {
         // お知らせデータを読み込み
         const newsData = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/news.json'), 'utf8'));
+        console.log('読み込んだお知らせデータ件数:', newsData.length);
         
         // index.htmlを読み込み
         let html = fs.readFileSync(path.join(__dirname, 'index.html'), 'utf8');
         
-        // お知らせデータをscriptタグに埋め込み
+        // お知らせデータをscriptタグに埋め込み（シンプルな置換）
         const newsDataScript = `<script id="newsData" type="application/json">${JSON.stringify(newsData)}</script>`;
-        html = html.replace(/<script id="newsData" type="application\/json">[\s\S]*?<\/script>/, newsDataScript);
+        html = html.replace('<script id="newsData" type="application/json">[]</script>', newsDataScript);
         
         res.send(html);
     } catch (error) {
