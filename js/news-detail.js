@@ -19,12 +19,24 @@ document.addEventListener('DOMContentLoaded', function() {
     // お知らせ詳細を読み込む
     async function loadNewsDetail(id) {
         try {
-            const newsData = await window.fileManager.loadNews();
+            console.log('お知らせ詳細を読み込み中... ID:', id);
+            
+            // サーバーからお知らせデータを取得
+            const response = await fetch('/api/news');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const newsData = await response.json();
+            
+            console.log('取得したお知らせデータ:', newsData);
+            
             const news = newsData.find(item => item.id == id);
             
             if (news && news.status === 'published') {
+                console.log('お知らせが見つかりました:', news);
                 displayNewsDetail(news);
             } else {
+                console.log('お知らせが見つかりませんでした');
                 showNotFound();
             }
         } catch (error) {
@@ -66,13 +78,29 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         let imageHTML = '';
-        if (news.image) {
-            imageHTML = `
-                <div class="news-detail-image">
-                    <img src="${news.image}" alt="${news.title}" onerror="this.style.display='none'">
-                </div>
-            `;
+        // カテゴリに応じて画像パスを決定（お知らせ詳細ページはnews/ディレクトリにあるため、../を追加）
+        let imagePath = '../images/top/placeholder.jpg';
+        if (news.category === '技術・工法') {
+            imagePath = '../images/top/top1.jpg';
+        } else if (news.category === '採用情報') {
+            imagePath = '../images/top/top2.jpg';
+        } else if (news.category === '会社情報') {
+            imagePath = '../images/top/top3.JPG';
         }
+        
+        console.log('お知らせ詳細画像設定:', {
+            category: news.category,
+            imagePath: imagePath,
+            title: news.title
+        });
+        
+        imageHTML = `
+            <div class="news-detail-image">
+                <img src="${imagePath}" alt="${news.title}" 
+                     onerror="console.error('画像読み込みエラー:', this.src); this.src='../images/top/placeholder.jpg';"
+                     onload="console.log('画像読み込み成功:', this.src);">
+            </div>
+        `;
         
         const detailHTML = `
             <div class="news-detail-header">
@@ -130,9 +158,19 @@ document.addEventListener('DOMContentLoaded', function() {
     // ナビゲーション設定
     async function setupNavigation(currentId) {
         try {
-            const newsData = await window.fileManager.loadNews();
+            console.log('ナビゲーション設定中... ID:', currentId);
+            
+            // サーバーからお知らせデータを取得
+            const response = await fetch('/api/news');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const newsData = await response.json();
+            
             const publishedNews = newsData.filter(news => news.status === 'published');
             const currentIndex = publishedNews.findIndex(news => news.id == currentId);
+            
+            console.log('現在のインデックス:', currentIndex, '総数:', publishedNews.length);
             
             if (currentIndex > 0) {
                 const prevNews = publishedNews[currentIndex - 1];
@@ -140,6 +178,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 prevNewsBtn.addEventListener('click', () => {
                     window.location.href = `detail.html?id=${prevNews.id}`;
                 });
+                console.log('前のお知らせボタンを設定:', prevNews.title);
             }
             
             if (currentIndex < publishedNews.length - 1) {
@@ -148,6 +187,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 nextNewsBtn.addEventListener('click', () => {
                     window.location.href = `detail.html?id=${nextNews.id}`;
                 });
+                console.log('次のお知らせボタンを設定:', nextNews.title);
             }
         } catch (error) {
             console.error('Error setting up navigation:', error);

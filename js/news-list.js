@@ -108,13 +108,21 @@ function generateNewsItemHtml(news) {
     }
     
     let imageHTML = '';
-    if (news.image) {
-        imageHTML = `
-            <div class="timeline-image">
-                <img src="${news.image}" alt="${news.title}" onerror="this.style.display='none'">
-            </div>
-        `;
+    // カテゴリに応じて画像パスを決定（お知らせ一覧ページはnews/ディレクトリにあるため、../を追加）
+    let imagePath = '../images/top/placeholder.jpg';
+    if (news.category === '技術・工法') {
+        imagePath = '../images/top/top1.jpg';
+    } else if (news.category === '採用情報') {
+        imagePath = '../images/top/top2.jpg';
+    } else if (news.category === '会社情報') {
+        imagePath = '../images/top/top3.JPG';
     }
+    
+    imageHTML = `
+        <div class="timeline-image">
+            <img src="${imagePath}" alt="${news.title}" onerror="this.src='../images/top/placeholder.jpg'">
+        </div>
+    `;
     
     return `
         <div class="timeline-item" data-category="${news.category}">
