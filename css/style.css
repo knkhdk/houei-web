@@ -316,12 +316,17 @@ body {
 .news-card-category {
     background: #2c5aa0;
     color: #fff;
-    padding: 5px 12px;
+    padding: 6px 14px;
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: 500;
     display: inline-block;
     margin-bottom: 10px;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: keep-all;
 }
 
 .news-card-overlay h3 {
@@ -1300,6 +1305,16 @@ html {
         width: 40px;
         height: 40px;
         font-size: 1rem;
+    }
+    
+    .news-card-category {
+        font-size: 0.75rem;
+        padding: 5px 12px;
+        max-width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: keep-all;
     }
     
     .news-card-overlay h3 {
