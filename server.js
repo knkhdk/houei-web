@@ -245,7 +245,7 @@ app.get('/', (req, res) => {
         
         // お知らせデータをscriptタグに埋め込み
         const newsDataScript = `<script id="newsData" type="application/json">${JSON.stringify(newsData)}</script>`;
-        html = html.replace('<script id="newsData" type="application/json">\n    </script>', newsDataScript);
+        html = html.replace(/<script id="newsData" type="application\/json">[\s\S]*?<\/script>/, newsDataScript);
         
         res.send(html);
     } catch (error) {
