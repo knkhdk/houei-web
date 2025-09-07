@@ -78,37 +78,25 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         let imageHTML = '';
-        let imagePath = '../images/top/placeholder.jpg';
         
-        // 旧サイトの画像がある場合は優先的に使用
+        // 旧サイトの画像がある場合のみ画像を表示
         if (news.image && news.image !== null) {
-            imagePath = news.image;
-            console.log('旧サイト画像を使用:', imagePath);
-        } else {
-            // カテゴリに応じてデフォルト画像を決定
-            if (news.category === '技術・工法') {
-                imagePath = '../images/top/top1.jpg';
-            } else if (news.category === '採用情報') {
-                imagePath = '../images/top/top2.jpg';
-            } else if (news.category === '会社情報') {
-                imagePath = '../images/top/top3.JPG';
-            }
+            console.log('旧サイト画像を使用:', news.image);
+            
+            imageHTML = `
+                <div class="news-detail-image">
+                    <img src="${news.image}" alt="${news.title}" 
+                         onerror="console.error('画像読み込みエラー:', this.src); this.src='../images/top/placeholder.jpg';"
+                         onload="console.log('画像読み込み成功:', this.src);">
+                </div>
+            `;
         }
         
         console.log('お知らせ詳細画像設定:', {
             category: news.category,
-            imagePath: imagePath,
             title: news.title,
             hasOldImage: !!(news.image && news.image !== null)
         });
-        
-        imageHTML = `
-            <div class="news-detail-image">
-                <img src="${imagePath}" alt="${news.title}" 
-                     onerror="console.error('画像読み込みエラー:', this.src); this.src='../images/top/placeholder.jpg';"
-                     onload="console.log('画像読み込み成功:', this.src);">
-            </div>
-        `;
         
         const detailHTML = `
             <div class="news-detail-header">
