@@ -97,6 +97,16 @@
     display: none;
 }
 
+.optimized-about .section-icon {
+    color: #666;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.optimized-about .section-header:hover .section-icon {
+    color: #333;
+}
+
 .optimized-about .content-card {
     background: #f8f9fa;
     border: 1px solid #e0e0e0;
@@ -122,6 +132,16 @@
 .optimized-about .content-card p {
     color: #555;
     line-height: 1.6;
+}
+
+.optimized-about .card-icon {
+    color: #666;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.optimized-about .content-card:hover .card-icon {
+    color: #333;
 }
 
 .optimized-about .achievement-badge {
@@ -169,6 +189,11 @@
     color: #666;
     font-size: 1.2rem;
     flex-shrink: 0;
+    transition: color 0.3s ease;
+}
+
+.optimized-about .detail-card:hover .detail-icon {
+    color: #333;
 }
 
 .optimized-about .detail-content {
@@ -188,6 +213,27 @@
     font-size: 1rem;
     color: #333;
     font-weight: 600;
+}
+
+/* License Section */
+.optimized-about .license-section h3 {
+    color: #333;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.optimized-about .license-section h3 i {
+    color: #666;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.optimized-about .license-section:hover h3 i {
+    color: #333;
 }
 
 /* License Items Spacing Fix */
@@ -246,6 +292,11 @@
 .optimized-about .business-icon {
     color: #666;
     font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.optimized-about .business-card:hover .business-icon {
+    color: #333;
 }
 
 .optimized-about .business-list {
@@ -275,6 +326,16 @@
     gap: 10px;
 }
 
+.optimized-about .bank-section h3 i {
+    color: #666;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.optimized-about .bank-section:hover h3 i {
+    color: #333;
+}
+
 .optimized-about .bank-list {
     display: flex;
     flex-wrap: wrap;
@@ -302,6 +363,16 @@
     gap: 10px;
 }
 
+.optimized-about .access-section h3 i {
+    color: #666;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.optimized-about .access-section:hover h3 i {
+    color: #333;
+}
+
 .optimized-about .access-card {
     background: white;
     border: 1px solid #e0e0e0;
@@ -327,6 +398,11 @@
 .optimized-about .access-icon {
     color: #666;
     font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.optimized-about .access-card:hover .access-icon {
+    color: #333;
 }
 
 .optimized-about .access-details {
