@@ -1,0 +1,171 @@
+/* ========================================
+   Optimized About Page Specific Styles
+   ======================================== */
+
+.optimized-about {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    min-height: 100vh;
+}
+
+.optimized-about .page-header {
+    background: linear-gradient(135deg, #2c5aa0 0%, #1e4a8a 100%);
+    color: white;
+    padding: 120px 0 80px;
+    margin-top: 80px;
+    position: relative;
+    overflow: hidden;
+}
+
+.optimized-about .page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="10" cy="60" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="90" cy="40" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.3;
+}
+
+.optimized-about .page-title {
+    color: #ffffff;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 2;
+}
+
+.optimized-about .page-description {
+    color: #e2e8f0;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 2;
+}
+
+.optimized-about .page-tags {
+    position: relative;
+    z-index: 2;
+}
+
+.optimized-about .tag {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.optimized-about .header-stats {
+    position: relative;
+    z-index: 2;
+}
+
+.optimized-about .stat-number {
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.optimized-about .stat-label {
+    color: #e2e8f0;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.optimized-about .about-detail {
+    background: #ffffff;
+    padding: 80px 0;
+}
+
+.optimized-about .detail-section {
+    margin-bottom: 80px;
+    padding: 40px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e2e8f0;
+}
+
+.optimized-about .section-header h2 {
+    color: #2c5aa0;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.optimized-about .section-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #2c5aa0, #1e4a8a);
+    border-radius: 2px;
+}
+
+.optimized-about .content-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.optimized-about .content-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(44, 90, 160, 0.15);
+    border-color: #2c5aa0;
+}
+
+.optimized-about .content-card h3 {
+    color: #2c5aa0;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.optimized-about .content-card p {
+    color: #4a5568;
+    line-height: 1.7;
+}
+
+.optimized-about .achievement-badge {
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+    border: 2px solid #f59e0b;
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.optimized-about .achievement-badge h4 {
+    color: #92400e;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.optimized-about .achievement-badge p {
+    color: #78350f;
+    font-weight: 500;
+}
+
+/* Responsive Design for Optimized About Page */
+@media (max-width: 768px) {
+    .optimized-about .page-header {
+        padding: 100px 0 60px;
+    }
+    
+    .optimized-about .detail-section {
+        padding: 20px;
+        margin-bottom: 40px;
+    }
+    
+    .optimized-about .content-card {
+        padding: 20px;
+    }
+    
+    .optimized-about .section-header h2 {
+        font-size: 1.5rem;
+    }
+}
