@@ -405,7 +405,6 @@ function displayNews(newsData) {
                                 <span class="news-day">${day}</span>
                                 <span class="news-month">${year}.${month.toString().padStart(2, '0')}</span>
                             </div>
-                            <div class="news-card-link" onclick="event.stopPropagation(); window.location.href='news/detail.html?id=${news.id}'">詳細を見る</div>
                         </div>
                     </div>
                 </div>
