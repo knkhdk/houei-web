@@ -357,10 +357,18 @@ function displayNews(newsData) {
     }
     
     console.log('お知らせカードを生成中...');
+    console.log('表示する最新3件のお知らせ:', latestNews.map(news => ({
+        title: news.title,
+        date: news.date,
+        image: news.image,
+        category: news.category
+    })));
+    
     newsContainer.innerHTML = latestNews.map(news => {
         const date = new Date(news.date);
         const day = date.getDate();
         const month = date.getMonth() + 1;
+        const year = date.getFullYear();
         const monthName = month + '月';
         
         // 画像パスの決定（旧サイトの画像がある場合のみ）
@@ -373,6 +381,13 @@ function displayNews(newsData) {
             imageHTML = `
                 <div class="news-card-image">
                     <img src="${imagePath}" alt="${news.title}" onerror="this.src='images/top/placeholder.jpg'">
+                </div>
+            `;
+        } else {
+            // 画像がない場合はプレースホルダーを表示
+            imageHTML = `
+                <div class="news-card-image">
+                    <img src="images/top/placeholder.jpg" alt="${news.title}">
                 </div>
             `;
         }
@@ -388,7 +403,7 @@ function displayNews(newsData) {
                             <p>${news.summary}</p>
                             <div class="news-card-date" style="margin: 10px 0;">
                                 <span class="news-day">${day}</span>
-                                <span class="news-month">${monthName}</span>
+                                <span class="news-month">${year}.${month.toString().padStart(2, '0')}</span>
                             </div>
                             <div class="news-card-link" onclick="event.stopPropagation(); window.location.href='news/detail.html?id=${news.id}'">詳細を見る</div>
                         </div>
