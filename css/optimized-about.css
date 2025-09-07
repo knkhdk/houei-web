@@ -150,6 +150,31 @@
     font-weight: 500;
 }
 
+/* License Items Spacing Fix */
+.optimized-about .license-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.optimized-about .license-item {
+    background: linear-gradient(135deg, #2c5aa0, #1e4a8a);
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(44, 90, 160, 0.2);
+}
+
+.optimized-about .license-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(44, 90, 160, 0.3);
+}
+
 /* Responsive Design for Optimized About Page */
 @media (max-width: 768px) {
     .optimized-about .page-header {
@@ -167,5 +192,14 @@
     
     .optimized-about .section-header h2 {
         font-size: 1.5rem;
+    }
+    
+    .optimized-about .license-grid {
+        gap: 8px;
+    }
+    
+    .optimized-about .license-item {
+        padding: 8px 14px;
+        font-size: 0.8rem;
     }
 }
