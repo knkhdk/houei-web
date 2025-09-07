@@ -363,30 +363,25 @@ function displayNews(newsData) {
         const month = date.getMonth() + 1;
         const monthName = month + '月';
         
-        // 画像パスの決定（旧サイトの画像を優先、なければカテゴリに応じて選択）
-        let imagePath = 'images/top/placeholder.jpg';
+        // 画像パスの決定（旧サイトの画像がある場合のみ）
+        let imagePath = '';
+        let imageHTML = '';
         
         if (news.image && news.image !== null) {
             // 旧サイトの画像がある場合は使用（パスを調整）
             imagePath = news.image.replace('../', '');
-        } else {
-            // カテゴリに応じてデフォルト画像を選択
-            if (news.category === '技術・工法') {
-                imagePath = 'images/top/top1.jpg';
-            } else if (news.category === '採用情報') {
-                imagePath = 'images/top/top2.jpg';
-            } else if (news.category === '会社情報') {
-                imagePath = 'images/top/top3.JPG';
-            }
+            imageHTML = `
+                <div class="news-card-image">
+                    <img src="${imagePath}" alt="${news.title}" onerror="this.src='images/top/placeholder.jpg'">
+                </div>
+            `;
         }
         
         return `
             <div class="news-card-3d" onclick="window.location.href='news/detail.html?id=${news.id}'" style="cursor: pointer;">
                 <div class="news-card-inner">
                     <div class="news-card-front">
-                        <div class="news-card-image">
-                            <img src="${imagePath}" alt="${news.title}" onerror="this.src='images/top/placeholder.jpg'">
-                        </div>
+                        ${imageHTML}
                         <div class="news-card-overlay">
                             <div class="news-card-category">${news.category}</div>
                             <h3>${news.title}</h3>
