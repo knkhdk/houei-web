@@ -400,7 +400,6 @@ function displayNews(newsData) {
                         <div class="news-card-overlay">
                             <div class="news-card-category">${news.category}</div>
                             <h3>${news.title}</h3>
-                            <p>${news.summary}</p>
                             <div class="news-card-date" style="margin: 10px 0;">
                                 <span class="news-day">${day}</span>
                                 <span class="news-month">${year}.${month.toString().padStart(2, '0')}</span>

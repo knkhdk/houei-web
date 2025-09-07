@@ -331,14 +331,14 @@ body {
     line-height: 1.3;
     color: #fff;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: calc(1.4rem * 1.3 * 3);
 }
 
-.news-card-overlay p {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    opacity: 0.9;
-    margin-bottom: 15px;
-}
 
 .news-card-date {
     display: flex;
@@ -1306,6 +1306,12 @@ html {
         font-size: 1.2rem;
         font-weight: 700;
         line-height: 1.3;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-height: calc(1.2rem * 1.3 * 3);
     }
     
     .news-card-back h3 {
