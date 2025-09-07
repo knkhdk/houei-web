@@ -21,8 +21,10 @@
     font-weight: 700;
     margin-bottom: 20px;
     text-align: left;
-    writing-mode: horizontal-tb;
-    text-orientation: mixed;
+    writing-mode: horizontal-tb !important;
+    text-orientation: mixed !important;
+    direction: ltr !important;
+    unicode-bidi: normal !important;
 }
 
 .optimized-about .page-description {
