@@ -87,6 +87,27 @@ body {
     color: #2c5aa0;
 }
 
+.nav-btn {
+    background: #2c5aa0;
+    color: white !important;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    background: #1e3c72;
+    color: white !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(44, 90, 160, 0.3);
+}
+
+.works-more {
+    text-align: center;
+    margin-top: 30px;
+}
+
 .contact-info {
     display: flex;
     align-items: center;
