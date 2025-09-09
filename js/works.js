@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
             id: 2,
             title: "河川嵩上げ工事",
             category: "河川工事",
-            location: "一級河川菖蒲川",
+            location: "一級河川菖蒲川／戸田市内",
             description: "河川の嵩上げ工事を実施。治水機能の向上と地域の安全確保を図るため、高品質な施工により河川の水位管理能力を向上させました。",
             image: "jisseki/shoubugawa.jpg",
             year: "2025",
