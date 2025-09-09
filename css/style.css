@@ -3699,6 +3699,8 @@ html {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     border: 1px solid #e9ecef;
     transition: all 0.3s ease;
+    height: 500px;
+    position: relative;
 }
 
 .work-card:hover {
@@ -3707,8 +3709,11 @@ html {
 }
 
 .work-card-image {
-    position: relative;
-    height: 200px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     overflow: hidden;
 }
 
@@ -3729,7 +3734,7 @@ html {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(44, 90, 160, 0.8), rgba(30, 74, 138, 0.8));
+    background: linear-gradient(135deg, rgba(44, 90, 160, 0.3), rgba(30, 74, 138, 0.3));
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -3743,33 +3748,45 @@ html {
 }
 
 .work-card-category {
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff;
+    background: rgba(255, 255, 255, 0.9);
+    color: #2c5aa0;
     padding: 6px 12px;
     border-radius: 15px;
     font-size: 0.8rem;
-    font-weight: 500;
+    font-weight: 600;
     align-self: flex-start;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .work-card-year {
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff;
+    background: rgba(255, 255, 255, 0.9);
+    color: #2c5aa0;
     padding: 6px 12px;
     border-radius: 15px;
     font-size: 0.8rem;
-    font-weight: 500;
+    font-weight: 600;
     align-self: flex-end;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .work-card-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
     padding: 25px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+    max-height: 60%;
 }
 
 .work-card-content h3 {
     font-size: 1.3rem;
     font-weight: 600;
-    color: #333;
+    color: #fff;
     margin-bottom: 10px;
     line-height: 1.3;
 }
@@ -3778,18 +3795,18 @@ html {
     display: flex;
     align-items: center;
     gap: 8px;
-    color: #6c757d;
+    color: rgba(255, 255, 255, 0.9);
     font-size: 0.9rem;
     margin-bottom: 15px;
 }
 
 .work-card-location i {
-    color: #2c5aa0;
+    color: #fff;
     font-size: 0.8rem;
 }
 
 .work-card-description {
-    color: #6c757d;
+    color: rgba(255, 255, 255, 0.9);
     font-size: 0.95rem;
     line-height: 1.6;
     margin-bottom: 20px;
@@ -3800,6 +3817,9 @@ html {
     flex-direction: column;
     gap: 8px;
     margin-bottom: 20px;
+    flex: 1;
+    overflow-y: auto;
+    max-height: 200px;
 }
 
 .detail-item {
@@ -3807,7 +3827,7 @@ html {
     justify-content: space-between;
     align-items: center;
     padding: 8px 0;
-    border-bottom: 1px solid #f8f9fa;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .detail-item:last-child {
@@ -3816,19 +3836,21 @@ html {
 
 .detail-label {
     font-size: 0.85rem;
-    color: #6c757d;
+    color: rgba(255, 255, 255, 0.8);
     font-weight: 500;
 }
 
 .detail-value {
     font-size: 0.9rem;
-    color: #333;
+    color: #fff;
     font-weight: 600;
 }
 
 .work-card-actions {
     display: flex;
     justify-content: center;
+    margin-top: auto;
+    padding-top: 15px;
 }
 
 .btn-detail {
@@ -3880,9 +3902,9 @@ html {
     position: relative;
     background: #fff;
     border-radius: 15px;
-    max-width: 800px;
-    width: 100%;
-    max-height: 90vh;
+    max-width: 1200px;
+    width: 95%;
+    max-height: 95vh;
     overflow-y: auto;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     animation: modalSlideIn 0.3s ease;
@@ -3926,21 +3948,26 @@ html {
 
 .modal-body {
     padding: 30px;
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
 }
 
 .modal-image {
-    margin-bottom: 25px;
+    flex: 0 0 400px;
     border-radius: 10px;
     overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .modal-image img {
     width: 100%;
-    height: 250px;
+    height: 300px;
     object-fit: cover;
 }
 
 .modal-info {
+    flex: 1;
     display: flex;
     flex-direction: column;
     gap: 25px;
@@ -4000,6 +4027,29 @@ html {
 }
 
 /* Responsive Design for Works Page */
+
+/* タブレットサイズ */
+@media (max-width: 1024px) {
+    .modal-content {
+        max-width: 90%;
+        width: 90%;
+    }
+    
+    .modal-body {
+        flex-direction: column;
+        gap: 25px;
+    }
+    
+    .modal-image {
+        flex: none;
+        width: 100%;
+    }
+    
+    .modal-image img {
+        height: 250px;
+    }
+}
+
 @media (max-width: 768px) {
     .works-header {
         padding: 100px 0 60px;
@@ -4058,11 +4108,26 @@ html {
     .modal-content {
         margin: 10px;
         max-height: 95vh;
+        width: 95%;
     }
     
     .modal-header,
     .modal-body {
         padding: 20px;
+    }
+    
+    .modal-body {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .modal-image {
+        flex: none;
+        width: 100%;
+    }
+    
+    .modal-image img {
+        height: 200px;
     }
     
     .info-grid {

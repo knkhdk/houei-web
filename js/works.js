@@ -5,30 +5,35 @@ document.addEventListener('DOMContentLoaded', function() {
     const defaultWorksData = [
         {
             id: 1,
-            title: "下水道開削工事",
-            category: "下水道工事",
-            location: "川口市大字峯地内",
-            description: "下水道管の開削工事を実施。安全で確実な施工により、地域の生活インフラを整備しました。",
-            image: "jisseki/works06-4.jpg",
-            year: "2023",
+            title: "河川嵩上げ工事",
+            category: "河川工事",
+            location: "川口市柳崎１丁目地内",
+            description: "河川の嵩上げ工事を実施。治水機能の向上と地域の安全確保を図るため、高品質な施工により河川の水位管理能力を向上させました。",
+            image: "old-news/20250818_063500339_iOS.jpg",
+            year: "2025",
             details: {
-                "工期": "3ヶ月",
-                "延長": "500m",
-                "管径": "φ300mm"
+                "工期": "2025.3.5~2025.8.29",
+                "延長": "217m",
+                "嵩上げ高": "最大590mm"
             }
         },
         {
             id: 2,
-            title: "下水道推進工事",
-            category: "上下水道",
-            location: "川口市大字安行慈林地内",
-            description: "無振動・低騒音の推進工法により、周辺環境に配慮した下水道工事を実施しました。",
-            image: "jisseki/works08-1.jpg",
-            year: "2023",
+            title: "河川嵩上げ工事",
+            category: "河川工事",
+            location: "一級河川菖蒲川",
+            description: "河川の嵩上げ工事を実施。治水機能の向上と地域の安全確保を図るため、高品質な施工により河川の水位管理能力を向上させました。",
+            image: "jisseki/shoubugawa.jpg",
+            year: "2025",
             details: {
-                "工期": "2ヶ月",
-                "延長": "300m",
-                "管径": "φ400mm"
+                "工期": "2024.11.19～2025.3.31",
+                "施工延長": "215.0m",
+                "パネル設置工": "220.0m",
+                "コンクリート嵩上工": "215.0m",
+                "ひび割れ補修工": "1.0式",
+                "護岸工": "40.0m2",
+                "フェンス設置撤去工": "73.0m",
+                "仮囲い工": "107.0m"
             }
         },
         {
@@ -90,6 +95,8 @@ document.addEventListener('DOMContentLoaded', function() {
     ];
 
     // localStorageから施工実績データを取得、なければデフォルトデータを使用
+    // デバッグ用: 既存のlocalStorageをクリアして最新データを使用
+    localStorage.clear();
     let worksData = JSON.parse(localStorage.getItem('works') || '[]');
     if (worksData.length === 0) {
         worksData = defaultWorksData;
