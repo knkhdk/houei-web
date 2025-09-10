@@ -95,12 +95,12 @@ document.addEventListener('DOMContentLoaded', function() {
     ];
 
     // localStorageから施工実績データを取得、なければデフォルトデータを使用
-    // デバッグ用: 既存のlocalStorageをクリアして最新データを使用
-    localStorage.clear();
     let worksData = JSON.parse(localStorage.getItem('works') || '[]');
     if (worksData.length === 0) {
         worksData = defaultWorksData;
         localStorage.setItem('works', JSON.stringify(worksData));
+        // トップページに更新を通知
+        window.dispatchEvent(new CustomEvent('worksUpdated'));
     }
 
     const worksGrid = document.getElementById('worksGrid');

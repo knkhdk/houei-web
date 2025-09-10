@@ -80,6 +80,10 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('newsDataが更新されました。お知らせを再読み込みします。');
             loadTopNews();
         }
+        if (e.key === 'works') {
+            console.log('worksが更新されました。施工実績を再読み込みします。');
+            loadTopWorks();
+        }
     });
     
     // カスタムイベントの監視（投稿完了時の自動更新）
@@ -88,10 +92,21 @@ document.addEventListener('DOMContentLoaded', function() {
         loadTopNews();
     });
     
+    window.addEventListener('worksUpdated', function(e) {
+        console.log('worksUpdatedイベントを受信しました。施工実績を再読み込みします。');
+        loadTopWorks();
+    });
+    
     // 手動更新ボタンの追加（別PCでの同期のため）
     setTimeout(() => {
         addManualRefreshButton();
     }, 2000);
+    
+    // 施工実績の読み込み（トップページのみ）
+    if (document.querySelector('#works .works-slider')) {
+        console.log('施工実績読み込み開始');
+        loadTopWorks();
+    }
     
     // 自動更新を無効化（パフォーマンス向上のため）
     let autoRefreshInterval;
@@ -915,4 +930,134 @@ if (!window.loadEventFired) {
 //     console.log('window.resize: スライダー再初期化');
 //     slidersInitialized = false;
 //     setTimeout(initSliders, 100);
-// }); 
+// });
+
+// トップページの施工実績読み込み関数
+async function loadTopWorks() {
+    try {
+        console.log('トップページ施工実績読み込み開始');
+        
+        // デフォルトの施工実績データ（works.jsと同じ）
+        const defaultWorksData = [
+            {
+                id: 1,
+                title: "河川嵩上げ工事",
+                category: "河川工事",
+                location: "川口市柳崎１丁目地内",
+                description: "河川の嵩上げ工事を実施。治水機能の向上と地域の安全確保を図るため、高品質な施工により河川の水位管理能力を向上させました。",
+                image: "old-news/20250818_063500339_iOS.jpg",
+                year: "2025",
+                details: {
+                    "工期": "2025.3.5~2025.8.29",
+                    "延長": "217m",
+                    "嵩上げ高": "最大590mm"
+                }
+            },
+            {
+                id: 2,
+                title: "河川嵩上げ工事",
+                category: "河川工事",
+                location: "一級河川菖蒲川／戸田市内",
+                description: "河川の嵩上げ工事を実施。治水機能の向上と地域の安全確保を図るため、高品質な施工により河川の水位管理能力を向上させました。",
+                image: "jisseki/shoubugawa.jpg",
+                year: "2025",
+                details: {
+                    "工期": "2024.11.19～2025.3.31",
+                    "施工延長": "215.0m",
+                    "パネル設置工": "220.0m",
+                    "コンクリート嵩上工": "215.0m",
+                    "ひび割れ補修工": "1.0式",
+                    "護岸工": "40.0m2",
+                    "フェンス設置撤去工": "73.0m",
+                    "仮囲い工": "107.0m"
+                }
+            },
+            {
+                id: 3,
+                title: "上水道工事",
+                category: "上水道工事",
+                location: "川口市上青木西４丁目",
+                description: "地域の安全な水供給を確保するため、上水道管の敷設工事を実施しました。",
+                image: "jisseki/works09-1.jpg",
+                year: "2023",
+                details: {
+                    "工期": "4ヶ月",
+                    "延長": "800m",
+                    "管径": "φ200mm"
+                }
+            },
+            {
+                id: 4,
+                title: "宅地造成工事",
+                category: "宅地造成工事",
+                location: "さいたま市緑区内",
+                description: "宅地開発に伴う造成工事を実施。安全で快適な居住環境の整備に貢献しました。",
+                image: "works/placeholder.jpg",
+                year: "2023",
+                details: {
+                    "工期": "6ヶ月",
+                    "面積": "5,000㎡",
+                    "盛土量": "10,000㎥"
+                }
+            },
+            {
+                id: 5,
+                title: "河川工事",
+                category: "河川工事",
+                location: "さいたま市大宮区桜木町",
+                description: "河川の治水機能向上のため、護岸工事と河道掘削工事を実施しました。",
+                image: "works/placeholder.jpg",
+                year: "2023",
+                details: {
+                    "工期": "8ヶ月",
+                    "延長": "1,200m",
+                    "掘削量": "15,000㎥"
+                }
+            },
+            {
+                id: 6,
+                title: "墓地造成工事",
+                category: "墓地造成工事",
+                location: "埼玉県さいたま市内",
+                description: "静寂で美しい墓地環境を整備するため、造成工事を実施しました。",
+                image: "works/placeholder.jpg",
+                year: "2023",
+                details: {
+                    "工期": "5ヶ月",
+                    "面積": "3,000㎡",
+                    "区画数": "200区画"
+                }
+            }
+        ];
+
+        // localStorageから施工実績データを取得、なければデフォルトデータを使用
+        let worksData = JSON.parse(localStorage.getItem('works') || '[]');
+        if (worksData.length === 0) {
+            worksData = defaultWorksData;
+            localStorage.setItem('works', JSON.stringify(worksData));
+        }
+
+        // トップページの施工実績スライダーを更新
+        const sliderTrack = document.querySelector('#works .slider-track');
+        if (sliderTrack) {
+            // 最新の6件を表示
+            const topWorks = worksData.slice(0, 6);
+            
+            sliderTrack.innerHTML = topWorks.map(work => `
+                <div class="work-item">
+                    <div class="work-image">
+                        <img src="images/${work.image}" alt="${work.title}" onerror="this.src='images/top/placeholder.jpg'">
+                    </div>
+                    <div class="work-category">${work.category}</div>
+                    <h3>${work.title}</h3>
+                    <p>${work.location}</p>
+                </div>
+            `).join('');
+            
+            console.log('トップページ施工実績更新完了:', topWorks.length, '件');
+        }
+        
+    } catch (error) {
+        console.error('トップページ施工実績読み込みエラー:', error);
+    }
+} 
