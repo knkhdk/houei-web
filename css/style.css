@@ -1944,10 +1944,10 @@ html {
 .info-item i {
     font-size: 1.2rem;
     color: #2c5aa0;
-    margin-top: 5px;
     flex-shrink: 0;
     width: 20px;
     text-align: center;
+    margin-top: 4px;
 }
 
 .info-item div h3 {

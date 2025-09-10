@@ -38,63 +38,87 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             id: 3,
-            title: "上水道工事",
-            category: "上水道工事",
-            location: "川口市上青木西４丁目",
-            description: "地域の安全な水供給を確保するため、上水道管の敷設工事を実施しました。",
-            image: "jisseki/works09-1.jpg",
-            year: "2023",
+            title: "下水道管更生工事",
+            category: "下水道工事",
+            location: "川口市並木４丁目地内",
+            description: "外径700mm管更生工（自立管型反転・形成工法）を112.41mにわたって実施。下水道管の耐震化を目的とした管更生工事により、地域の防災機能向上とインフラの長寿命化を図りました。",
+            image: "../oldpage/old newspage/kankousei.jpg",
+            year: "2025",
             details: {
-                "工期": "4ヶ月",
-                "延長": "800m",
-                "管径": "φ200mm"
+                "工事番号": "224-01-008",
+                "登録番号": "4058315390",
+                "契約日": "2024.12.19",
+                "工期": "2024.12.19～2025.5.16",
+                "竣工日": "2025.5.16",
+                "工事内容": "外径700mm管更生工 自立管型 反転・形成工法 112.41m 1式",
+                "契約金額": "64,046,400円（税込み）",
+                "落札価格": "58,224,000円（税抜き）",
+                "前払金": "24,060,000円（税込み）",
+                "発注機関": "埼玉県川口市上下水道局",
+                "契約方式": "一般競争入札方式（価格）",
+                "受注形態": "単独",
+                "役所担当": "川口市上下水道局下水道維持課"
             }
         },
         {
             id: 4,
-            title: "宅地造成工事",
-            category: "宅地造成工事",
-            location: "さいたま市緑区内",
-            description: "宅地開発に伴う造成工事を実施。安全で快適な居住環境の整備に貢献しました。",
-            image: "works/placeholder.jpg",
-            year: "2023",
+            title: "河川浚渫工事",
+            category: "河川工事",
+            location: "一級河川菖蒲川／戸田市内",
+            description: "緊急浚渫推進工事を実施。概算数量発注方式により施工延長90m、浚渫量2,221.5m³の工事を完了。河川の治水機能向上と地域の安全確保を図りました。",
+            image: "shoubugawa/shoubugawashunsetsu.JPG",
+            year: "2025",
             details: {
-                "工期": "6ヶ月",
-                "面積": "5,000㎡",
-                "盛土量": "10,000㎥"
+                "登録番号": "4057037619",
+                "契約日": "2024.08.23",
+                "工期": "2024.08.23～2025.06.30",
+                "竣工日": "2025.06.30",
+                "工事内容": "緊急浚渫推進工事（菖蒲川浚渫工その10）",
+                "契約金額": "171,804,600円（税込み）",
+                "施工延長": "90m",
+                "浚渫量": "2,221.5m³",
+                "発注機関": "埼玉県さいたま県土整備事務所",
+                "契約方式": "一般競争入札方式（総合評価）",
+                "受注形態": "単独"
             }
         },
         {
             id: 5,
-            title: "河川工事",
-            category: "河川工事",
-            location: "さいたま市大宮区桜木町",
-            description: "河川の治水機能向上のため、護岸工事と河道掘削工事を実施しました。",
-            image: "works/placeholder.jpg",
-            year: "2023",
+            title: "福祉会館解体工事",
+            category: "解体工事",
+            location: "川口市弥平地内",
+            description: "老朽化した福祉会館の安全な解体工事を実施。周辺住民への配慮を最優先に、騒音・振動対策を講じながら計画的に工事を完了。地域の安全確保と環境保全に貢献しました。",
+            image: "sonota/fukushikaikan.jpg",
+            year: "2025",
             details: {
-                "工期": "8ヶ月",
-                "延長": "1,200m",
-                "掘削量": "15,000㎥"
+                "工事内容": "福祉会館解体工事",
+                "施工場所": "川口市弥平地内",
+                "施工年": "2025年",
+                "工事概要": "老朽化した福祉会館の安全な解体工事",
+                "特記事項": "騒音・振動対策を実施し、周辺住民への配慮を最優先に工事を実施"
             }
         },
         {
             id: 6,
-            title: "墓地造成工事",
-            category: "墓地造成工事",
-            location: "埼玉県さいたま市内",
-            description: "静寂で美しい墓地環境を整備するため、造成工事を実施しました。",
-            image: "works/placeholder.jpg",
-            year: "2023",
+            title: "水道管付設工事",
+            category: "上水道工事",
+            location: "川口市芝１丁目地内",
+            description: "消防署が近い住宅街での水道管付設工事を実施。住民の生活に支障をきたさないよう、騒音対策を徹底し、安全で確実な施工を完了。地域の給水インフラの整備に貢献しました。",
+            image: "../oldpage/old newspage/27gou.jpg",
+            year: "2024",
             details: {
-                "工期": "5ヶ月",
-                "面積": "3,000㎡",
-                "区画数": "200区画"
+                "工事内容": "水道管付設工事",
+                "施工場所": "川口市芝１丁目地内",
+                "施工年": "2024年",
+                "工事概要": "消防署近隣の住宅街での水道管付設工事",
+                "特記事項": "騒音対策を実施し、住民への配慮を最優先に工事を実施"
             }
         }
     ];
 
     // localStorageから施工実績データを取得、なければデフォルトデータを使用
+    // デバッグ用: 既存のlocalStorageをクリアして最新データを使用
+    localStorage.removeItem('works');
     let worksData = JSON.parse(localStorage.getItem('works') || '[]');
     if (worksData.length === 0) {
         worksData = defaultWorksData;
@@ -125,20 +149,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         ${work.location}
                     </p>
                     <p class="work-card-description">${work.description}</p>
-                    <div class="work-card-details">
-                        ${Object.entries(work.details || {}).map(([key, value]) => 
-                            `<div class="detail-item">
-                                <span class="detail-label">${key}</span>
-                                <span class="detail-value">${value}</span>
-                            </div>`
-                        ).join('')}
-                    </div>
-                    <div class="work-card-actions">
-                        <button class="btn-detail" onclick="viewWorkDetail(${work.id})">
-                            <i class="fas fa-eye"></i>
-                            詳細を見る
-                        </button>
-                    </div>
                 </div>
             </div>
         `).join('');
