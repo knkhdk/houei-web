@@ -1052,20 +1052,29 @@ async function loadTopWorks() {
             }
         ];
 
-        // localStorageから施工実績データを取得、なければデフォルトデータを使用
-        // デバッグ用: 既存のlocalStorageをクリアして最新データを使用
-        localStorage.removeItem('works');
-        let worksData = JSON.parse(localStorage.getItem('works') || '[]');
-        if (worksData.length === 0) {
-            worksData = defaultWorksData;
-            localStorage.setItem('works', JSON.stringify(worksData));
-        }
+        // 共通データファイルから施工実績データを取得
+        let worksData = [];
+        
+        // データファイルを非同期で読み込み
+        fetch('../data/works.json')
+            .then(response => response.json())
+            .then(data => {
+                worksData = data;
+                // トップページの施工実績スライダーを更新
+                updateWorksSlider(worksData);
+            })
+            .catch(error => {
+                console.error('施工実績データの読み込みに失敗しました:', error);
+                // エラー時はデフォルトデータを使用
+                worksData = defaultWorksData;
+                updateWorksSlider(worksData);
+            });
+        
+        // スライダー更新関数を分離
+        function updateWorksSlider(data) {
 
-        // トップページの施工実績スライダーを更新
-        const sliderTrack = document.querySelector('#works .slider-track');
-        if (sliderTrack) {
             // 最新の6件を表示
-            const topWorks = worksData.slice(0, 6);
+            const topWorks = data.slice(0, 6);
             
             sliderTrack.innerHTML = topWorks.map(work => `
                 <div class="work-item">
@@ -1080,8 +1089,5 @@ async function loadTopWorks() {
             
             console.log('トップページ施工実績更新完了:', topWorks.length, '件');
         }
-        
-    } catch (error) {
-        console.error('トップページ施工実績読み込みエラー:', error);
     }
 } 

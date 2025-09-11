@@ -1,6 +1,8 @@
 // 施工実績一覧ページ用のJavaScript
 
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOMContentLoaded: 施工実績ページの初期化開始');
+    
     // デフォルトの施工実績データ
     const defaultWorksData = [
         {
@@ -113,26 +115,39 @@ document.addEventListener('DOMContentLoaded', function() {
                 "工事概要": "消防署近隣の住宅街での水道管付設工事",
                 "特記事項": "騒音対策を実施し、住民への配慮を最優先に工事を実施"
             }
+        },
+        {
+            id: 7,
+            title: "道路築造工事",
+            category: "道路工事",
+            location: "川口市安行藤八地内",
+            description: "区画整理地内における新築道路の築造工事を実施。地域の交通利便性向上と住民の安全な通行を確保するため、高品質な舗装と適切な排水設備を整備。周辺環境に配慮した施工により、地域のインフラ整備に貢献しました。",
+            image: "../oldpage/old newspage/touchachi.JPG",
+            year: "2025",
+            details: {
+                "工事内容": "道路築造工事",
+                "施工場所": "川口市安行藤八地内",
+                "施工年": "2025年",
+                "工事概要": "区画整理地内における新築道路の築造工事",
+                "特記事項": "高品質な舗装と適切な排水設備を整備し、周辺環境に配慮した施工を実施"
+            }
         }
     ];
-
-    // localStorageから施工実績データを取得、なければデフォルトデータを使用
-    // デバッグ用: 既存のlocalStorageをクリアして最新データを使用
-    localStorage.removeItem('works');
-    let worksData = JSON.parse(localStorage.getItem('works') || '[]');
-    if (worksData.length === 0) {
-        worksData = defaultWorksData;
-        localStorage.setItem('works', JSON.stringify(worksData));
-        // トップページに更新を通知
-        window.dispatchEvent(new CustomEvent('worksUpdated'));
-    }
 
     const worksGrid = document.getElementById('worksGrid');
     const filterButtons = document.querySelectorAll('.filter-btn');
     let currentFilter = 'all';
+    
+    // 一時的にデフォルトデータを直接使用（データ読み込み問題の回避）
+    let worksData = defaultWorksData;
 
     // 施工実績カードを表示
     function displayWorks(works) {
+        console.log('displayWorks実行:', works.length, '件');
+        if (!worksGrid) {
+            console.error('worksGrid要素が見つかりません');
+            return;
+        }
         worksGrid.innerHTML = works.map(work => `
             <div class="work-card" data-category="${work.category}" data-id="${work.id}">
                 <div class="work-card-image">
@@ -178,7 +193,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // フィルターカウントを更新
     function updateFilterCounts() {
-        const categories = ['all', '下水道工事', '上下水道', '上水道工事', '宅地造成工事', '河川工事', '墓地造成工事'];
+        const categories = ['all', '下水道工事', '上下水道', '上水道工事', '宅地造成工事', '河川工事', '墓地造成工事', '解体工事', '道路工事'];
         
         categories.forEach(category => {
             const countElement = document.getElementById(`count-${category}`);
@@ -214,9 +229,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // 初期表示
+    // 初期表示を実行
+    console.log('初期表示を実行中...', worksData.length, '件の施工実績');
     displayWorks(worksData);
     updateFilterCounts();
+    console.log('初期表示完了');
 
     // ハンバーガーメニューの制御
     const hamburger = document.querySelector('.hamburger');
