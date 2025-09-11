@@ -163,6 +163,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 "工事概要": "県道上における下水道管敷設工事",
                 "特記事項": "交通量の多い県道での施工のため、交通規制と安全対策を徹底し、効率的な工事進行を実施"
             }
+        },
+        {
+            id: 10,
+            title: "水道管布設工事",
+            category: "上水道工事",
+            location: "川口市東本郷地内",
+            description: "見沼用水沿いの交通量の多い道路上での水道管布設工事を実施。工場や倉庫、住宅が混在する地域での施工のため、交通規制と安全対策を徹底し、効率的な工事進行を図りました。地域の給水インフラの整備と交通の円滑化に貢献しました。",
+            image: "works/2024.10.18.jpg",
+            year: "2024",
+            details: {
+                "工事内容": "水道管布設工事",
+                "施工場所": "川口市東本郷地内",
+                "施工年": "2024年",
+                "工事概要": "見沼用水沿いの交通量の多い道路上での水道管布設工事",
+                "特記事項": "工場や倉庫、住宅が混在する地域での施工のため、交通規制と安全対策を徹底し、効率的な工事進行を実施"
+            }
         }
     ];
 
@@ -247,7 +263,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // フィルターカウントを更新
     function updateFilterCounts() {
-        const categories = ['all', '下水道工事', '上下水道', '上水道工事', '宅地造成工事', '河川工事', '墓地造成工事', '解体工事', '道路工事', '公園工事'];
+        const categories = ['all', '下水道工事', '上水道工事', '宅地造成工事', '河川工事', '解体工事', '道路工事', '公園工事'];
         
         categories.forEach(category => {
             const countElement = document.getElementById(`count-${category}`);
