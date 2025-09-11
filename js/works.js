@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
             category: "下水道工事",
             location: "川口市並木４丁目地内",
             description: "外径700mm管更生工（自立管型反転・形成工法）を112.41mにわたって実施。下水道管の耐震化を目的とした管更生工事により、地域の防災機能向上とインフラの長寿命化を図りました。",
-            image: "../oldpage/old newspage/kankousei.jpg",
+            image: "works/kankousei.jpg",
             year: "2025",
             details: {
                 "工事番号": "224-01-008",
@@ -122,14 +122,46 @@ document.addEventListener('DOMContentLoaded', function() {
             category: "道路工事",
             location: "川口市安行藤八地内",
             description: "区画整理地内における新築道路の築造工事を実施。地域の交通利便性向上と住民の安全な通行を確保するため、高品質な舗装と適切な排水設備を整備。周辺環境に配慮した施工により、地域のインフラ整備に貢献しました。",
-            image: "../oldpage/old newspage/touchachi.JPG",
-            year: "2025",
+            image: "works/touchachi.JPG",
+            year: "2024",
             details: {
                 "工事内容": "道路築造工事",
                 "施工場所": "川口市安行藤八地内",
-                "施工年": "2025年",
+                "施工年": "2024年",
                 "工事概要": "区画整理地内における新築道路の築造工事",
                 "特記事項": "高品質な舗装と適切な排水設備を整備し、周辺環境に配慮した施工を実施"
+            }
+        },
+        {
+            id: 8,
+            title: "小学校グラウンド工事",
+            category: "公園工事",
+            location: "川口市木曽呂地内",
+            description: "小学校のグラウンド整備工事を実施。児童の安全で快適な運動環境を確保するため、適切な排水設備と土壌改良を行い、砂場を整備。教育環境の向上と地域コミュニティの活性化に貢献しました。",
+            image: "works/kizoroshou.JPG",
+            year: "2024",
+            details: {
+                "工事内容": "小学校グラウンド工事",
+                "施工場所": "川口市木曽呂地内",
+                "施工年": "2024年",
+                "工事概要": "小学校のグラウンド整備工事",
+                "特記事項": "適切な排水設備と土壌改良を行い、砂場を整備し、児童の安全で快適な運動環境を確保"
+            }
+        },
+        {
+            id: 9,
+            title: "下水道管敷設工事",
+            category: "下水道工事",
+            location: "川口市安行原地内",
+            description: "県道上における下水道管敷設工事を実施。交通量の多い県道での施工のため、交通規制と安全対策を徹底し、効率的な工事進行を図りました。地域の下水道インフラ整備と環境改善に貢献しました。",
+            image: "works/gesui2-3_0213.JPG",
+            year: "2024",
+            details: {
+                "工事内容": "下水道管敷設工事",
+                "施工場所": "川口市安行原地内",
+                "施工年": "2024年",
+                "工事概要": "県道上における下水道管敷設工事",
+                "特記事項": "交通量の多い県道での施工のため、交通規制と安全対策を徹底し、効率的な工事進行を実施"
             }
         }
     ];
@@ -138,8 +170,30 @@ document.addEventListener('DOMContentLoaded', function() {
     const filterButtons = document.querySelectorAll('.filter-btn');
     let currentFilter = 'all';
     
-    // 一時的にデフォルトデータを直接使用（データ読み込み問題の回避）
-    let worksData = defaultWorksData;
+    // 共通データファイルから施工実績データを取得
+    let worksData = [];
+    
+    // データファイルを非同期で読み込み
+    fetch('../data/works.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            worksData = data;
+            // 初期表示とフィルターカウント更新
+            displayWorks(worksData);
+            updateFilterCounts();
+        })
+        .catch(error => {
+            console.error('施工実績データの読み込みに失敗しました:', error);
+            // エラー時はデフォルトデータを使用
+            worksData = defaultWorksData;
+            displayWorks(worksData);
+            updateFilterCounts();
+        });
 
     // 施工実績カードを表示
     function displayWorks(works) {
@@ -193,7 +247,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // フィルターカウントを更新
     function updateFilterCounts() {
-        const categories = ['all', '下水道工事', '上下水道', '上水道工事', '宅地造成工事', '河川工事', '墓地造成工事', '解体工事', '道路工事'];
+        const categories = ['all', '下水道工事', '上下水道', '上水道工事', '宅地造成工事', '河川工事', '墓地造成工事', '解体工事', '道路工事', '公園工事'];
         
         categories.forEach(category => {
             const countElement = document.getElementById(`count-${category}`);
@@ -229,11 +283,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // 初期表示を実行
-    console.log('初期表示を実行中...', worksData.length, '件の施工実績');
-    displayWorks(worksData);
-    updateFilterCounts();
-    console.log('初期表示完了');
+    // 初期表示は非同期読み込み完了後に実行される
 
     // ハンバーガーメニューの制御
     const hamburger = document.querySelector('.hamburger');
