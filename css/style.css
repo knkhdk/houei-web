@@ -377,6 +377,7 @@ body {
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
     display: -webkit-box;
     -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -785,111 +786,129 @@ body {
     transition: transform 0.5s ease;
 }
 
-.work-item {
-    min-width: 350px;
-    background: #ffffff;
-    border-radius: 18px;
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
-    overflow: hidden;
+/* スライダー用の施工実績カード - ポラロイドフィルム風 */
+.works-slider .work-item {
+    min-width: 350px !important;
+    background: #ffffff !important;
+    border-radius: 8px !important; /* ポラロイド風の控えめな角丸 */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+    overflow: hidden !important;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 2px solid rgba(44, 90, 160, 0.15);
-    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important; /* ポラロイド風の薄いボーダー */
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    height: 450px !important; /* ポラロイド風の縦長 */
+    padding: 8px !important; /* ポラロイド風の白いフレーム */
 }
 
-.work-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.95) 100%);
-    z-index: 1;
-    pointer-events: none;
-}
-
-.work-item > * {
-    position: relative;
-    z-index: 2;
-}
-
-.work-item:hover {
+.works-slider .work-item:hover {
     transform: translateY(-8px);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
     border-color: rgba(44, 90, 160, 0.3);
 }
 
-.work-image {
-    width: 100%;
-    height: 200px;
-    overflow: hidden;
-    position: relative;
+/* 画像エリア - ポラロイド風 */
+.works-slider .work-image {
+    width: 100% !important;
+    height: 320px !important; /* ポラロイド風の画像比率 */
+    overflow: hidden !important;
+    position: relative !important;
+    flex-shrink: 0 !important;
+    border-radius: 4px !important; /* 画像の角丸を控えめに */
+    background: #f8f9fa !important; /* ポラロイド風の背景色 */
 }
 
-.work-image::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(26, 54, 93, 0.15) 0%, rgba(44, 90, 160, 0.1) 100%);
-    opacity: 0.3;
-    transition: opacity 0.3s ease;
-}
-
-.work-item:hover .work-image::after {
-    opacity: 0.6;
-}
-
-.work-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.works-slider .work-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
     transition: transform 0.3s ease;
+    display: block !important;
 }
 
-.work-item:hover .work-image img {
+.works-slider .work-item:hover .work-image img {
     transform: scale(1.05);
 }
 
-.work-category {
-    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+/* オーバーレイ（カテゴリと年） */
+.works-slider .work-overlay {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.works-slider .work-category {
+    background: rgba(255, 255, 255, 0.95);
     color: #1a365d;
-    padding: 4px 10px;
+    padding: 6px 12px;
     border-radius: 15px;
     font-size: 0.85rem;
     font-weight: 600;
-    display: inline-block;
-    margin: 15px 20px 12px;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(44, 90, 160, 0.2);
     letter-spacing: 0.3px;
-    max-width: calc(100% - 40px);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    word-break: keep-all;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.work-item h3 {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: #0f172a;
-    margin: 0 20px 12px;
-    line-height: 1.3;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-    letter-spacing: 0.3px;
-}
-
-.work-item p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: #1e293b;
-    margin: 0 20px 20px;
+.works-slider .work-year {
+    background: rgba(0, 0, 0, 0.8);
+    color: #ffffff;
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 0.85rem;
     font-weight: 600;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
+
+/* コンテンツエリア - ポラロイド風テキストエリア */
+.works-slider .work-content {
+    padding: 12px 16px 20px 16px; /* ポラロイド風のパディング */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 中央寄りに変更 */
+    text-align: center; /* 中央寄りに変更 */
+    background: #ffffff;
+    min-height: 100px; /* ポラロイド風のテキストエリア高さ */
+    border-top: 1px solid rgba(0, 0, 0, 0.05); /* ポラロイド風の区切り線 */
+}
+
+.works-slider .work-content h3 {
+    font-size: 1.2rem; /* ポラロイド風の控えめなサイズ */
+    font-weight: 600; /* ポラロイド風の控えめな太さ */
+    color: #1a202c; /* ポラロイド風の色 */
+    margin: 0 0 6px 0;
+    line-height: 1.4;
+    text-shadow: none; /* ポラロイド風は影なし */
+    letter-spacing: 0.2px;
+}
+
+.works-slider .work-location {
+    font-size: 0.85rem; /* ポラロイド風の小さめサイズ */
+    line-height: 1.4;
+    color: #4a5568; /* ポラロイド風の色 */
+    margin: 0 0 8px 0;
+    font-weight: 400; /* ポラロイド風の軽い太さ */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* 中央寄りに変更 */
+    gap: 4px;
+}
+
+.works-slider .work-location i {
+    color: #2c5aa0;
+    font-size: 0.9rem;
+}
+
+
 
 .slider-controls {
     display: flex;
@@ -1372,6 +1391,11 @@ html {
     
     .work-item {
         min-width: 300px;
+        height: 380px; /* タブレット用の高さ調整 */
+    }
+    
+    .work-image {
+        height: 310px; /* タブレット用の画像高さ調整 */
     }
     
     .work-category {
@@ -1429,6 +1453,25 @@ html {
     
     .work-item {
         min-width: 280px;
+        height: 360px; /* モバイル用の高さ調整 */
+    }
+    
+    .work-image {
+        height: 290px; /* モバイル用の画像高さ調整 */
+    }
+    
+    .work-content {
+        padding: 12px;
+        min-height: 70px;
+    }
+    
+    .work-content h3 {
+        font-size: 1.2rem;
+        margin: 0 0 6px 0;
+    }
+    
+    .work-location {
+        font-size: 0.9rem;
     }
     
     .work-category {
@@ -1463,6 +1506,7 @@ html {
         line-height: 1.3;
         display: -webkit-box;
         -webkit-line-clamp: 3;
+        line-clamp: 3;
         -webkit-box-orient: vertical;
         overflow: hidden;
         text-overflow: ellipsis;

@@ -104,8 +104,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 施工実績の読み込み（トップページのみ）
     if (document.querySelector('#works .works-slider')) {
-        console.log('施工実績読み込み開始');
+        console.log('施工実績読み込み開始 - loadTopWorks関数を呼び出します');
         loadTopWorks();
+    } else {
+        console.log('施工実績スライダーが見つかりません');
     }
     
     // 自動更新を無効化（パフォーマンス向上のため）
@@ -627,6 +629,78 @@ window.addEventListener('load', initAboutPageAnimations);
 // スライダー初期化フラグ
 let slidersInitialized = false;
 
+// グローバルなmoveSlide関数（HTMLのonclickから呼び出される）
+window.moveSlide = function(direction) {
+    console.log('moveSlide called with direction:', direction);
+    
+    // 現在アクティブなスライダーを検出
+    const servicesSlider = document.querySelector('.services-slider .slider-track');
+    const worksSlider = document.querySelector('.works-slider .slider-track');
+    const activeSlider = servicesSlider || worksSlider;
+    
+    if (!activeSlider) {
+        console.log('アクティブなスライダーが見つかりません');
+        return;
+    }
+    
+    // スライダータイプを判定
+    const sliderType = activeSlider.closest('.services-slider') ? 'services' : 'works';
+    
+    // 現在のスライド位置を取得
+    const slides = activeSlider.querySelectorAll('.slide, .work-item');
+    const totalSlides = slides.length;
+    
+    if (totalSlides === 0) {
+        console.log('スライドが見つかりません');
+        return;
+    }
+    
+    // 現在の位置を計算（transformから）
+    const currentTransform = activeSlider.style.transform;
+    const currentSlide = currentTransform ? 
+        Math.abs(parseInt(currentTransform.match(/translateX\(([^%]+)%\)/)?.[1] || 0)) / 100 : 0;
+    
+    // 新しい位置を計算
+    let newSlide = currentSlide + direction;
+    
+    // 境界チェック
+    if (newSlide < 0) newSlide = 0;
+    if (newSlide >= totalSlides) newSlide = totalSlides - 1;
+    
+    // スライドを移動
+    const slideWidth = 100; // パーセンテージ
+    const translateX = -newSlide * slideWidth;
+    activeSlider.style.transform = `translateX(${translateX}%)`;
+    
+    console.log(`${sliderType}スライダー移動: ${currentSlide} → ${newSlide}, translateX(${translateX}%)`);
+    
+    // ボタンの有効/無効状態を更新
+    const sliderControls = activeSlider.closest('.services-slider, .works-slider').querySelector('.slider-controls');
+    if (sliderControls) {
+        const prevBtn = sliderControls.querySelector('.prev-btn');
+        const nextBtn = sliderControls.querySelector('.next-btn');
+        
+        if (prevBtn) {
+            prevBtn.disabled = newSlide === 0;
+            prevBtn.style.opacity = newSlide === 0 ? '0.5' : '1';
+        }
+        if (nextBtn) {
+            nextBtn.disabled = newSlide >= totalSlides - 1;
+            nextBtn.style.opacity = newSlide >= totalSlides - 1 ? '0.5' : '1';
+        }
+        
+        console.log(`${sliderType}スライダー: ボタン状態 - prevBtn: ${prevBtn?.disabled ? '無効' : '有効'}, nextBtn: ${nextBtn?.disabled ? '無効' : '有効'}`);
+    }
+    
+    // ドットインジケーターを更新（worksスライダーの場合）
+    if (sliderType === 'works') {
+        const dots = document.querySelectorAll('.slider-dots .dot');
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === newSlide);
+        });
+    }
+};
+
 // スライダー機能の実装
 function initSliders() {
     // 既に初期化済みの場合はスキップ
@@ -717,6 +791,8 @@ function initSimpleSlider(sliderTrack, type) {
             nextBtn.disabled = currentSlide >= maxSlides - 1;
             nextBtn.style.opacity = currentSlide >= maxSlides - 1 ? '0.5' : '1';
         }
+        
+        console.log(`${type}スライダー: ボタン状態 - prevBtn: ${prevBtn?.disabled ? '無効' : '有効'}, nextBtn: ${nextBtn?.disabled ? '無効' : '有効'}`);
     }
     
     function nextSlide() {
@@ -978,7 +1054,7 @@ async function loadTopWorks() {
                 category: "下水道工事",
                 location: "川口市並木４丁目地内",
                 description: "外径700mm管更生工（自立管型反転・形成工法）を112.41mにわたって実施。下水道管の耐震化を目的とした管更生工事により、地域の防災機能向上とインフラの長寿命化を図りました。",
-                image: "oldpage/old newspage/kankousei.jpg",
+                image: "works/kankousei.jpg",
                 year: "2025",
                 details: {
                     "工事番号": "224-01-008",
@@ -1040,7 +1116,7 @@ async function loadTopWorks() {
                 category: "上水道工事",
                 location: "川口市芝１丁目地内",
                 description: "消防署が近い住宅街での水道管付設工事を実施。住民の生活に支障をきたさないよう、騒音対策を徹底し、安全で確実な施工を完了。地域の給水インフラの整備に貢献しました。",
-                image: "oldpage/old newspage/27gou.jpg",
+                image: "old-news/27gou.jpg",
                 year: "2024",
                 details: {
                     "工事内容": "水道管付設工事",
@@ -1049,6 +1125,70 @@ async function loadTopWorks() {
                     "工事概要": "消防署近隣の住宅街での水道管付設工事",
                     "特記事項": "騒音対策を実施し、住民への配慮を最優先に工事を実施"
                 }
+            },
+            {
+                id: 7,
+                title: "道路築造工事",
+                category: "道路工事",
+                location: "川口市安行藤八地内",
+                description: "区画整理地内における新築道路の築造工事を実施。地域の交通利便性向上と住民の安全な通行を確保するため、高品質な舗装と適切な排水設備を整備。周辺環境に配慮した施工により、地域のインフラ整備に貢献しました。",
+                image: "works/touchachi.JPG",
+                year: "2024",
+                details: {
+                    "工事内容": "道路築造工事",
+                    "施工場所": "川口市安行藤八地内",
+                    "施工年": "2024年",
+                    "工事概要": "区画整理地内における新築道路の築造工事",
+                    "特記事項": "高品質な舗装と適切な排水設備を整備し、周辺環境に配慮した施工を実施"
+                }
+            },
+            {
+                id: 8,
+                title: "小学校グラウンド工事",
+                category: "公園工事",
+                location: "川口市木曽呂地内",
+                description: "小学校のグラウンド整備工事を実施。児童の安全で快適な運動環境を確保するため、適切な排水設備と土壌改良を行い、砂場を整備。教育環境の向上と地域コミュニティの活性化に貢献しました。",
+                image: "works/kizoroshou.JPG",
+                year: "2024",
+                details: {
+                    "工事内容": "小学校グラウンド工事",
+                    "施工場所": "川口市木曽呂地内",
+                    "施工年": "2024年",
+                    "工事概要": "小学校のグラウンド整備工事",
+                    "特記事項": "適切な排水設備と土壌改良を行い、砂場を整備し、児童の安全で快適な運動環境を確保"
+                }
+            },
+            {
+                id: 9,
+                title: "下水道管敷設工事",
+                category: "下水道工事",
+                location: "川口市安行原地内",
+                description: "県道上における下水道管敷設工事を実施。交通量の多い県道での施工のため、交通規制と安全対策を徹底し、効率的な工事進行を図りました。地域の下水道インフラ整備と環境改善に貢献しました。",
+                image: "works/gesui2-3_0213.JPG",
+                year: "2024",
+                details: {
+                    "工事内容": "下水道管敷設工事",
+                    "施工場所": "川口市安行原地内",
+                    "施工年": "2024年",
+                    "工事概要": "県道上における下水道管敷設工事",
+                    "特記事項": "交通量の多い県道での施工のため、交通規制と安全対策を徹底し、効率的な工事進行を実施"
+                }
+            },
+            {
+                id: 10,
+                title: "水道管布設工事",
+                category: "上水道工事",
+                location: "川口市東本郷地内",
+                description: "見沼用水沿いの交通量の多い道路上での水道管布設工事を実施。工場や倉庫、住宅が混在する地域での施工のため、交通規制と安全対策を徹底し、効率的な工事進行を図りました。地域の給水インフラの整備と交通の円滑化に貢献しました。",
+                image: "works/2024.10.18.jpg",
+                year: "2024",
+                details: {
+                    "工事内容": "水道管布設工事",
+                    "施工場所": "川口市東本郷地内",
+                    "施工年": "2024年",
+                    "工事概要": "見沼用水沿いの交通量の多い道路上での水道管布設工事",
+                    "特記事項": "工場や倉庫、住宅が混在する地域での施工のため、交通規制と安全対策を徹底し、効率的な工事進行を実施"
+                }
             }
         ];
 
@@ -1056,10 +1196,16 @@ async function loadTopWorks() {
         let worksData = [];
         
         // データファイルを非同期で読み込み
-        fetch('../data/works.json')
-            .then(response => response.json())
+        fetch('data/works.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
             .then(data => {
                 worksData = data;
+                console.log('works.jsonから読み込み成功:', worksData.length, '件');
                 // トップページの施工実績スライダーを更新
                 updateWorksSlider(worksData);
             })
@@ -1072,22 +1218,53 @@ async function loadTopWorks() {
         
         // スライダー更新関数を分離
         function updateWorksSlider(data) {
-
-            // 最新の6件を表示
+            console.log('updateWorksSlider呼び出し:', data.length, '件のデータ');
+            
+            // スライダートラック要素を取得
+            const sliderTrack = document.querySelector('.works-slider .slider-track');
+            if (!sliderTrack) {
+                console.error('スライダートラック要素が見つかりません');
+                return;
+            }
+            
+            // 最新の6件を表示（スライダー用）
             const topWorks = data.slice(0, 6);
+            console.log('表示する施工実績:', topWorks.map(w => w.title));
             
             sliderTrack.innerHTML = topWorks.map(work => `
                 <div class="work-item">
                     <div class="work-image">
-                        <img src="images/${work.image}" alt="${work.title}" onerror="this.src='images/top/placeholder.jpg'">
+                        <img src="images/${work.image}" alt="${work.title}" 
+                             loading="lazy" 
+                             onerror="this.src='images/top/placeholder.jpg'"
+                             decoding="async">
+                        <div class="work-overlay">
+                            <div class="work-category">${work.category}</div>
+                            <div class="work-year">${work.year}年施工</div>
+                        </div>
                     </div>
-                    <div class="work-category">${work.category}</div>
-                    <h3>${work.title}</h3>
-                    <p>${work.location}</p>
+                    <div class="work-content">
+                        <h3>${work.title}</h3>
+                        <p class="work-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            ${work.location}
+                        </p>
+                    </div>
                 </div>
             `).join('');
             
             console.log('トップページ施工実績更新完了:', topWorks.length, '件');
+            
+            // スライダーを再初期化（データ更新後）
+            setTimeout(() => {
+                console.log('スライダー再初期化を実行');
+                slidersInitialized = false; // フラグをリセット
+                initSliders(); // スライダーを再初期化
+            }, 100);
         }
+    } catch (error) {
+        console.error('トップページ施工実績の読み込みに失敗しました:', error);
+        // エラー時はデフォルトデータを使用
+        updateWorksSlider(defaultWorksData);
     }
 } 
