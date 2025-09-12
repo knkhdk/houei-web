@@ -3690,6 +3690,32 @@ html {
     background: rgba(255, 255, 255, 0.3);
 }
 
+/* 年度フィルターボタンの基本状態 */
+.year-filter-btn {
+    background: #f8f9fa !important;
+    border: 2px solid #e9ecef !important;
+    color: #6c757d !important;
+    transition: all 0.3s ease !important;
+}
+
+/* 年度フィルターボタンのアクティブ状態 */
+.year-filter-btn.active {
+    background: linear-gradient(135deg, #2c5aa0, #1e4a8a) !important;
+    border-color: #2c5aa0 !important;
+    color: #fff !important;
+    box-shadow: 0 4px 12px rgba(44, 90, 160, 0.3) !important;
+}
+
+.year-filter-btn.active .filter-count {
+    background: rgba(255, 255, 255, 0.3) !important;
+    color: #fff !important;
+}
+
+.year-filter-btn:not(.active) .filter-count {
+    background: rgba(108, 117, 125, 0.2) !important;
+    color: #6c757d !important;
+}
+
 /* Works Stats */
 .works-stats {
     margin-bottom: 40px;

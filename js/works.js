@@ -179,12 +179,55 @@ document.addEventListener('DOMContentLoaded', function() {
                 "工事概要": "見沼用水沿いの交通量の多い道路上での水道管布設工事",
                 "特記事項": "工場や倉庫、住宅が混在する地域での施工のため、交通規制と安全対策を徹底し、効率的な工事進行を実施"
             }
+        },
+        {
+            id: 11,
+            title: "下水道管布設工事",
+            category: "下水道工事",
+            location: "川口市大字道合地内",
+            description: "外環自動車道沿いの狭い道路での下水道管布設工事を実施。推進工法による施工により、交通への影響を最小限に抑えながら、効率的で安全な工事を完了。地域の下水道インフラ整備と環境改善に貢献しました。",
+            image: "works/DSC_0502.JPG",
+            year: "2024",
+            details: {
+                "工事内容": "下水道管布設工事",
+                "施工場所": "川口市大字道合地内",
+                "施工年": "2024年",
+                "工事概要": "外環自動車道沿いの狭い道路での下水道管布設工事",
+                "特記事項": "推進工法による施工により、交通への影響を最小限に抑えながら効率的で安全な工事を実施"
+            }
+        },
+        {
+            id: 12,
+            title: "舗装工事",
+            category: "舗装工事",
+            location: "一般県道川口草加線/川口市東領家地内",
+            description: "一般県道川口草加線における舗装工事を実施。交通量の多い県道での夜間工事のため、騒音・振動対策を十分に講じながら、効率的で安全な工事を完了。地域の交通インフラの整備と住民の安全な通行環境の確保に貢献しました。",
+            image: "works/4kouku241031.jpg",
+            year: "2024",
+            details: {
+                "工事内容": "舗装工事",
+                "施工場所": "一般県道川口草加線/川口市東領家地内",
+                "施工年": "2024年",
+                "工事概要": "一般県道川口草加線における舗装工事",
+                "特記事項": "交通量の多い県道での夜間工事のため、騒音・振動対策を十分に講じながら効率的で安全な工事を実施"
+            }
         }
     ];
 
     const worksGrid = document.getElementById('worksGrid');
     const filterButtons = document.querySelectorAll('.filter-btn');
+    const yearFilterButtons = document.querySelectorAll('.year-filter-btn');
     let currentFilter = 'all';
+    let currentYearFilter = 'all';
+    
+    console.log('初期化時のcurrentFilter:', currentFilter);
+    console.log('初期化時のcurrentYearFilter:', currentYearFilter);
+    
+    // 確実に初期値を設定
+    currentFilter = 'all';
+    currentYearFilter = 'all';
+    
+    console.log('年度フィルターボタンの数:', yearFilterButtons.length);
     
     // 共通データファイルから施工実績データを取得
     let worksData = [];
@@ -199,16 +242,24 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(data => {
             worksData = data;
+            console.log('JSONデータ読み込み完了:', worksData.length, '件');
             // 初期表示とフィルターカウント更新
             displayWorks(worksData);
             updateFilterCounts();
+            updateYearFilterCounts();
+            // 初期状態のボタン状態を設定
+            initializeButtonStates();
         })
         .catch(error => {
             console.error('施工実績データの読み込みに失敗しました:', error);
             // エラー時はデフォルトデータを使用
             worksData = defaultWorksData;
+            console.log('デフォルトデータを使用:', worksData.length, '件');
             displayWorks(worksData);
             updateFilterCounts();
+            updateYearFilterCounts();
+            // 初期状態のボタン状態を設定
+            initializeButtonStates();
         });
 
     // 施工実績カードを表示
@@ -263,7 +314,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // フィルターカウントを更新
     function updateFilterCounts() {
-        const categories = ['all', '下水道工事', '上水道工事', '宅地造成工事', '河川工事', '解体工事', '道路工事', '公園工事'];
+        const categories = ['all', '下水道工事', '上水道工事', '宅地造成工事', '河川工事', '解体工事', '道路工事', '公園工事', '舗装工事'];
         
         categories.forEach(category => {
             const countElement = document.getElementById(`count-${category}`);
@@ -276,26 +327,174 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // フィルター機能
-    function filterWorks(category) {
-        currentFilter = category;
-        const filteredWorks = category === 'all' 
-            ? worksData 
-            : worksData.filter(work => work.category === category);
+    // 年度フィルターカウントを更新
+    function updateYearFilterCounts() {
+        const years = ['all', '2025', '2024'];
         
-        displayWorks(filteredWorks);
-        
-        // フィルターボタンのアクティブ状態を更新
-        filterButtons.forEach(btn => {
-            btn.classList.toggle('active', btn.dataset.category === category);
+        years.forEach(year => {
+            const countElement = document.getElementById(`count-year-${year}`);
+            if (countElement) {
+                const count = year === 'all' 
+                    ? worksData.length 
+                    : worksData.filter(work => work.year === year).length;
+                countElement.textContent = count;
+            }
         });
     }
 
-    // フィルターボタンのイベントリスナー
-    filterButtons.forEach(button => {
+    // ボタンの初期状態を設定
+    function initializeButtonStates() {
+        console.log('ボタンの初期状態を設定開始');
+        
+        // カテゴリフィルターボタンの初期状態を設定
+        const categoryButtons = document.querySelectorAll('.filter-btn:not(.year-filter-btn)');
+        console.log('カテゴリフィルターボタンの数:', categoryButtons.length);
+        categoryButtons.forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.dataset.category === currentFilter) {
+                btn.classList.add('active');
+                console.log('カテゴリボタンアクティブ:', btn.dataset.category);
+            }
+        });
+        
+        // 年度フィルターボタンの初期状態を設定（全てリセットしてから設定）
+        const yearButtons = document.querySelectorAll('.year-filter-btn');
+        yearButtons.forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        yearButtons.forEach(btn => {
+            if (btn.dataset.year === currentYearFilter) {
+                btn.classList.add('active');
+                console.log('年度ボタンアクティブ:', btn.dataset.year);
+            } else {
+                console.log('年度ボタン非アクティブ:', btn.dataset.year);
+            }
+        });
+        
+        console.log('ボタンの初期状態設定完了');
+    }
+
+    // 年度でフィルタリング
+    function filterByYear(year) {
+        currentYearFilter = year;
+        
+        console.log('年度フィルタリング開始:', year);
+        console.log('現在のworksData:', worksData.length, '件');
+        console.log('現在のcurrentFilter:', currentFilter);
+        console.log('現在のcurrentYearFilter:', currentYearFilter);
+        
+        // カテゴリフィルターと年度フィルターの両方を適用
+        let filteredWorks = worksData;
+        
+        // currentFilterがundefinedの場合は'all'として扱う
+        if (!currentFilter) {
+            currentFilter = 'all';
+        }
+        
+        if (currentFilter !== 'all') {
+            filteredWorks = filteredWorks.filter(work => work.category === currentFilter);
+            console.log('カテゴリフィルター適用後:', filteredWorks.length, '件');
+        } else {
+            console.log('カテゴリフィルター適用なし（すべて）');
+        }
+        
+        if (currentYearFilter !== 'all') {
+            filteredWorks = filteredWorks.filter(work => work.year === currentYearFilter);
+            console.log('年度フィルター適用後:', filteredWorks.length, '件');
+        }
+        
+        console.log('最終的なフィルター結果:', filteredWorks.length, '件');
+        displayWorks(filteredWorks);
+        
+        // 年度フィルターボタンを再取得してアクティブ状態を更新
+        const yearFilterButtonsCurrent = document.querySelectorAll('.year-filter-btn');
+        console.log('年度フィルターボタン更新:', yearFilterButtonsCurrent.length, '個');
+        
+        // 全ての年度ボタンをリセット
+        yearFilterButtonsCurrent.forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        // 選択されたボタンのみをアクティブに設定
+        yearFilterButtonsCurrent.forEach(btn => {
+            console.log('ボタン:', btn.dataset.year, '選択年度:', year);
+            if (btn.dataset.year === year) {
+                btn.classList.add('active');
+                console.log('アクティブに設定:', btn.dataset.year);
+            } else {
+                console.log('非アクティブに設定:', btn.dataset.year);
+            }
+        });
+        
+        // カテゴリフィルターボタンの状態を確認・維持
+        const categoryButtons = document.querySelectorAll('.filter-btn:not(.year-filter-btn)');
+        console.log('カテゴリボタン状態更新:', categoryButtons.length, '個');
+        categoryButtons.forEach(btn => {
+            if (btn.dataset.category === currentFilter) {
+                btn.classList.add('active');
+                console.log('カテゴリボタンアクティブ:', btn.dataset.category);
+            } else {
+                btn.classList.remove('active');
+                console.log('カテゴリボタン非アクティブ:', btn.dataset.category);
+            }
+        });
+    }
+
+    // フィルター機能
+    function filterWorks(category) {
+        currentFilter = category;
+        
+        // カテゴリフィルターと年度フィルターの両方を適用
+        let filteredWorks = worksData;
+        
+        // currentYearFilterがundefinedの場合は'all'として扱う
+        if (!currentYearFilter) {
+            currentYearFilter = 'all';
+        }
+        
+        if (currentFilter && currentFilter !== 'all') {
+            filteredWorks = filteredWorks.filter(work => work.category === currentFilter);
+        }
+        
+        if (currentYearFilter !== 'all') {
+            filteredWorks = filteredWorks.filter(work => work.year === currentYearFilter);
+        }
+        
+        displayWorks(filteredWorks);
+        
+        // カテゴリフィルターボタンのアクティブ状態を更新
+        const categoryButtons = document.querySelectorAll('.filter-btn:not(.year-filter-btn)');
+        categoryButtons.forEach(btn => {
+            if (btn.dataset.category === category) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+        
+        // 年度フィルターボタンは現在の状態を維持（更新しない）
+    }
+
+    // カテゴリフィルターボタンのイベントリスナー（年度フィルターボタンを除外）
+    const categoryFilterButtons = document.querySelectorAll('.filter-btn:not(.year-filter-btn)');
+    categoryFilterButtons.forEach(button => {
         button.addEventListener('click', function() {
             const category = this.dataset.category;
+            console.log('カテゴリフィルターボタンがクリックされました:', category);
             filterWorks(category);
+        });
+    });
+
+    // 年度フィルターボタンのイベントリスナー（再取得）
+    const yearFilterButtonsUpdated = document.querySelectorAll('.year-filter-btn');
+    console.log('更新後の年度フィルターボタンの数:', yearFilterButtonsUpdated.length);
+    
+    yearFilterButtonsUpdated.forEach(button => {
+        button.addEventListener('click', function() {
+            const year = this.dataset.year;
+            console.log('年度フィルターボタンがクリックされました:', year);
+            filterByYear(year);
         });
     });
 

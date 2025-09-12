@@ -59,10 +59,6 @@
                             <span class="stat-number">50+</span>
                             <span class="stat-label">年の実績</span>
                         </div>
-                        <div class="stat-item">
-                            <span class="stat-number">6</span>
-                            <span class="stat-label">工事カテゴリ</span>
-                        </div>
                     </div>
                     <div class="page-actions">
                         <a href="../index.html" class="back-btn">← トップページに戻る</a>
@@ -90,12 +86,12 @@
                     <button class="filter-btn active" data-category="all">
                         <i class="fas fa-th-large"></i>
                         <span>すべて</span>
-                        <span class="filter-count" id="count-all">11</span>
+                        <span class="filter-count" id="count-all">13</span>
                     </button>
                     <button class="filter-btn" data-category="下水道工事">
                         <i class="fas fa-tint"></i>
                         <span>下水道工事</span>
-                        <span class="filter-count" id="count-下水道工事">2</span>
+                        <span class="filter-count" id="count-下水道工事">3</span>
                     </button>
                     <button class="filter-btn" data-category="上水道工事">
                         <i class="fas fa-faucet"></i>
@@ -127,39 +123,41 @@
                         <span>公園工事</span>
                         <span class="filter-count" id="count-公園工事">1</span>
                     </button>
+                    <button class="filter-btn" data-category="舗装工事">
+                        <i class="fas fa-layer-group"></i>
+                        <span>舗装工事</span>
+                        <span class="filter-count" id="count-舗装工事">1</span>
+                    </button>
                 </div>
             </div>
 
-            <!-- 統計情報 -->
-            <div class="works-stats">
-                <div class="stats-container">
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <div class="stat-content">
-                            <span class="stat-number" id="total-works">10</span>
-                            <span class="stat-label">総施工実績数</span>
-                        </div>
+            <!-- 年度フィルター -->
+            <div class="works-filter year-filter">
+                <div class="filter-header">
+                    <div class="filter-icon">
+                        <i class="fas fa-calendar"></i>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-calendar-alt"></i>
-                        </div>
-                        <div class="stat-content">
-                            <span class="stat-number" id="current-year">2023</span>
-                            <span class="stat-label">最新施工年</span>
-                        </div>
+                    <div class="filter-title">
+                        <h3>年度で絞り込み</h3>
+                        <p>施工年度を選択して、関連する施工実績を表示できます</p>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="stat-content">
-                            <span class="stat-number" id="locations">3</span>
-                            <span class="stat-label">施工地域数</span>
-                        </div>
-                    </div>
+                </div>
+                <div class="filter-buttons">
+                    <button class="filter-btn year-filter-btn active" data-year="all">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>すべて</span>
+                        <span class="filter-count" id="count-year-all">13</span>
+                    </button>
+                    <button class="filter-btn year-filter-btn" data-year="2025">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>2025年</span>
+                        <span class="filter-count" id="count-year-2025">4</span>
+                    </button>
+                    <button class="filter-btn year-filter-btn" data-year="2024">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>2024年</span>
+                        <span class="filter-count" id="count-year-2024">9</span>
+                    </button>
                 </div>
             </div>
 
