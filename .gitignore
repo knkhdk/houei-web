@@ -63,4 +63,4 @@ images/**/*.heic
 images/**/*.mov
 images/**/*.mp4
 images/**/*.avi
-images/**/*.wmv 
+images/**/*.wmv backup_*/
