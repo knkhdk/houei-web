@@ -64,3 +64,5 @@ images/**/*.mov
 images/**/*.mp4
 images/**/*.avi
 images/**/*.wmv backup_*/
+
+sync_config.jsonc
