@@ -1,0 +1,32 @@
+{
+  "email": {
+    "enabled": true,
+    "smtp": {
+      "host": "smtp.gmail.com",
+      "port": 587,
+      "secure": false,
+      "auth": {
+        "user": "houeiconstruction@gmail.com",
+        "pass": "HvoBDG7sDVUuY8uf"
+      }
+    },
+    "from": "邦栄建設株式会社 <noreply@houeikensetsu.co.jp>",
+    "to": "info@houeikensetsu.co.jp",
+    "subject": "【お問い合わせ】{subject} - {name}様"
+  },
+  "database": {
+    "enabled": true,
+    "file": "data/contacts.json"
+  },
+  "validation": {
+    "maxMessageLength": 2000,
+    "maxSubjectLength": 100,
+    "maxNameLength": 50,
+    "maxCompanyLength": 100
+  },
+  "rateLimit": {
+    "enabled": true,
+    "maxRequests": 3,
+    "windowMs": 60000
+  }
+}

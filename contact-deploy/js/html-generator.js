@@ -1,0 +1,401 @@
+// HTMLファイル生成用のユーティリティ
+
+class HtmlGenerator {
+    constructor() {
+        this.template = this.getNewsTemplate();
+    }
+
+    // お知らせ一覧のHTMLテンプレート
+    getNewsTemplate() {
+        return `<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お知らせ一覧 - 邦栄建設株式会社</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/top/logo.png" alt="邦栄建設株式会社" class="logo-img">
+                </a>
+            </div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="../index.html#about">企業情報</a></li>
+                    <li><a href="../index.html#news">お知らせ</a></li>
+                    <li><a href="../index.html#services">事業内容</a></li>
+                    <li><a href="../index.html#works">施工実績</a></li>
+                    <li><a href="../index.html#technology">工法・技術</a></li>
+                    <li><a href="../index.html#recruit">採用情報</a></li>
+                </ul>
+            </nav>
+            <div class="contact-info">
+                <a href="../index.html#contact" class="contact-btn">お問合せ</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ページヘッダー -->
+    <section class="page-header">
+        <div class="container">
+            <h1>お知らせ一覧</h1>
+            <p>邦栄建設株式会社からの最新情報をお届けします</p>
+        </div>
+    </section>
+
+    <!-- お知らせ一覧 -->
+    <section class="news-list-page">
+        <div class="container">
+            <div class="news-header">
+                <div class="news-filter">
+                    <h3>カテゴリで絞り込み</h3>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-category="all">すべて</button>
+                        <button class="filter-btn" data-category="採用情報">採用情報</button>
+                        <button class="filter-btn" data-category="工事実績">工事実績</button>
+                        <button class="filter-btn" data-category="技術情報">技術情報</button>
+                        <button class="filter-btn" data-category="会社情報">会社情報</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="news-timeline">
+                {{NEWS_ITEMS}}
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>邦栄建設株式会社</h3>
+                    <p>〒333-0807 埼玉県川口市安行吉岡1570-6</p>
+                    <p>TEL: 048-288-8800</p>
+                </div>
+                <div class="footer-links">
+                    <h4>サイトマップ</h4>
+                    <ul>
+                        <li><a href="../index.html#about">企業情報</a></li>
+                        <li><a href="../index.html#news">お知らせ</a></li>
+                        <li><a href="../index.html#services">事業内容</a></li>
+                        <li><a href="../index.html#works">施工実績</a></li>
+                        <li><a href="../index.html#technology">工法・技術</a></li>
+                        <li><a href="../index.html#recruit">採用情報</a></li>
+                        <li><a href="../index.html#contact">お問合せ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 邦栄建設株式会社 All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/news.js"></script>
+</body>
+</html>`;
+    }
+
+    // お知らせアイテムのHTMLを生成
+    generateNewsItem(news) {
+        const dateObj = new Date(news.date);
+        const day = dateObj.getDate();
+        const month = dateObj.getMonth() + 1;
+        const year = dateObj.getFullYear();
+
+        let detailsHTML = '';
+        if (news.details) {
+            Object.values(news.details).forEach(detail => {
+                if (detail.label && detail.value) {
+                    detailsHTML += `<p><strong>${detail.label}:</strong> ${detail.value}</p>`;
+                }
+            });
+        }
+
+        let imageHTML = '';
+        if (news.image) {
+            imageHTML = `
+                <div class="timeline-image">
+                    <img src="${news.image}" alt="${news.title}" onerror="this.style.display='none'">
+                </div>
+            `;
+        }
+
+        return `
+            <div class="timeline-item" data-category="${news.category}">
+                <div class="timeline-date">
+                    <span class="timeline-day">${day}</span>
+                    <span class="timeline-month">${year}.${month.toString().padStart(2, '0')}</span>
+                </div>
+                <div class="timeline-content">
+                    <span class="timeline-category">${news.category}</span>
+                    <h3>${news.title}</h3>
+                    <p>${news.summary}</p>
+                    <p>${news.content}</p>
+                    ${imageHTML}
+                    ${detailsHTML ? `<div class="timeline-details">${detailsHTML}</div>` : ''}
+                    <div class="timeline-link">
+                        <a href="detail.html?id=${news.id}" class="btn btn-primary">詳細を見る</a>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    // お知らせ一覧のHTMLを生成
+    generateNewsListHtml(newsData) {
+        // 日付順でソート（新しい順）
+        const sortedNewsData = newsData
+            .filter(news => news.status === 'published')
+            .sort((a, b) => {
+                const dateA = new Date(a.date);
+                const dateB = new Date(b.date);
+                return dateB - dateA;
+            });
+
+        // お知らせアイテムのHTMLを生成
+        const newsItemsHtml = sortedNewsData
+            .map(news => this.generateNewsItem(news))
+            .join('');
+
+        // テンプレートに挿入
+        return this.template.replace('{{NEWS_ITEMS}}', newsItemsHtml);
+    }
+
+    // HTMLファイルをダウンロード
+    downloadHtml(htmlContent, filename = 'news-index.html') {
+        const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = filename;
+        link.style.display = 'none';
+        
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        URL.revokeObjectURL(url);
+        
+        // ダウンロード後の説明を表示
+        this.showDownloadInstructions();
+    }
+    
+    // ダウンロード後の説明を表示
+    showDownloadInstructions() {
+        const instructions = `
+            <div style="
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #2c5aa0 0%, #1e4a8a 100%);
+                color: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+                max-width: 400px;
+                z-index: 1000;
+                font-family: 'Noto Sans JP', sans-serif;
+            ">
+                <h4 style="margin: 0 0 10px 0; font-size: 16px;">📁 HTMLファイルがダウンロードされました</h4>
+                <p style="margin: 0 0 15px 0; font-size: 14px; line-height: 1.5;">
+                    ダウンロードされたファイルを <strong>cursor_houeiweb/news/index.html</strong> に上書きしてください。
+                </p>
+                <div style="display: flex; gap: 10px;">
+                    <button onclick="this.parentElement.parentElement.remove()" style="
+                        background: rgba(255,255,255,0.2);
+                        border: none;
+                        color: white;
+                        padding: 8px 16px;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        font-size: 12px;
+                    ">閉じる</button>
+                    <button onclick="window.open('news/index.html', '_blank')" style="
+                        background: rgba(255,255,255,0.2);
+                        border: none;
+                        color: white;
+                        padding: 8px 16px;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        font-size: 12px;
+                    ">お知らせ一覧を確認</button>
+                </div>
+            </div>
+        `;
+        
+        // 既存の説明があれば削除
+        const existingInstructions = document.querySelector('.download-instructions');
+        if (existingInstructions) {
+            existingInstructions.remove();
+        }
+        
+        // 新しい説明を追加
+        const instructionsDiv = document.createElement('div');
+        instructionsDiv.className = 'download-instructions';
+        instructionsDiv.innerHTML = instructions;
+        document.body.appendChild(instructionsDiv);
+        
+        // 5秒後に自動で消える
+        setTimeout(() => {
+            if (instructionsDiv.parentElement) {
+                instructionsDiv.remove();
+            }
+        }, 10000);
+    }
+
+    // お知らせ詳細ページのHTMLを生成
+    generateDetailHtml(news) {
+        const dateObj = new Date(news.date);
+        const formattedDate = dateObj.toLocaleDateString('ja-JP', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+
+        let detailsHTML = '';
+        if (news.details) {
+            Object.values(news.details).forEach(detail => {
+                if (detail.label && detail.value) {
+                    detailsHTML += `<p><strong>${detail.label}:</strong> ${detail.value}</p>`;
+                }
+            });
+        }
+
+        let imageHTML = '';
+        if (news.image) {
+            imageHTML = `
+                <div class="news-detail-image">
+                    <img src="${news.image}" alt="${news.title}" style="max-width: 100%; height: auto; border-radius: 8px;">
+                </div>
+            `;
+        }
+
+        return `<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${news.title} - 邦栄建設株式会社</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/top/logo.png" alt="邦栄建設株式会社" class="logo-img">
+                </a>
+            </div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="../index.html#about">企業情報</a></li>
+                    <li><a href="../index.html#news">お知らせ</a></li>
+                    <li><a href="../index.html#services">事業内容</a></li>
+                    <li><a href="../index.html#works">施工実績</a></li>
+                    <li><a href="../index.html#technology">工法・技術</a></li>
+                    <li><a href="../index.html#recruit">採用情報</a></li>
+                </ul>
+            </nav>
+            <div class="contact-info">
+                <a href="../index.html#contact" class="contact-btn">お問合せ</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ページヘッダー -->
+    <section class="page-header">
+        <div class="container">
+            <h1>お知らせ詳細</h1>
+            <p><a href="index.html">← お知らせ一覧に戻る</a></p>
+        </div>
+    </section>
+
+    <!-- お知らせ詳細 -->
+    <section class="news-detail-page">
+        <div class="container">
+            <article class="news-detail">
+                <header class="news-detail-header">
+                    <div class="news-detail-meta">
+                        <span class="news-detail-category">${news.category}</span>
+                        <time class="news-detail-date">${formattedDate}</time>
+                    </div>
+                    <h1 class="news-detail-title">${news.title}</h1>
+                </header>
+                
+                <div class="news-detail-content">
+                    <p class="news-detail-summary">${news.summary}</p>
+                    ${imageHTML}
+                    <div class="news-detail-body">
+                        <p>${news.content}</p>
+                    </div>
+                    ${detailsHTML ? `<div class="news-detail-info">${detailsHTML}</div>` : ''}
+                </div>
+                
+                <footer class="news-detail-footer">
+                    <a href="index.html" class="btn btn-secondary">お知らせ一覧に戻る</a>
+                </footer>
+            </article>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>邦栄建設株式会社</h3>
+                    <p>〒333-0807 埼玉県川口市安行吉岡1570-6</p>
+                    <p>TEL: 048-288-8800</p>
+                </div>
+                <div class="footer-links">
+                    <h4>サイトマップ</h4>
+                    <ul>
+                        <li><a href="../index.html#about">企業情報</a></li>
+                        <li><a href="../index.html#news">お知らせ</a></li>
+                        <li><a href="../index.html#services">事業内容</a></li>
+                        <li><a href="../index.html#works">施工実績</a></li>
+                        <li><a href="../index.html#technology">工法・技術</a></li>
+                        <li><a href="../index.html#recruit">採用情報</a></li>
+                        <li><a href="../index.html#contact">お問合せ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 邦栄建設株式会社 All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>`;
+    }
+}
+
+// グローバルに公開
+window.HtmlGenerator = HtmlGenerator; 

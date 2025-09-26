@@ -1,0 +1,54 @@
+{
+  "security": {
+    "enabled": true,
+    "developmentMode": {
+      "allowLocalhost": true,
+      "skipAuthentication": true
+    },
+    "productionMode": {
+      "requireAuthentication": true,
+      "validTokens": [
+        "houei2024admin",
+        "houei2024post"
+      ],
+      "sessionTimeout": 86400000,
+      "maxLoginAttempts": 5,
+      "lockoutDuration": 300000
+    },
+    "accessControl": {
+      "restrictedPaths": [
+        "/news/post.html",
+        "/news/post-HOMEDESK-I7-9TH.html"
+      ],
+      "allowedPaths": [
+        "/",
+        "/index.html",
+        "/news/index.html",
+        "/news/detail.html",
+        "/about.html",
+        "/services/",
+        "/works/",
+        "/technology/",
+        "/recruit/",
+        "/contact/"
+      ]
+    },
+    "logging": {
+      "logAccessAttempts": true,
+      "logFailedAttempts": true,
+      "logSuccessfulLogins": true
+    }
+  },
+  "tokens": {
+    "houei2024admin": {
+      "description": "管理者用トークン - 全機能アクセス可能",
+      "permissions": ["read", "write", "delete", "admin"],
+      "expires": null
+    },
+    "houei2024post": {
+      "description": "投稿者用トークン - 投稿・編集のみ可能",
+      "permissions": ["read", "write"],
+      "expires": null
+    }
+  }
+}

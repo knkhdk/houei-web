@@ -1,0 +1,1259 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>企業情報 - 邦栄建設株式会社</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Aboutページ専用ヘッダースタイル */
+        body.about-page .about-header,
+        .about-header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%) !important;
+            color: white !important;
+            padding: 80px 0 60px !important;
+            position: relative;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .about-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .about-header .header-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-header .header-icon {
+            flex-shrink: 0;
+        }
+
+        .about-header .static-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #1e40af;
+            box-shadow: 0 6px 20px rgba(30, 64, 175, 0.25);
+            animation: none !important;
+            transform: none !important;
+            transition: none !important;
+        }
+
+        .about-header .static-icon svg,
+        body.about-page .about-header .static-icon svg,
+        .about-header .about-icon svg {
+            width: 40px;
+            height: 40px;
+            color: #1e40af !important;
+            stroke: #1e40af !important;
+            fill: none !important;
+            display: block;
+            margin: 0 auto;
+            animation: none !important;
+            transform: none !important;
+            transition: none !important;
+        }
+        
+        .about-header .static-icon svg path,
+        .about-header .static-icon svg polyline {
+            stroke: #1e40af !important;
+            stroke-width: 3 !important;
+        }
+        
+        /* about.html専用：すべてのアイコンアニメーションを無効化 */
+        .about-page .card-icon,
+        .about-page .detail-icon,
+        .about-page .business-icon,
+        .about-page .section-icon {
+            animation: none !important;
+            transform: none !important;
+            transition: none !important;
+        }
+        
+        .about-page .card-icon:hover,
+        .about-page .detail-icon:hover,
+        .about-page .business-icon:hover,
+        .about-page .section-icon:hover {
+            animation: none !important;
+            transform: none !important;
+            transition: none !important;
+        }
+        
+        /* business-iconの色とスタイルを改善 */
+        .about-page .business-icon {
+            background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%) !important;
+            border-radius: 50% !important;
+            width: 60px !important;
+            height: 60px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            margin: 0 auto 20px auto !important;
+            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3) !important;
+        }
+        
+        .about-page .business-icon i {
+            color: white !important;
+            font-size: 1.5rem !important;
+        }
+        
+        /* card-icon（多様な働き方）の色と形状を改善 */
+        .about-page .card-icon {
+            background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%) !important;
+            border-radius: 50% !important;
+            width: 60px !important;
+            height: 60px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            margin: 0 auto 20px auto !important;
+            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3) !important;
+        }
+        
+        .about-page .card-icon i {
+            color: white !important;
+            font-size: 1.5rem !important;
+        }
+        
+        .about-page .detail-icon {
+            background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%) !important;
+            border-radius: 50% !important;
+            width: 60px !important;
+            height: 60px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            margin: 0 auto 20px auto !important;
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3) !important;
+        }
+        
+        .about-page .detail-icon i {
+            color: white !important;
+            font-size: 1.5rem !important;
+        }
+        
+        /* 案内図セクションのアイコンを改善 */
+        .about-page .access-section h3 i {
+            background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%) !important;
+            border-radius: 50% !important;
+            width: 40px !important;
+            height: 40px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            margin-right: 12px !important;
+            color: white !important;
+            font-size: 1.2rem !important;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3) !important;
+        }
+        
+        .about-page .access-icon {
+            background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%) !important;
+            border-radius: 50% !important;
+            width: 50px !important;
+            height: 50px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3) !important;
+        }
+        
+        .about-page .access-icon i {
+            color: white !important;
+            font-size: 1.3rem !important;
+        }
+        
+        /* その他のアイコンも改善 */
+        .about-page .contact-info i,
+        .about-page .info-item i {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%) !important;
+            border-radius: 50% !important;
+            width: 35px !important;
+            height: 35px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            margin-right: 12px !important;
+            color: white !important;
+            font-size: 1rem !important;
+            box-shadow: 0 3px 10px rgba(5, 150, 105, 0.3) !important;
+        }
+
+        .about-header .header-text h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0 0 16px 0;
+            line-height: 1.2;
+            color: white !important;
+        }
+
+        .about-header .header-subtitle {
+            font-size: 1.2rem;
+            margin: 0 0 24px 0;
+            opacity: 0.9;
+            line-height: 1.6;
+            color: white !important;
+        }
+
+        .about-header .header-tags {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        .about-header .tag {
+            background: rgba(255, 255, 255, 0.2) !important;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white !important;
+        }
+
+        .about-header .header-stats {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .about-header .stat-item {
+            text-align: center;
+        }
+
+        .about-header .stat-number {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white !important;
+            margin-bottom: 4px;
+        }
+
+        .about-header .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            color: white !important;
+        }
+
+        /* レスポンシブ対応 */
+        @media (max-width: 768px) {
+            .about-header .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+            
+            .about-header .header-text h1 {
+                font-size: 2rem;
+            }
+            
+            .about-header .header-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .about-header .tech-icon {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .about-header .tech-icon svg {
+                width: 30px;
+                height: 30px;
+            }
+            
+            .about-header .header-stats {
+                justify-content: center;
+                gap: 20px;
+            }
+        }
+
+        /* 宿舎内画像スライダーのスタイル */
+        .facility-gallery {
+            margin-top: 40px;
+        }
+        .facility-gallery h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: #333;
+            text-align: center;
+        }
+        .gallery-slider {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .gallery-container {
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .gallery-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .gallery-slide {
+            min-width: 100%;
+            flex-shrink: 0;
+        }
+        .gallery-slide img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+        }
+        .gallery-controls {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            pointer-events: none;
+        }
+        .gallery-btn {
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            pointer-events: auto;
+        }
+        .gallery-btn:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        .gallery-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .gallery-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ccc;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .gallery-dot.active {
+            background: #2c5aa0;
+        }
+        .gallery-dot:hover {
+            background: #2c5aa0;
+        }
+        
+        /* 施設詳細ボタン */
+        .facility-detail-btn {
+            background: linear-gradient(135deg, #2c5aa0, #1e4a8a);
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        
+        /* ボタンコンテナを中央揃え */
+        .facility-content {
+            text-align: center;
+        }
+        
+        /* 多様な働き方の推進セクションのカードを2列レイアウト */
+        .diversity-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .diversity-content .content-card {
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 30px;
+        }
+        
+        /* カード内のアイコンとコンテンツを中央配置に統一 */
+        .diversity-content .content-card .card-icon {
+            text-align: center !important;
+            margin: 0 auto 8px auto !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            width: 100% !important;
+        }
+        
+        .diversity-content .content-card .card-icon i {
+            margin: 0 auto !important;
+            display: block !important;
+        }
+        
+        /* より具体的なセレクターで確実に中央配置 */
+        .about-page .diversity-content .content-card .card-icon {
+            text-align: center !important;
+            margin: 0 auto 8px auto !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            width: 100% !important;
+        }
+        
+        /* 横長の楕円を完全に円形に変更 */
+        body.about-page .diversity-content .content-card .card-icon,
+        .about-page .diversity-content .content-card .card-icon,
+        .about-page .content-card .card-icon {
+            border-radius: 50% !important;
+            width: 60px !important;
+            height: 60px !important;
+            background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%) !important;
+            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3) !important;
+            margin: 0 auto 20px auto !important;
+        }
+        
+        body.about-page .diversity-content .content-card .card-icon i,
+        .about-page .diversity-content .content-card .card-icon i,
+        .about-page .content-card .card-icon i {
+            color: white !important;
+            font-size: 1.5rem !important;
+            margin: 0 !important;
+        }
+        
+        /* さらにより強力なセレクタで横長の楕円を強制的に円形に */
+        body.about-page .diversity-content .content-card .card-icon {
+            border-radius: 50% !important;
+            width: 60px !important;
+            height: 60px !important;
+            min-width: 60px !important;
+            min-height: 60px !important;
+            max-width: 60px !important;
+            max-height: 60px !important;
+            background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%) !important;
+            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3) !important;
+            margin: 0 auto 20px auto !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+        
+        /* レスポンシブデザインでも円形を維持 */
+        @media (max-width: 768px) {
+            body.about-page .diversity-content .content-card .card-icon {
+                border-radius: 50% !important;
+                width: 60px !important;
+                height: 60px !important;
+            }
+        }
+        
+        .diversity-content .content-card .card-content {
+            text-align: center;
+        }
+        
+        .diversity-content .content-card .card-content h3 {
+            text-align: center;
+        }
+        
+        .diversity-content .content-card .card-content p {
+            text-align: center;
+        }
+        
+        
+        .facility-detail-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(44, 90, 160, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .gallery-slide img {
+                height: 400px;
+            }
+            .gallery-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            
+            /* タブレットでは1列表示 */
+            .diversity-content {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .gallery-slide img {
+                height: 300px;
+            }
+            .gallery-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+            .gallery-dots {
+                gap: 8px;
+            }
+            .gallery-dot {
+                width: 10px;
+                height: 10px;
+            }
+            .facility-detail-btn {
+                font-size: 0.9rem;
+                padding: 10px 25px;
+            }
+            
+            .diversity-content .content-card {
+                max-width: 100%;
+                padding: 20px;
+            }
+            
+            /* スマートフォンでは1列表示 */
+            .diversity-content {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+    </style>
+    <script>
+        // about.html専用：すべてのアイコンアニメーションを強制的に無効化
+        document.addEventListener('DOMContentLoaded', function() {
+            // すべてのアニメーション対象アイコンを取得
+            const animatedIcons = document.querySelectorAll('.card-icon, .detail-icon, .business-icon, .section-icon, .static-icon');
+            
+            animatedIcons.forEach(icon => {
+                // すべてのイベントリスナーを削除
+                icon.onmouseenter = null;
+                icon.onmouseleave = null;
+                icon.onmouseover = null;
+                icon.onmouseout = null;
+                
+                // スタイルを強制的に設定
+                icon.style.animation = 'none';
+                icon.style.transform = 'none';
+                icon.style.transition = 'none';
+                
+                // 子要素のSVGやアイコンも無効化
+                const svg = icon.querySelector('svg');
+                if (svg) {
+                    svg.style.animation = 'none';
+                    svg.style.transform = 'none';
+                    svg.style.transition = 'none';
+                }
+                
+                const i = icon.querySelector('i');
+                if (i) {
+                    i.style.animation = 'none';
+                    i.style.transform = 'none';
+                    i.style.transition = 'none';
+                }
+            });
+        });
+        
+        // ページ読み込み後に再度確認
+        window.addEventListener('load', function() {
+            const animatedIcons = document.querySelectorAll('.card-icon, .detail-icon, .business-icon, .section-icon, .static-icon');
+            
+            animatedIcons.forEach(icon => {
+                icon.style.animation = 'none';
+                icon.style.transform = 'none';
+                icon.style.transition = 'none';
+                
+                const svg = icon.querySelector('svg');
+                if (svg) {
+                    svg.style.animation = 'none';
+                    svg.style.transform = 'none';
+                    svg.style.transition = 'none';
+                }
+                
+                const i = icon.querySelector('i');
+                if (i) {
+                    i.style.animation = 'none';
+                    i.style.transform = 'none';
+                    i.style.transition = 'none';
+                }
+            });
+        });
+    </script>
+</head>
+<body class="about-page">
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/top/logo.png" alt="邦栄建設株式会社" class="logo-img">
+                </a>
+            </div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="about.html">企業情報</a></li>
+                    <li><a href="index.html#news">お知らせ</a></li>
+                    <li><a href="index.html#services">事業内容</a></li>
+                    <li><a href="works/index.html">施工実績</a></li>
+                    <li><a href="index.html#technology">工法・技術</a></li>
+                    <li><a href="index.html#recruit">採用情報</a></li>
+                    <li><a href="contact/index.html">お問い合わせ</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header about-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="header-icon">
+                    <div class="static-icon about-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke="#2563eb" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <polyline points="9,22 9,12 15,12 15,22" stroke="#2563eb" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="header-text">
+                    <h1>企業情報</h1>
+                    <p class="header-subtitle">邦栄建設株式会社の企業理念、事業内容、技術力についてご紹介いたします。地域共生100年企業を目指し、持続可能な社会の実現に貢献しています。</p>
+                    <div class="header-tags">
+                        <span class="tag">地域共生</span>
+                        <span class="tag">100年企業</span>
+                        <span class="tag">持続可能</span>
+                        <span class="tag">ISO認証取得</span>
+                    </div>
+                    <div class="header-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">年の歴史</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">100+</span>
+                            <span class="stat-label">施工実績</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">10</span>
+                            <span class="stat-label">許可業種</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">3</span>
+                            <span class="stat-label">ISO認証</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-detail">
+        <div class="container">
+            <div class="detail-section work-style-section">
+                <div class="section-header">
+                    <h2>多様な働き方の推進</h2>
+                </div>
+                <div class="diversity-content">
+                    <div class="content-card">
+                        <div class="card-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>建設DX（i-Construction）</h3>
+                            <p>最新のデジタル技術を積極的に導入し、生産性向上と働き方改革を推進しています。</p>
+                        </div>
+                    </div>
+                    <div class="content-card">
+                        <div class="card-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>建設ディレクター</h3>
+                            <p>専門的な知識と経験を持つディレクターが、プロジェクトの品質向上をサポートします。</p>
+                        </div>
+                    </div>
+                    <div class="content-card">
+                        <div class="card-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>社内グループウェア</h3>
+                            <p>効率的なコミュニケーションと情報共有を実現するシステムを活用しています。</p>
+                        </div>
+                    </div>
+                    <div class="content-card">
+                        <div class="card-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>埼玉県認定企業</h3>
+                            <p>『多様な働き方実践企業のプラチナ認定企業』<br>『アライチャレンジ企業』に登録</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-section video-section">
+                <div class="section-header">
+                    <h2>会社紹介動画</h2>
+                </div>
+                <div class="video-container">
+                    <div class="youtube-container">
+                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/BXlKWamxEtc" title="邦栄建設 会社紹介" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-description">
+                        <div class="description-icon">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <p>邦栄建設の企業理念、事業内容、技術力について動画でご紹介いたします。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-section company-info-section">
+                <div class="section-header">
+                    <h2>会社概要</h2>
+                </div>
+                <div class="company-details-grid">
+                    <div class="detail-card">
+                        <div class="detail-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="detail-content">
+                            <span class="detail-label">商号</span>
+                            <span class="detail-value">邦栄建設株式会社</span>
+                        </div>
+                    </div>
+                    <div class="detail-card">
+                        <div class="detail-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="detail-content">
+                            <span class="detail-label">代表者</span>
+                            <span class="detail-value">代表取締役 宮腰 昇</span>
+                        </div>
+                    </div>
+                    <div class="detail-card">
+                        <div class="detail-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="detail-content">
+                            <span class="detail-label">所在地</span>
+                            <span class="detail-value">埼玉県川口市安行吉岡1570-6</span>
+                        </div>
+                    </div>
+                    <div class="detail-card">
+                        <div class="detail-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="detail-content">
+                            <span class="detail-label">電話・FAX</span>
+                            <span class="detail-value">TEL: 048-288-8800<br>FAX: 048-288-8880</span>
+                        </div>
+                    </div>
+                    <div class="detail-card">
+                        <div class="detail-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <div class="detail-content">
+                            <span class="detail-label">資本金</span>
+                            <span class="detail-value">3,000万円</span>
+                        </div>
+                    </div>
+                    <div class="detail-card">
+                        <div class="detail-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="detail-content">
+                            <span class="detail-label">許可番号</span>
+                            <span class="detail-value">埼玉県知事許可（般・特）第59189号</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="license-section">
+                    <h3><i class="fas fa-tools"></i> 許可業種</h3>
+                    <div class="license-grid">
+                        <span class="license-item">土木工事業</span>
+                        <span class="license-item">ほ装工事業</span>
+                        <span class="license-item">しゅんせつ工事業</span>
+                        <span class="license-item">管工事業</span>
+                        <span class="license-item">造園工事業</span>
+                        <span class="license-item">水道工事業</span>
+                        <span class="license-item">建築工事業</span>
+                        <span class="license-item">とび・土工工事業</span>
+                        <span class="license-item">解体工事業</span>
+                        <span class="license-item">産業廃棄物収集運搬業</span>
+                    </div>
+                </div>
+                <div class="business-info-grid">
+                    <div class="business-card">
+                        <div class="business-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3>主な得意先</h3>
+                        <ul class="business-list">
+                            <li>埼玉県</li>
+                            <li>川口市</li>
+                            <li>さいたま市</li>
+                            <li>その他県内外の民間企業</li>
+                        </ul>
+                    </div>
+                    <div class="business-card">
+                        <div class="business-icon">
+                            <i class="fas fa-hard-hat"></i>
+                        </div>
+                        <h3>主な工種</h3>
+                        <ul class="business-list">
+                            <li>上下水道工事</li>
+                            <li>河川工事</li>
+                            <li>舗装工事</li>
+                            <li>情報管路施設工事</li>
+                            <li>しゅんせつ工事</li>
+                            <li>宅地造成工事</li>
+                            <li>その他土木工事全般</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bank-section">
+                    <h3><i class="fas fa-university"></i> 取引銀行</h3>
+                    <div class="bank-list">
+                        <span class="bank-item">武蔵野銀行</span>
+                        <span class="bank-item">巣鴨信用金庫</span>
+                    </div>
+                </div>
+                <div class="access-section">
+                    <h3><i class="fas fa-map"></i> 案内図</h3>
+                    <div class="access-card">
+                        <div class="access-header">
+                            <h4>邦栄建設株式会社 本社</h4>
+                            <div class="access-icon">
+                                <i class="fas fa-building"></i>
+                            </div>
+                        </div>
+                        <div class="access-details">
+                            <div class="access-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>住所：埼玉県川口市安行吉岡1570-6</span>
+                            </div>
+                            <div class="access-item">
+                                <i class="fas fa-phone"></i>
+                                <span>電話：048-288-8800</span>
+                            </div>
+                            <div class="access-item">
+                                <i class="fas fa-fax"></i>
+                                <span>FAX：048-288-8880</span>
+                            </div>
+                            <div class="access-item">
+                                <i class="fas fa-clock"></i>
+                                <span>受付：平日 9:00 – 17:00</span>
+                            </div>
+                        </div>
+                        <div class="map-container">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3975.8661623875823!2d139.75390377648594!3d35.8342131725382!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018940c12482e3b%3A0x8e050669072af5a!2z6YKm5qCE5bu66Kit5qCq5byP5Lya56S-!5e0!3m2!1sja!2sjp!4v1751376522611!5m2!1sja!2sjp" width="100%" height="300" style="border:0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-section history-section">
+                <div class="section-header">
+                    <h2>沿革</h2>
+                </div>
+                <div class="timeline-container">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">
+                                <span class="year">昭和46年</span>
+                                <span class="month">4月</span>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>創業</h4>
+                                <p>埼玉県川口市西川口にて、宮腰邦夫が土木請負業を開始する</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">
+                                <span class="year">昭和52年</span>
+                                <span class="month">6月</span>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>株式会社設立</h4>
+                                <p>株式会社宮腰土建を設立、代表取締役に宮腰邦夫が就任する</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">
+                                <span class="year">昭和53年</span>
+                                <span class="month">6月</span>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>浦和営業所開設</h4>
+                                <p>埼玉県浦和市（現さいたま市南区）に浦和営業所を開設する</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">
+                                <span class="year">昭和54年</span>
+                                <span class="month">8月</span>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>宿舎完成</h4>
+                                <p>埼玉県浦和市（現さいたま市緑区）に宿舎完成</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">
+                                <span class="year">昭和57年</span>
+                                <span class="month">1月</span>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>資本金増資</h4>
+                                <p>資本金を1,000万円に増資する</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">
+                                <span class="year">平成元年</span>
+                                <span class="month">7月</span>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>資本金増資</h4>
+                                <p>資本金を1,500万円に増資する</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">
+                                <span class="year">平成3年</span>
+                                <span class="month">9月</span>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>商号変更</h4>
+                                <p>邦栄建設株式会社に商号変更する</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">
+                                <span class="year">平成4年</span>
+                                <span class="month">9月</span>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>岩槻宿舎完成</h4>
+                                <p>埼玉県岩槻市（現さいたま市岩槻区）に宿舎完成</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">
+                                <span class="year">平成6年</span>
+                                <span class="month">8月</span>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>岩槻営業所設立</h4>
+                                <p>埼玉県岩槻市（現さいたま市岩槻区）に岩槻営業所を設立する</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">
+                                <span class="year">平成7年</span>
+                                <span class="month">4月</span>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>さいたま営業所開設</h4>
+                                <p>埼玉県浦和市（現さいたま市緑区）に、さいたま営業所を開設する</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">
+                                <span class="year">平成10年</span>
+                                <span class="month">8月</span>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>資本金増資</h4>
+                                <p>資本金を3,000万円に増資する</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">
+                                <span class="year">平成15年</span>
+                                <span class="month">9月</span>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>川口統括事業本部開設</h4>
+                                <p>さいたま営業所の公共収用に伴い、埼玉県川口市安行吉岡に川口統括事業本部を開設、さいたま営業所を埼玉県さいたま市緑区松木に移転する</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">
+                                <span class="year">平成18年</span>
+                                <span class="month">3月</span>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>ISO9001認証取得</h4>
+                                <p>国際規格 ＩＳＯ９００１ を認証取得する</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">
+                                <span class="year">平成19年</span>
+                                <span class="month">4月</span>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>本社移転</h4>
+                                <p>本社を埼玉県川口市安行吉岡1570-6に移転する</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">
+                                <span class="year">平成29年</span>
+                                <span class="month">4月</span>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>代表取締役交代</h4>
+                                <p>代表取締役に宮腰昇が就任する</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">
+                                <span class="year">平成30年</span>
+                                <span class="month">9月</span>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>ゴールド認定取得</h4>
+                                <p>埼玉県多様な働き方実践企業 ゴールド認定を取得</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">
+                                <span class="year">令和3年</span>
+                                <span class="month">4月</span>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>創立50周年</h4>
+                                <p>創立５０周年を迎える</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">
+                                <span class="year">令和3年</span>
+                                <span class="month">8月</span>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>SDGsパートナー登録</h4>
+                                <p>埼玉県SDGsパートナーに登録</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">
+                                <span class="year">令和4年</span>
+                                <span class="month">12月</span>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>プラチナ認定取得</h4>
+                                <p>埼玉県多様な働き方実践企業 プラチナ認定を取得</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">
+                                <span class="year">令和5年</span>
+                                <span class="month">10月</span>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>ISO14001認証取得</h4>
+                                <p>国際規格ＩＳＯ１４００１を認証取得する</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-section facility-section">
+                <div class="section-header">
+                    <h2>関連施設</h2>
+                </div>
+                <div class="facility-card">
+                    <div class="facility-image">
+                    </div>
+                    <div class="facility-content">
+                        <div class="facility-header">
+                            <h3>美園宿舎</h3>
+                            <div class="facility-icon">
+                                <i class="fas fa-bed"></i>
+                            </div>
+                        </div>
+                        <p>従業員の快適な生活環境を提供する宿舎施設です。安全で安心な住環境で、従業員の福利厚生をサポートしています。</p>
+                        <div class="facility-features">
+                            <span class="feature-tag"><i class="fas fa-wifi"></i> 無料Wi-Fi</span>
+                            <span class="feature-tag"><i class="fas fa-parking"></i> 駐車場完備</span>
+                            <span class="feature-tag"><i class="fas fa-utensils"></i> 食堂利用可能</span>
+                        </div>
+                        <a href="facilities/misono.html" class="facility-detail-btn">
+                            詳細を見る
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 宿舎内画像スライダー -->
+                <div class="facility-gallery">
+                    <div class="gallery-slider">
+                        <div class="gallery-container">
+                            <div class="gallery-track">
+                                <div class="gallery-slide">
+                                    <img src="images/shukusha/DSC_0038.JPG" alt="宿舎内の様子1" onerror="this.src='images/top/placeholder.jpg'">
+                                </div>
+                                <div class="gallery-slide">
+                                    <img src="images/shukusha/DSC_0041.JPG" alt="宿舎内の様子2" onerror="this.src='images/top/placeholder.jpg'">
+                                </div>
+                                <div class="gallery-slide">
+                                    <img src="images/shukusha/DSC_0045.JPG" alt="宿舎内の様子3" onerror="this.src='images/top/placeholder.jpg'">
+                                </div>
+                                <div class="gallery-slide">
+                                    <img src="images/shukusha/DSC_0048.JPG" alt="宿舎内の様子4" onerror="this.src='images/top/placeholder.jpg'">
+                                </div>
+                                <div class="gallery-slide">
+                                    <img src="images/shukusha/DSC_0049.JPG" alt="宿舎内の様子5" onerror="this.src='images/top/placeholder.jpg'">
+                                </div>
+                                <div class="gallery-slide">
+                                    <img src="images/shukusha/DSC_0068.JPG" alt="宿舎内の様子6" onerror="this.src='images/top/placeholder.jpg'">
+                                </div>
+                                <div class="gallery-slide">
+                                    <img src="images/shukusha/DSC_0070.JPG" alt="宿舎内の様子7" onerror="this.src='images/top/placeholder.jpg'">
+                                </div>
+                                <div class="gallery-slide">
+                                    <img src="images/shukusha/DSC_0072.JPG" alt="宿舎内の様子8" onerror="this.src='images/top/placeholder.jpg'">
+                                </div>
+                                <div class="gallery-slide">
+                                    <img src="images/shukusha/toilet.JPG" alt="トイレ" onerror="this.src='images/top/placeholder.jpg'">
+                                </div>
+                                <div class="gallery-slide">
+                                    <img src="images/shukusha/kyoshitsu.jpg" alt="居室" onerror="this.src='images/top/placeholder.jpg'">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="gallery-controls">
+                            <button class="gallery-btn prev-btn" onclick="moveGallerySlide(-1)">‹</button>
+                            <button class="gallery-btn next-btn" onclick="moveGallerySlide(1)">›</button>
+                        </div>
+                        <div class="gallery-dots">
+                            <span class="gallery-dot active" data-slide="0"></span>
+                            <span class="gallery-dot" data-slide="1"></span>
+                            <span class="gallery-dot" data-slide="2"></span>
+                            <span class="gallery-dot" data-slide="3"></span>
+                            <span class="gallery-dot" data-slide="4"></span>
+                            <span class="gallery-dot" data-slide="5"></span>
+                            <span class="gallery-dot" data-slide="6"></span>
+                            <span class="gallery-dot" data-slide="7"></span>
+                            <span class="gallery-dot" data-slide="8"></span>
+                            <span class="gallery-dot" data-slide="9"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>邦栄建設株式会社</h3>
+                    <p>〒333-0807 埼玉県川口市安行吉岡1570-6</p>
+                    <p>TEL: 048-288-8800</p>
+                </div>
+                <div class="footer-links">
+                    <h4>サイトマップ</h4>
+                    <ul>
+                        <li><a href="index.html#about">企業情報</a></li>
+                        <li><a href="index.html#news">お知らせ</a></li>
+                        <li><a href="news/index.html">お知らせ一覧</a></li>
+                        <li><a href="index.html#services">事業内容</a></li>
+                        <li><a href="index.html#works">施工実績</a></li>
+                        <li><a href="works/index.html">施工実績一覧</a></li>
+                        <li><a href="index.html#technology">工法・技術</a></li>
+                        <li><a href="index.html#recruit">採用情報</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 邦栄建設株式会社 All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // 宿舎内画像スライダーの機能
+        let currentGallerySlide = 0;
+        const gallerySlides = document.querySelectorAll('.gallery-slide');
+        const galleryDots = document.querySelectorAll('.gallery-dot');
+        const galleryTrack = document.querySelector('.gallery-track');
+
+        function moveGallerySlide(direction) {
+            currentGallerySlide += direction;
+            
+            if (currentGallerySlide >= gallerySlides.length) {
+                currentGallerySlide = 0;
+            } else if (currentGallerySlide < 0) {
+                currentGallerySlide = gallerySlides.length - 1;
+            }
+            
+            updateGallerySlider();
+        }
+
+        function goToGallerySlide(slideIndex) {
+            currentGallerySlide = slideIndex;
+            updateGallerySlider();
+        }
+
+        function updateGallerySlider() {
+            const offset = -currentGallerySlide * 100;
+            galleryTrack.style.transform = `translateX(${offset}%)`;
+            
+            // ドットのアクティブ状態を更新
+            galleryDots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentGallerySlide);
+            });
+        }
+
+        // ドットクリックイベント
+        galleryDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                goToGallerySlide(index);
+            });
+        });
+
+        // 自動スライド（オプション）
+        setInterval(() => {
+            moveGallerySlide(1);
+        }, 5000);
+    </script>
+</body>
+</html>

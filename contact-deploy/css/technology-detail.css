@@ -1,0 +1,471 @@
+/* 建設DXページ専用スタイル */
+
+/* ページヘッダー */
+.dx-header,
+.lmole-header,
+.spr-header {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
+    padding: 80px 0 60px;
+    position: relative;
+    overflow: hidden;
+}
+
+.dx-header::before,
+.lmole-header::before,
+.spr-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    opacity: 0.3;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    position: relative;
+    z-index: 2;
+}
+
+.header-icon {
+    flex-shrink: 0;
+}
+
+.tech-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.tech-icon svg {
+    width: 40px;
+    height: 40px;
+    color: white;
+    display: block;
+    margin: 0 auto;
+}
+
+.header-text h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0 0 16px 0;
+    line-height: 1.2;
+}
+
+.header-subtitle {
+    font-size: 1.2rem;
+    margin: 0 0 24px 0;
+    opacity: 0.9;
+    line-height: 1.6;
+}
+
+.header-tags {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* メインコンテンツ */
+.tech-detail {
+    padding: 80px 0;
+    background: #f8fafc;
+}
+
+.tech-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.intro-section {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.intro-section h2 {
+    font-size: 2.2rem;
+    color: #1e3c72;
+    margin-bottom: 24px;
+    font-weight: 700;
+}
+
+.intro-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.intro-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #4a5568;
+    margin-bottom: 16px;
+}
+
+.intro-content strong {
+    color: #1e3c72;
+    font-weight: 700;
+}
+
+/* 画像セクション */
+.tech-image-section {
+    margin: 60px 0;
+}
+
+.image-container {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.tech-main-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+}
+
+.image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    color: white;
+    padding: 40px 30px 30px;
+}
+
+.overlay-content h3 {
+    font-size: 1.5rem;
+    margin: 0 0 8px 0;
+    font-weight: 600;
+}
+
+.overlay-content p {
+    margin: 0;
+    opacity: 0.9;
+}
+
+/* 技術・システムセクション */
+.tech-features {
+    margin: 80px 0;
+}
+
+.tech-features h3 {
+    text-align: center;
+    font-size: 2rem;
+    color: #1e3c72;
+    margin-bottom: 50px;
+    font-weight: 700;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 450px));
+    gap: 25px;
+    justify-content: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.feature-item {
+    background: white;
+    padding: 35px 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 320px;
+    max-height: none;
+    overflow: hidden;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+    min-height: 60px;
+    max-width: 60px;
+    max-height: 60px;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    flex-shrink: 0;
+}
+
+.feature-icon svg {
+    width: 30px;
+    height: 30px;
+    color: white;
+}
+
+.feature-item h4 {
+    font-size: 1.3rem;
+    color: #1e3c72;
+    margin: 0 0 20px 0;
+    font-weight: 600;
+    line-height: 1.3;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+}
+
+.feature-item p {
+    color: #4a5568;
+    line-height: 1.7;
+    margin: 0;
+    word-break: normal;
+    overflow-wrap: anywhere;
+    hyphens: none;
+    flex-grow: 1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 5px;
+    font-size: 0.95rem;
+    text-align: center;
+    max-width: 100%;
+    white-space: normal;
+    text-justify: inter-character;
+}
+
+/* 導入効果セクション */
+.benefits {
+    margin: 80px 0;
+}
+
+.benefits h3 {
+    text-align: center;
+    font-size: 2rem;
+    color: #1e3c72;
+    margin-bottom: 50px;
+    font-weight: 700;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.benefit-item {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 4px solid #2a5298;
+}
+
+.benefit-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+.benefit-icon {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+    display: block;
+}
+
+.benefit-item h4 {
+    font-size: 1.2rem;
+    color: #1e3c72;
+    margin: 0 0 12px 0;
+    font-weight: 600;
+}
+
+.benefit-item p {
+    color: #4a5568;
+    line-height: 1.6;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* 戻るボタン */
+.back-link {
+    text-align: center;
+    margin-top: 60px;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #1e3c72;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.back-btn:hover {
+    background: #2a5298;
+    transform: translateY(-2px);
+}
+
+/* レスポンシブデザイン */
+
+/* タブレット・中サイズ画面 */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        max-width: 800px;
+    }
+    
+    .feature-item {
+        padding: 20px 15px;
+    }
+    
+    .feature-item p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+    
+    .header-text h1 {
+        font-size: 2rem;
+    }
+    
+    .header-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .tech-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .tech-icon svg {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .intro-section h2 {
+        font-size: 1.8rem;
+    }
+    
+    .tech-features h3,
+    .benefits h3 {
+        font-size: 1.6rem;
+    }
+    
+    .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        max-width: 400px;
+        padding: 0 10px;
+    }
+    
+    .feature-item {
+        min-height: auto;
+        max-height: none;
+        padding: 20px 15px;
+    }
+    
+    .feature-item p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+    
+    .benefits-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .tech-main-image {
+        height: 250px;
+    }
+    
+    .image-overlay {
+        padding: 30px 20px 20px;
+    }
+    
+    .overlay-content h3 {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .dx-header,
+    .lmole-header,
+    .spr-header {
+        padding: 60px 0 40px;
+    }
+    
+    .tech-detail {
+        padding: 60px 0;
+    }
+    
+    .header-text h1 {
+        font-size: 1.8rem;
+    }
+    
+    .header-subtitle {
+        font-size: 1rem;
+    }
+    
+    .tag {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+    
+    .feature-item,
+    .benefit-item {
+        padding: 20px;
+    }
+    
+    .feature-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .feature-icon svg {
+        width: 25px;
+        height: 25px;
+    }
+}
